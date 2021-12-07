@@ -1,0 +1,22 @@
+@function strip-unit($number) {
+    @return math.div($number, ($number * 0 + 1));
+}
+
+@function vh($value: 1) {
+    @return calc(#{$value} * var(--vh));
+}
+
+@function vw($value: 1) {
+    @return calc(#{$value} * var(--vw));
+}
+
+@function rem($value, $name: 'small') {
+    @if map-has-key($sizes, $name) {
+        $viewport-size: map-get($sizes, $name);
+        @return #{math.div(strip-unit($value), (math.div(strip-unit($viewport-size), 100)))}rem;
+    }
+
+    @else {
+        @warn 'Unfortunately, no value could retieved from `#{$name}`. Please make sure it is defined in the `$sizes` map.';
+    }
+}
