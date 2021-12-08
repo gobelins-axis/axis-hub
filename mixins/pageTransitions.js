@@ -9,7 +9,7 @@ export default {
 
     computed: {
         ...mapGetters({
-            // isCompleted: 'preloader/isCompleted',
+            isCompleted: 'preloader/isCompleted',
         }),
     },
 
