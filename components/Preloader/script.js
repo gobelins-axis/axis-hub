@@ -23,6 +23,10 @@ export default {
             setTimeout(() => {
                 this.$store.dispatch('preloader/setLoadingCompleted');
             }, 10);
+
+            setTimeout(() => {
+                this.$store.dispatch('preloader/setCompleted');
+            }, 20);
         },
     },
 };

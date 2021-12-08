@@ -7,14 +7,10 @@
  * $api.getEntryById('XXX')
  */
 import contentfulModule from './contentful';
+import contentfulEntries from './contentfulEntries';
 
 const apiFactory = (error, store, req, route, redirect, i18n) => ({
-    pages: {
-        home: '3b2e29tNguY3cO0UwTWCrF',
-        services: 'O3TBilGkhpXfBdIuWvNLt',
-        about: '2fTujXVPKdF78T0QNvjtrD',
-        contact: '16CcrNGd7AqJC2UUPMCBWw',
-    },
+    ...contentfulEntries,
     ...contentfulModule({ error, store, i18n }),
 });
 
