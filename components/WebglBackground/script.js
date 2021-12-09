@@ -36,7 +36,7 @@ export default {
                 canvas: this.$el,
                 nuxtRoot: this.$root,
                 isDebug: this.isDebug,
-                isDevelopment: this.$root,
+                isDevelopment: this.isDevelopment,
                 sceneName: this.$route.query.scene,
             });
 

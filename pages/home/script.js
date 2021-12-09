@@ -19,13 +19,13 @@ export default {
     // },
 
     methods: {
-        transitionIn(done) {
-            // console.log('transition in');
+        transitionIn(done, routeInfos) {
+            console.log('transition in', routeInfos);
             done();
         },
 
-        transitionOut(done) {
-            // console.log('transition out');
+        transitionOut(done, routeInfos) {
+            console.log('transition out', routeInfos);
             done();
         },
     },
