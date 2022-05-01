@@ -1,11 +1,13 @@
 # Cosmic starter
 
+For some detailed explanation for this starter, you can check this [documentation](https://good-galliform-905.notion.site/Cosmic-starter-documentation-1063d5ad52b04d70b017465f6b872d13).
+
 ## Environments
 
-| Name           | URL         |
-| -------------- | ----------- |
-| **Staging**    | Coming soon |
-| **Production** | Coming soon |
+| Name           | URL           |
+| -------------- | ------------- |
+| **Staging**    | To be defined |
+| **Production** | To be defined |
 
 ## Build Setup
 
@@ -34,8 +36,8 @@ This project is using [Contentful](https://app.contentful.com/).
 
 ### Staging
 
-Coming soon
+To be defined
 
 ### Production
 
-Coming soon
+To be defined
