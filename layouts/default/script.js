@@ -1,6 +1,5 @@
 // Components
 import Preloader from '@/components/Preloader';
-import WebglBackground from '@/components/WebglBackground';
 
 export default {
     watch: {
@@ -17,7 +16,6 @@ export default {
 
     components: {
         Preloader,
-        WebglBackground,
     },
 };
 

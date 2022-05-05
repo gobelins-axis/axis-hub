@@ -2,9 +2,7 @@ import Bowser from 'bowser';
 
 class Browser {
     constructor() {
-        if (process.client) {
-            this._browser = Bowser.getParser(window.navigator.userAgent);
-        }
+        this._browser = Bowser.getParser(window.navigator.userAgent);
     }
 
     isFirefox() {

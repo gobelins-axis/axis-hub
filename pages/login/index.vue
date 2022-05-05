@@ -1,5 +1,7 @@
 <template>
-    <canvas class="webgl-background"></canvas>
+    <div class="page-login">
+
+    </div>
 </template>
 
 <script src="./script.js"></script>

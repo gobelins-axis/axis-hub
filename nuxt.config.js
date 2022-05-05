@@ -1,7 +1,7 @@
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: 'Cosmic starter',
+        title: 'Arcade Hub',
 
         htmlAttrs: {
             lang: 'en',
@@ -42,9 +42,13 @@ export default {
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
-        // '@/plugins/api/index.js',
         '@/plugins/context.js',
+        // Client Side
         '@/plugins/init.client.js',
+        '@/plugins/browser.client.js',
+        '@/plugins/device.client.js',
+        '@/plugins/breakpoints.client.js',
+        '@/plugins/windowResizeObserver.client.js',
     ],
 
     router: {
@@ -121,8 +125,5 @@ export default {
 
     env: {
         NODE_ENV: process.env.NODE_ENV,
-        // Contentful
-        CTF_SPACE_ID: process.env.CTF_SPACE_ID,
-        CTF_CDA_ACCESS_TOKEN_DELIVERY: process.env.CTF_CDA_ACCESS_TOKEN_DELIVERY,
     },
 };

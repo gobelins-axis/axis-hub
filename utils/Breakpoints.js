@@ -1,17 +1,33 @@
 // Utils
-import WindowResizeObserver from '@/utils/WindowResizeObserver';
+import WindowResizeObserver from './WindowResizeObserver';
 
 // CSS Variables
-import { fontSizeSmall, fontSizeMedium, fontSizeLarge, viewportWidthSmall, viewportWidthLarge } from '@/assets/styles/resources/_variables.scss';
+import cssVariables from '@/assets/styles/resources/_variables.scss';
 
 class Breakpoints {
     constructor() {
-        if (!process.client) return;
+        this._variables = this._parseVariables();
 
-        this._active = null;
         this._bindHandlers();
         this._setupEventListeners();
         this._resize();
+    }
+
+    _parseVariables() {
+        const variables = {
+            baseViewportWidths: {},
+            baseFontSizes: {},
+            maxWidths: {},
+        };
+
+        for (const key in cssVariables) {
+            const parsedKey = key.split('--');
+            if (parsedKey[0] === 'base-width') variables.baseViewportWidths[parsedKey[1]] = cssVariables[key];
+            if (parsedKey[0] === 'base-font-size') variables.baseFontSizes[parsedKey[1]] = cssVariables[key];
+            if (parsedKey[0] === 'max-width') variables.maxWidths[parsedKey[1]] = cssVariables[key];
+        }
+
+        return variables;
     }
 
     destroy() {
@@ -22,6 +38,9 @@ class Breakpoints {
      * Getters
      */
     get current() {
+        // return 'small';
+        // return 'medium';
+
         return this._active;
     }
 
@@ -29,6 +48,8 @@ class Breakpoints {
      * Public
      */
     active() {
+        // return true;
+
         for (let i = 0, len = arguments.length; i < len; i++) {
             if (arguments[i] === this._active) return true;
         }
@@ -36,15 +57,11 @@ class Breakpoints {
     }
 
     rem(value) {
-        const viewportWidth = parseInt(viewportWidthSmall);
-        const fontSize = parseFloat(this._active === 'medium' ? fontSizeMedium : fontSizeSmall);
-        return (value / (viewportWidth / 100) / 100) * fontSize * WindowResizeObserver.width;
-    }
-
-    reml(value) {
-        const viewportWidth = parseInt(viewportWidthLarge);
-        const fontSize = parseFloat(fontSizeLarge);
-        return (value / (viewportWidth / 100) / 100) * fontSize * WindowResizeObserver.width;
+        const viewportBaseWidth = parseInt(this._variables.baseViewportWidths[this._active]);
+        const fontSize = parseFloat(this._variables.baseFontSizes[this._active]);
+        const maxWidth = this._variables.maxWidths[this._active] !== 'none' ? parseFloat(this._variables.maxWidths[this._active]) : null;
+        const viewportWidth = maxWidth !== null ? Math.min(WindowResizeObserver.innerWidth, maxWidth) : WindowResizeObserver.innerWidth;
+        return (value / (viewportBaseWidth / 100) / 100) * fontSize * viewportWidth;
     }
 
     /**

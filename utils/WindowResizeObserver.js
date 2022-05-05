@@ -6,10 +6,6 @@ class WindowResizeObserver extends EventDispatcher {
     constructor() {
         super();
 
-        if (!process.client) {
-            return;
-        }
-
         this._width = null;
         this._height = null;
 
