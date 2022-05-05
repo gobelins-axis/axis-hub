@@ -1,11 +1,11 @@
-# Arcade Hub
+# 💻 Arcade Hub
 
 ## Environments
 
-| Name           | URL           |
-| -------------- | ------------- |
-| **Staging**    | To be defined |
-| **Production** | To be defined |
+| Name           | URL                                                       |
+| -------------- | --------------------------------------------------------- |
+| **Staging**    | [arcade-hub.netlify.app](https://arcade-hub.netlify.app/) |
+| **Production** | To be defined                                             |
 
 ## Build Setup
 
@@ -30,7 +30,7 @@ For detailed explanation on how things work, check out the [documentation](https
 
 ### Staging
 
-To be defined
+Pushing on main trigger a build on [netlify](https://app.netlify.com/).
 
 ### Production
 
