@@ -16,6 +16,7 @@ export default {
 
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+            { rel: 'stylesheet', type: 'text/css', href: 'https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css' },
         ],
     },
 
@@ -43,12 +44,14 @@ export default {
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
         '@/plugins/context.js',
+        '@/plugins/firebase.js',
         // Client Side
         '@/plugins/init.client.js',
         '@/plugins/browser.client.js',
         '@/plugins/device.client.js',
         '@/plugins/breakpoints.client.js',
         '@/plugins/windowResizeObserver.client.js',
+        '@/plugins/firebaseui.client.js',
     ],
 
     router: {
@@ -125,5 +128,7 @@ export default {
 
     env: {
         NODE_ENV: process.env.NODE_ENV,
+        // Firebase
+        FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
     },
 };

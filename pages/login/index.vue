@@ -1,6 +1,10 @@
 <template>
     <div class="page-login">
 
+        <div ref="firebaseLoginContainer" class="firebase-login-container">
+
+        </div>
+
     </div>
 </template>
 
