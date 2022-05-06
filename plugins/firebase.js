@@ -1,5 +1,7 @@
 import { initializeApp, getApps } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import { getStorage, ref } from 'firebase/storage';
 
 const config = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -16,12 +18,15 @@ export default ({ store }, inject) => {
     const firebaseApp = !apps.length ? initializeApp(config) : apps[0];
 
     const auth = getAuth(firebaseApp);
+    const firestore = getFirestore(firebaseApp);
+    const storage = getStorage(firebaseApp);
+    const storageRef = ref(storage);
 
-    inject('firebase', { auth });
+    inject('firebase', { auth, firestore, storage, storageRef });
 
     return new Promise((resolve) => {
         auth.onAuthStateChanged((user) => {
-            store.dispatch('firebase-auth/setLoggedInUser', user);
+            store.dispatch('user/setLoggedInUser', user);
             resolve(user);
         });
     });

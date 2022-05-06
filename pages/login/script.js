@@ -11,13 +11,13 @@ export default {
 
     computed: {
         ...mapGetters({
-            isLoggedIn: 'firebase-auth/isLoggedIn',
+            isUserLoggedIn: 'user/isLoggedIn',
         }),
     },
 
     mounted() {
-        console.log({ isLoggedIn: this.isLoggedIn });
-        if (this.isLoggedIn) return;
+        if (this.isUserLoggedIn) return;
+
         const ui = new this.$firebaseui.auth.AuthUI(this.$firebase.auth);
 
         ui.start(
