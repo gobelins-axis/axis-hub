@@ -3,6 +3,7 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { getStorage, ref } from 'firebase/storage';
 
+// TODO: migration to axis firebase account
 const config = {
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: 'arcade-hub.firebaseapp.com',

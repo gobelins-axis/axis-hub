@@ -1,11 +1,11 @@
-# 💻 Arcade Hub
+# 💻 Axis Hub
 
 ## Environments
 
-| Name           | URL                                                       |
-| -------------- | --------------------------------------------------------- |
-| **Staging**    | [arcade-hub.netlify.app](https://arcade-hub.netlify.app/) |
-| **Production** | To be defined                                             |
+| Name           | URL                                                   |
+| -------------- | ----------------------------------------------------- |
+| **Staging**    | [axis-hub.netlify.app](https://axis-hub.netlify.app/) |
+| **Production** | To be defined                                         |
 
 ## Build Setup
 
