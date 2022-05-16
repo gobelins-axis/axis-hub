@@ -6,12 +6,12 @@ import { getStorage, ref } from 'firebase/storage';
 // TODO: migration to axis firebase account
 const config = {
     apiKey: process.env.FIREBASE_API_KEY,
-    authDomain: 'arcade-hub.firebaseapp.com',
-    projectId: 'arcade-hub',
-    storageBucket: 'arcade-hub.appspot.com',
-    messagingSenderId: '881025608612',
-    appId: '1:881025608612:web:cdf2dd5adcf3692a312f31',
-    measurementId: 'G-WL5JQ8JRKT',
+    authDomain: 'gobelins-axis.firebaseapp.com',
+    projectId: 'gobelins-axis',
+    storageBucket: 'gobelins-axis.appspot.com',
+    messagingSenderId: '529378279324',
+    appId: '1:529378279324:web:3f38515eec42d202dc9259',
+    measurementId: 'G-YSGEBD6L4W',
 };
 
 export default ({ store }, inject) => {
