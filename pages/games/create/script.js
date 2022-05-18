@@ -1,5 +1,5 @@
 // Vendor
-import {doc, collection, setDoc, addDoc, deleteDoc, updateDoc} from 'firebase/firestore';
+import {doc, collection, addDoc, deleteDoc} from 'firebase/firestore';
 import {ref, uploadBytes, getDownloadURL} from 'firebase/storage';
 
 // Mixins
@@ -8,18 +8,6 @@ import pageTransitions from '@/mixins/pageTransitions';
 
 export default {
     mixins: [seo, pageTransitions],
-
-    async mounted() {
-        // Create a new leaderboard for game: "Test"
-        // setDoc(doc(this.$firebase.firestore, 'leaderboards', 'test'), {
-        //     name: 'Test',
-        // });
-
-        // Create a new leaderboard for game with a auto generated id
-        // const leaderboard = await addDoc(collection(this.$firebase.firestore, 'leaderboards'), {
-        //     name: 'Test',
-        // });
-    },
 
     methods: {
         /**
@@ -61,23 +49,6 @@ export default {
                     });
                 });
             });
-        },
-
-        deleteHandler(e) {
-            e.preventDefault();
-
-            const idToDelete = this.$refs.inputNameD.value
-
-             deleteDoc(doc(this.$firebase.firestore, 'games', idToDelete ), {});
-        },
-
-        updateHandler(e) {
-            e.preventDefault();
-
-            const idToUpdate = this.$refs.inputNameU.value
-            const newGame = this.$refs.newNameU.value
-
-            this.$firebase.firestore.collection("games").doc(idToUpdate).update({description: newGame})
         },
     },
 };

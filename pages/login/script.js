@@ -13,6 +13,7 @@ export default {
         ...mapGetters({
             isUserLoggedIn: 'user/isLoggedIn',
         }),
+
     },
 
     mounted() {

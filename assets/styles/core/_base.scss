@@ -1,5 +1,5 @@
 html, body {
-    padding-left: rem(10px, 'large');
+    //padding-left: rem(10px, 'large');
 
     font-family: $font-primary, Arial, Helvetica, sans-serif;
 
@@ -15,7 +15,7 @@ html, body {
 
     * {
         box-sizing: border-box;
-           
+
         @include unselectable();
     }
 }

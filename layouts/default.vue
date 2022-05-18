@@ -1,10 +1,8 @@
 <template>
     <div class="default">
-
+        <NavBar />
         <Nuxt />
-
         <Preloader />
-
     </div>
 </template>
 

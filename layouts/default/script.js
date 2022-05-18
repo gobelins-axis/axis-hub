@@ -1,5 +1,6 @@
 // Components
 import Preloader from '@/components/Preloader';
+import NavBar from '@/components/Navbar';
 
 export default {
     watch: {
@@ -16,6 +17,7 @@ export default {
 
     components: {
         Preloader,
+        NavBar
     },
 };
 
