@@ -26,7 +26,11 @@
     padding: rem(5px, large) rem(15px, large);
     border-radius: 6px;
 
-    &.btn-login {
+    &.btn-login, &.btn-myspace {
         margin-right: rem(15px, large)
+    }
+
+    &.btn-logout {
+        background: rgb(221, 46, 70);
     }
 }

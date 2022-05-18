@@ -6,12 +6,22 @@
         </div>
 
         <div class="buttons-container">
-            <ButtonLink :link="`/games/create`" class="btn btn-login">
-                Connexion
-            </ButtonLink>
-            <ButtonLink :link="`/games/create`" class="btn btn-signin">
-                Commencer à créer
-            </ButtonLink>
+            <div v-if="!isUserLoggedIn">
+                <ButtonLink :link="`/games/create`" class="btn btn-login">
+                    Connexion
+                </ButtonLink>
+                <ButtonLink :link="`/games/create`" class="btn btn-signin">
+                    Commencer à créer
+                </ButtonLink>
+            </div>
+            <div v-else>
+                <ButtonLink :link="`/hub`" class="btn btn-myspace">
+                    Mon espace
+                </ButtonLink>
+                <ButtonLink :link="`/logout`" class="btn btn-logout">
+                    Déconnexion
+                </ButtonLink>
+            </div>
         </div>
     </div>
 </template>
