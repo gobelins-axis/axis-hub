@@ -6,12 +6,11 @@
         </div>
 
         <div class="buttons-container">
+            <div>
+            </div>
             <div v-if="!isUserLoggedIn">
-                <ButtonLink :link="`/games/create`" class="btn btn-login">
+                <ButtonLink :link="`/login`" class="btn btn-login">
                     Connexion
-                </ButtonLink>
-                <ButtonLink :link="`/games/create`" class="btn btn-signin">
-                    Commencer à créer
                 </ButtonLink>
             </div>
             <div v-else>
@@ -24,7 +23,7 @@
             </div>
         </div>
     </div>
-</template>
+    </div></template>
 
 <style src="./style.scss" lang="scss" scoped></style>
 <script src="./script.js"></script>

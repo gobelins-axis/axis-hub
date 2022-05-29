@@ -16,8 +16,10 @@
     "gsap": "^3.8.0",
     "nuxt": "^2.15.7",
     "nuxt-i18n": "^6.28.1",
+    "slugify": "^1.6.5",
     "three": "^0.134.0",
-    "tweakpane": "^2.4.3"
+    "tweakpane": "^2.4.3",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.3",

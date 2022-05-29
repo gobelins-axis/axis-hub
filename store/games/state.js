@@ -1,6 +1,5 @@
 const state = () => ({
-    user: null,
-    isLoggedIn: false,
+    games: null,
 });
 
 export default state;

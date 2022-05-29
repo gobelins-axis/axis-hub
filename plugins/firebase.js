@@ -1,5 +1,5 @@
 import { initializeApp, getApps } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, getDoc, collection, getDocs, doc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { getStorage, ref } from 'firebase/storage';
 
@@ -23,12 +23,63 @@ export default ({ store }, inject) => {
     const storage = getStorage(firebaseApp);
     const storageRef = ref(storage);
 
-    inject('firebase', { auth, firestore, storage, storageRef });
+    function getGames() {
+        const collectionRef = collection(firestore, 'games');
 
-    return new Promise((resolve) => {
-        auth.onAuthStateChanged((user) => {
-            store.dispatch('user/setLoggedInUser', user);
-            resolve(user);
+        const promise = new Promise((resolve, reject) => {
+            getDocs(collectionRef).then((response) => {
+                const games = response.docs.map((doc) => {
+                    return { id: doc.id, fields: doc.data() };
+                });
+                resolve(games);
+            });
         });
+
+        return promise;
+    }
+
+    function getGameLeaderboard(id) {
+        const leaderboardCollection = collection(firestore, 'leaderboards');
+        const gameRef = doc(leaderboardCollection, id);
+        const scoreCollectionRef = collection(gameRef, 'scores');
+
+        const promise = new Promise((resolve) => {
+            getDocs(scoreCollectionRef).then((response) => {
+                const scores = response.docs.map((doc) => {
+                    return doc.data();
+                });
+                resolve(scores);
+            });
+        });
+
+        return promise;
+    }
+
+    inject('firebase', {
+        auth,
+        firestore,
+        storage,
+        storageRef, // Custom methods
+        getGames,
+        getGameLeaderboard,
+    });
+
+    function authPromise() {
+        return new Promise((resolve) => {
+            auth.onAuthStateChanged((user) => {
+                resolve(user);
+            });
+        });
+    }
+
+    const promises = [
+        getGames(),
+        authPromise(),
+    ];
+
+    return Promise.all(promises).then(([games, user]) => {
+        store.dispatch('data/setGames', games);
+        store.dispatch('user/setLoggedInUser', user);
+        console.log(promises);
     });
 };

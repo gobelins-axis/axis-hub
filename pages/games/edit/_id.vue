@@ -1,36 +1,37 @@
 <template>
     <div>
-        <h1>Create game</h1>
 
-        <form class="form-container" @submit="submitHandler">
+        <form class="update-form" @submit="submitHandler">
+            <h1>{{ getSelectGameDatas.fields.name }}</h1>
+
             <div>
-                <label for="name">Name</label>
-                <input id="name" ref="inputName" name="name" type="text">
+                <label for="nameU">New game</label>
+                <input id="nameU" ref="newNameU" name="name" type="text" :value="`${getSelectGameDatas.fields.name}`">
             </div>
 
             <div>
                 <label for="description">Description</label>
-                <input id="description" ref="inputDescription" name="description" type="text">
+                <input id="description" ref="inputDescription" name="description" type="text" :value="`${getSelectGameDatas.fields.description}`" >
             </div>
 
             <div>
                 <label for="url">URL</label>
-                <input id="url" ref="inputUrl" name="url" type="text">
+                <input id="url" ref="inputUrl" name="url" type="text" :value="`${getSelectGameDatas.fields.url}`">
             </div>
 
             <div>
                 <label for="url">Players</label>
-                <input id="players" ref="players" name="players" type="number">
+                <input id="players" ref="players" name="players" type="number" :value="`${getSelectGameDatas.fields.players}`">
             </div>
 
             <div>
                 <label for="url">Credits</label>
-                <input id="credits" ref="credits" name="credits" type="textarea" maxlength="300">
+                <input id="credits" ref="credits" name="credits" type="textarea" maxlength="300" :value="`${getSelectGameDatas.fields.credits}`">
             </div>
 
             <div>
                 <label for="url">Active leaderboard</label>
-                <input id="leaderboard" ref="leaderboard" name="leaderboard" type="checkbox">
+                <input id="leaderboard" ref="leaderboard" name="leaderboard" type="checkbox" :value="`${getSelectGameDatas.fields.leaderboardActive}`">
             </div>
 
             <div>
@@ -57,18 +58,16 @@
             </div>
 
             <div>
-
                 <label for="filters">Filters</label>
                 <fieldset>
-                    <input ref="onePlayer" type="checkbox" name="filter" value="Solo">Solo<br>
-                    <input ref="multiPlayer" type="checkbox" name="filter" value="Multijoueur">Multijoueurs<br>
-                    <input ref="experience" type="checkbox" name="filter" value="Experience">Experience<br>
-                    <input ref="game" type="checkbox" name="filter" value="Jeu">Jeu<br>
+                    <input ref="onePlayer" type="checkbox" name="filter" value="Solo" checked="`${getSelectGameDatas.fields.onePlayer}`" >Solo<br>
+                    <input ref="multiPlayer" type="checkbox" name="filter" value="Multijoueur" checked="`${getSelectGameDatas.fields.multiPlayer}`">Multijoueurs<br>
+                    <input ref="experience" type="checkbox" name="filter" value="Experience" checked="`${getSelectGameDatas.fields.experience}`">Experience<br>
+                    <input ref="game" type="checkbox" name="filter" value="Jeu" checked="`${getSelectGameDatas.fields.game}`">Jeu<br>
                 </fieldset>
             </div>
 
             <div>
-
                 <label for="filters">Colors</label>
                 <input ref="color1" type="color" value="#ff0000">
                 <input ref="color2" type="color" value="#ff0000">
@@ -76,7 +75,12 @@
 
             <input type="submit" value="Submit">
 
+
+
         </form>
+
+        <button @click="deleteHandler" >DELETE</button>
+
     </div>
 </template>
 

@@ -21,8 +21,6 @@ export default {
 
         const ui = new this.$firebaseui.auth.AuthUI(this.$firebase.auth);
 
-        console.log(ui);
-
         ui.start(
             this.$refs.firebaseLoginContainer,
             {

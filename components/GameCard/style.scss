@@ -1,0 +1,20 @@
+.game-card {
+    width: 300px;
+    height: 200px;
+
+    margin-bottom: 24px;
+    border-radius: 10px;
+    padding: 1em;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: scale 0.25s;
+    background-color: grey;
+}
+
+.isEmpty {
+    background-color: transparent;
+    border: 1px dashed darkgray;
+
+}
+
+
