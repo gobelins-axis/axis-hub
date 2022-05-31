@@ -1,5 +1,5 @@
 // Vendor
-import { doc, collection, setDoc } from 'firebase/firestore';
+import { doc, collection, setDoc, addDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -54,31 +54,30 @@ export default {
                 },
             };
 
-            console.log(fields);
+            const gameUID = `${slugify(fields.name)}-${uuidv4()}`;
 
             const mediumImage = this.$refs.mediumImage.files[0];
             const largeImage = this.$refs.largeImage.files[0];
-            const storageMediumRef = ref(this.$firebase.storage, 'mediumImage');
-            const storageLargeRef = ref(this.$firebase.storage, 'largeImage');
+            const storageMediumRef = ref(this.$firebase.storage, `medium-image-${gameUID}`);
+            const storageLargeRef = ref(this.$firebase.storage, `large-image-${gameUID}`);
 
-            // 'file' comes from the Blob or File API
-            uploadBytes(storageMediumRef, mediumImage).then(() => {
-                getDownloadURL(storageMediumRef).then((url) => {
-                    fields.mediumImage.url = url;
-                    setDoc(collection(this.$firebase.firestore, 'games', `${slugify(fields.name)}-${uuidv4()}`), {
+            Promise.all([
+                // Upload images
+                uploadBytes(storageMediumRef, mediumImage),
+                uploadBytes(storageLargeRef, largeImage),
+            ]).then(() => {
+                Promise.all([
+                    // Get URLs
+                    getDownloadURL(storageMediumRef),    
+                    getDownloadURL(storageLargeRef),    
+                ]).then(([urlMedium, urlLarge]) => {
+                    fields.mediumImage.url = urlMedium;
+                    fields.largeImage.url = urlLarge;
+                    setDoc(doc(collection(this.$firebase.firestore, 'games'), gameUID), {
                         ...fields,
-                    });
-                });
-            });
-
-            // 'file' comes from the Blob or File API
-            uploadBytes(storageLargeRef, largeImage).then(() => {
-                getDownloadURL(storageLargeRef).then((url) => {
-                    fields.largeImage.url = url;
-                    setDoc(collection(this.$firebase.firestore, 'games', `${slugify(fields.name)}-${uuidv4()}`), {
-                        ...fields,
-                    });
-                });
+                        uid: gameUID,
+                    });             
+                });                 
             });
         },
     },
