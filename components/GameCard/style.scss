@@ -3,12 +3,17 @@
     height: 200px;
 
     margin-bottom: 24px;
-    border-radius: 10px;
+
     padding: 1em;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: scale 0.25s;
+
     background-color: grey;
+
+    border-radius: 10px;
+    box-sizing: border-box;
+
+    transition: scale 0.25s;
+
+    cursor: pointer;
 }
 
 .isEmpty {

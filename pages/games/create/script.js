@@ -1,7 +1,7 @@
 // Vendor
-import { doc, collection, setDoc, addDoc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { v4 as uuidv4 } from 'uuid';
+import {doc, collection, setDoc, addDoc} from 'firebase/firestore';
+import {ref, uploadBytes, getDownloadURL} from 'firebase/storage';
+import {v4 as uuidv4} from 'uuid';
 
 // Mixins
 import seo from '@/mixins/seo';
@@ -41,12 +41,12 @@ export default {
                 mediumImage: {
                     name: 'mediumImage', url: null,
                 },
-                leaderboardActive: this.$refs.leaderboard.value,
+                leaderboardActive: this.$refs.leaderboard.checked,
                 filters: {
-                    onePlayer: this.$refs.onePlayer.value,
-                    multiPlayer: this.$refs.multiPlayer.value,
-                    experience: this.$refs.experience.value,
-                    game: this.$refs.game.value,
+                    onePlayer: this.$refs.onePlayer.checked,
+                    multiPlayer: this.$refs.multiPlayer.checked,
+                    experience: this.$refs.experience.checked,
+                    game: this.$refs.game.checked,
                 },
                 colors: {
                     first: this.$refs.color1.value,
@@ -68,16 +68,16 @@ export default {
             ]).then(() => {
                 Promise.all([
                     // Get URLs
-                    getDownloadURL(storageMediumRef),    
-                    getDownloadURL(storageLargeRef),    
+                    getDownloadURL(storageMediumRef),
+                    getDownloadURL(storageLargeRef),
                 ]).then(([urlMedium, urlLarge]) => {
                     fields.mediumImage.url = urlMedium;
                     fields.largeImage.url = urlLarge;
                     setDoc(doc(collection(this.$firebase.firestore, 'games'), gameUID), {
                         ...fields,
                         uid: gameUID,
-                    });             
-                });                 
+                    });
+                });
             });
         },
     },

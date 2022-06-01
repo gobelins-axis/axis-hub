@@ -36,7 +36,7 @@ export default {
                 mediumImage: {
                     name: 'mediumImage', url: null,
                 },
-                leaderboardActive: this.$refs.leaderboard.value,
+                leaderboardActive: this.$refs.leaderboard.checked,
                 filters: {
                     onePlayer: this.$refs.onePlayer.checked,
                     multiPlayer: this.$refs.multiPlayer.checked,
