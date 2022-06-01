@@ -31,10 +31,10 @@ export default {
                 url: this.$refs.inputUrl.value,
                 credits: this.$refs.credits.value,
                 largeImage: {
-                    name: 'largeImage', url: null,
+                    name: `large-image-${this.getSelectGameID}`, url: null,
                 },
                 mediumImage: {
-                    name: 'mediumImage', url: null,
+                    name: `medium-image-${this.getSelectGameID}`, url: null,
                 },
                 leaderboardActive: this.$refs.leaderboard.checked,
                 filters: {
@@ -50,8 +50,8 @@ export default {
 
             const mediumImage = this.$refs.mediumImage.files[0];
             const largeImage = this.$refs.largeImage.files[0];
-            const storageMediumRef = ref(this.$firebase.storage, 'mediumImage');
-            const storageLargeRef = ref(this.$firebase.storage, 'largeImage');
+            const storageMediumRef = ref(this.$firebase.storage, `medium-image-${this.getSelectGameID}`);
+            const storageLargeRef = ref(this.$firebase.storage, `large-image-${this.getSelectGameID}`);
 
             uploadBytes(storageMediumRef, mediumImage).then(() => {
                 console.log('1')
