@@ -46,6 +46,7 @@ export default {
                 colors: {
                     first: this.$refs.color1.value, secondary: this.$refs.color2.value,
                 },
+                updatedAt: Date.now(),
             };
 
             const mediumImage = this.$refs.mediumImage.files[0];

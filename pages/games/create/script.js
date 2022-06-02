@@ -48,6 +48,8 @@ export default {
                     first: this.$refs.color1.value,
                     secondary: this.$refs.color2.value,
                 },
+                createdAt: Date.now(),
+                updatedAt: null,
             };
 
             const gameUID = `${slugify(fields.name)}-${uuidv4()}`;
@@ -74,7 +76,7 @@ export default {
                     fields.largeImage.url = urlLarge;
                     setDoc(doc(collection(this.$firebase.firestore, 'games'), gameUID), {
                         ...fields,
-                        uid: gameUID,
+                        id: gameUID,
                     });
                 });
             });
