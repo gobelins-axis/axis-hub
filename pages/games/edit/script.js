@@ -5,7 +5,7 @@ import {addDoc, collection, doc, updateDoc, deleteDoc} from "firebase/firestore"
 export default {
     computed: {
         ...mapGetters({
-            games: 'data/games',
+            games: 'games/games',
         }),
 
         getSelectGameDatas() {
@@ -75,10 +75,11 @@ export default {
         },
 
         deleteHandler(e) {
-            // dispatch action
-            this.$store.dispatch('games/deleteGame', this.getSelectGameID)
-
-            deleteDoc(doc(this.$firebase.firestore, 'games', this.getSelectGameID))
+            deleteDoc(doc(this.$firebase.firestore, 'games', this.getSelectGameID)).then(() => {
+                    this.$store.dispatch('games/deleteGame', this.getSelectGameID)
+                    this.$router.push('/hub')
+                }
+            )
         }
     }
 

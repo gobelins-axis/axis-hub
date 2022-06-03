@@ -18,7 +18,9 @@ export default {
     },
 
     mounted() {
-        signOut(this.$firebase.auth);
+        signOut(this.$firebase.auth).then(() => {
+            this.$store.dispatch('user/disconnect')
+        });
     },
 
     methods: {
