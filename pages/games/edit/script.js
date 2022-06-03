@@ -75,6 +75,9 @@ export default {
         },
 
         deleteHandler(e) {
+            // dispatch action
+            this.$store.dispatch('games/deleteGame', this.getSelectGameID)
+
             deleteDoc(doc(this.$firebase.firestore, 'games', this.getSelectGameID))
         }
     }
