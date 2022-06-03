@@ -35,12 +35,8 @@ export default {
                 players: this.$refs.players.value,
                 url: this.$refs.inputUrl.value,
                 credits: this.$refs.credits.value,
-                largeImage: {
-                    name: 'largeImage', url: null,
-                },
-                mediumImage: {
-                    name: 'mediumImage', url: null,
-                },
+                largeImage: {},
+                mediumImage: {},
                 leaderboardActive: this.$refs.leaderboard.checked,
                 filters: {
                     onePlayer: this.$refs.onePlayer.checked,
@@ -52,6 +48,8 @@ export default {
                     first: this.$refs.color1.value,
                     secondary: this.$refs.color2.value,
                 },
+                createdAt: Date.now(),
+                updatedAt: null,
             };
 
             const gameUID = `${slugify(fields.name)}-${uuidv4()}`;
@@ -71,11 +69,14 @@ export default {
                     getDownloadURL(storageMediumRef),
                     getDownloadURL(storageLargeRef),
                 ]).then(([urlMedium, urlLarge]) => {
+                    fields.mediumImage.name = `medium-image-${gameUID}`;
                     fields.mediumImage.url = urlMedium;
+
+                    fields.largeImage.name = `large-image-${gameUID}`;
                     fields.largeImage.url = urlLarge;
                     setDoc(doc(collection(this.$firebase.firestore, 'games'), gameUID), {
                         ...fields,
-                        uid: gameUID,
+                        id: gameUID,
                     });
                 });
             });

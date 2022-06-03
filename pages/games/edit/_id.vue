@@ -69,8 +69,8 @@
 
             <div>
                 <label for="filters">Colors</label>
-                <input ref="color1" type="color" value="#ff0000">
-                <input ref="color2" type="color" value="#ff0000">
+                <input ref="color1" value="#ff0000">
+                <input ref="color2" value="#ff0000">
             </div>
 
             <input type="submit" value="Submit">
