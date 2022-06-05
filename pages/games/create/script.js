@@ -48,7 +48,7 @@ export default {
                     first: this.$refs.color1.value,
                     secondary: this.$refs.color2.value,
                 },
-                createdAt: Date.now(),
+                createdAt: new Date(),
                 updatedAt: null,
             };
 
