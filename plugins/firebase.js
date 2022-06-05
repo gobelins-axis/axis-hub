@@ -78,8 +78,7 @@ export default ({ store }, inject) => {
     ];
 
     return Promise.all(promises).then(([games, user]) => {
-        store.dispatch('data/setGames', games);
+        store.dispatch('games/setGames', games);
         store.dispatch('user/setLoggedInUser', user);
-        console.log(promises);
     });
 };

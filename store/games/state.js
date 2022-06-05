@@ -1,5 +1,5 @@
 const state = () => ({
-    games: null,
+    games: [],
 });
 
 export default state;
