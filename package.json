@@ -7,10 +7,12 @@
         "build": "nuxt build",
         "start": "nuxt start",
         "generate": "nuxt generate",
-        "fix-stylelint": "npx stylelint \"**/*.scss\" --fix  \n"
+        "fix-stylelint": "stylelint **/*.scss --fix",
+        "pre-commit-done": "echo 'pre-commit is done' && exit 0"
     },
     "pre-commit": [
-        "fix-stylelint"
+        "fix-stylelint",
+        "pre-commit-done"
     ],
     "dependencies": {
         "bowser": "^2.11.0",
