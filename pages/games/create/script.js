@@ -160,7 +160,7 @@ export default {
                     first: this.color1,
                     secondary: this.color2,
                 },
-                createdAt: Date.now(),
+                createdAt: new Date(),
                 updatedAt: null,
             };
 
