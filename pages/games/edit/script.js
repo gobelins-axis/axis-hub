@@ -22,8 +22,6 @@ export default {
         submitHandler(e) {
             e.preventDefault();
 
-            console.log('yo', this.$refs.onePlayer)
-
             const fields = {
                 name: this.$refs.newNameU.value,
                 description: this.$refs.inputDescription.value,

@@ -1,7 +1,10 @@
 // Vendor
 import {doc, collection, setDoc, addDoc} from 'firebase/firestore';
 import {ref, uploadBytes, getDownloadURL} from 'firebase/storage';
+import Verte from 'verte';
+import 'verte/dist/verte.css';
 import {v4 as uuidv4} from 'uuid';
+import ButtonSimple from '../../../components/ButtonSimple'
 
 // Mixins
 import seo from '@/mixins/seo';
@@ -10,6 +13,24 @@ import slugify from "slugify";
 
 export default {
     mixins: [seo, pageTransitions],
+
+    components: {
+        Verte,
+        ButtonSimple
+    },
+
+    data() {
+        return {
+            color1: '',
+            color2: '',
+            mediumImageAdded: false,
+            largeImageAdded: false,
+            success: false,
+            error: false
+        }
+
+    },
+
 
     methods: {
         /**
@@ -26,27 +47,118 @@ export default {
         /**
          * Private
          */
+        addedFileHandler() {
+            console.log('file added');
+
+            if(this.$refs.file.files[0]){
+            this.$refs.filename.innerHTML = this.$refs.file.files[0].name
+            }
+        },
+
+        createFileReader() {
+            const reader = new FileReader();
+            return reader;
+        },
+
+        addedMediumImage() {
+            console.log('medium image added');
+
+            const fileReader = this.createFileReader();
+
+            if(this.$refs.mediumImage.files[0]){
+                this.mediumImageAdded = true
+                fileReader.readAsDataURL(this.$refs.mediumImage.files[0]);
+                fileReader.addEventListener('load', () => {
+                    this.$refs.previewMediumImage.alt = this.$refs.mediumImage.files[0].name;
+                    this.$refs.previewMediumImage.src = fileReader.result;
+                })
+            }
+        },
+
+        addedLargeImage() {
+            console.log('large image added');
+
+            const fileReader = this.createFileReader();
+
+            if(this.$refs.largeImage.files[0]){
+                this.largeImageAdded = true
+                fileReader.readAsDataURL(this.$refs.largeImage.files[0]);
+                fileReader.addEventListener('load', () => {
+                    this.$refs.previewLargeImage.alt = this.$refs.largeImage.files[0].name;
+                    this.$refs.previewLargeImage.src = fileReader.result;
+                })
+            }
+        },
+
         submitHandler(e) {
+            // reset
             e.preventDefault();
+            document.querySelectorAll('.error').forEach(item => item.classList.remove('error'))
+            this.error = false
+            this.success = false
+
+            const mediumImage = this.$refs.mediumImage.files[0];
+            const largeImage = this.$refs.largeImage.files[0];
+
+
+            // ERRORS
+            let errors = [];
+            let yearRegex = /^[2][0-1][0-9]{2}$/
+
+            if (this.$refs.inputName.value === '') {
+                errors.push('inputName')
+            }
+            if (!yearRegex.test(this.$refs.year.value)) {
+                errors.push('year')
+            }
+            if (this.$refs.players.value === '') {
+                errors.push('players')
+            }
+            if (this.$refs.credits.value === '') {
+                errors.push('credits')
+            }
+            if (!this.$refs.onePlayer.checked & !this.$refs.multiPlayer.checked & !this.$refs.game.checked & !this.$refs.experience.checked) {
+                errors.push('tags')
+            }
+            if (this.color1 === '#000000' || this.color2 === '#000000') {
+                errors.push('colors')
+            }
+            if (mediumImage === null) {
+                errors.push('mediumImage')
+            }
+            if (largeImage === null) {
+                errors.push('largeImage')
+            }
+
+            if (errors.length > 0) {
+                console.log('errors are', errors)
+                errors.forEach(error => {
+                    this.$refs[error].classList.add('error')
+                })
+                return;
+            }
+
 
             const fields = {
                 name: this.$refs.inputName.value,
-                description: this.$refs.inputDescription.value,
+                year: this.$refs.year.value,
                 players: this.$refs.players.value,
-                url: this.$refs.inputUrl.value,
                 credits: this.$refs.credits.value,
-                largeImage: {},
-                mediumImage: {},
-                leaderboardActive: this.$refs.leaderboard.checked,
+                description: this.$refs.inputDescription.value,
+                longerDescription: this.$refs.inputDescriptionLong.value,
                 filters: {
                     onePlayer: this.$refs.onePlayer.checked,
                     multiPlayer: this.$refs.multiPlayer.checked,
                     experience: this.$refs.experience.checked,
                     game: this.$refs.game.checked,
                 },
+                leaderboardActive: this.$refs.leaderboard.checked,
+                file: this.$refs.file.value,
+                largeImage: {},
+                mediumImage: {},
                 colors: {
-                    first: this.$refs.color1.value,
-                    secondary: this.$refs.color2.value,
+                    first: this.color1,
+                    secondary: this.color2,
                 },
                 createdAt: Date.now(),
                 updatedAt: null,
@@ -54,8 +166,6 @@ export default {
 
             const gameUID = `${slugify(fields.name)}-${uuidv4()}`;
 
-            const mediumImage = this.$refs.mediumImage.files[0];
-            const largeImage = this.$refs.largeImage.files[0];
             const storageMediumRef = ref(this.$firebase.storage, `medium-image-${gameUID}`);
             const storageLargeRef = ref(this.$firebase.storage, `large-image-${gameUID}`);
 
@@ -77,7 +187,13 @@ export default {
                     setDoc(doc(collection(this.$firebase.firestore, 'games'), gameUID), {
                         ...fields,
                         id: gameUID,
-                    });
+                        creatorName: this.$store.state.user.user.name,
+                        creatorID: this.$store.state.user.user.userID,
+                    }).then(() => {
+                        this.success = true
+                    }, () => {
+                        this.error = true;
+                    } );
                 });
             });
         },

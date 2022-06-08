@@ -4,7 +4,7 @@
             <NavBar />
         </client-only>
 
-        <Nuxt />
+        <Nuxt class="content" />
         <!--        <Preloader />-->
     </div>
 </template>

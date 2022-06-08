@@ -1,3 +1,24 @@
+.default {
+    height: 100%;
+
+    color: $color-text;
+
+
+    background-color: $black;
+}
+
+.content {
+    max-width: rem(1200px, large);
+
+    margin: 0 auto;
+
+    padding-top: rem(90px, large);
+
+
+
+}
+
+
 .demo-text {
     width: 100%;
 
@@ -22,5 +43,5 @@
     }
 }
 
-.default {
-}
+
+

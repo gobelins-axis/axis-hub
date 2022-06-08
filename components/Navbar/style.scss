@@ -1,11 +1,18 @@
 .navbar {
     display: flex;
 
+    position: absolute;
+    top: 0;
+    left: 0;
+
     justify-content: space-between;
 
     align-items: center;
 
     width: 100%;
+
+    height: rem(90px, large);
+
 
     padding: 2rem;
     flex-direction: row;

@@ -1,43 +1,50 @@
 {
-  "name": "axis-hub",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
-  },
-  "dependencies": {
-    "bowser": "^2.11.0",
-    "core-js": "^3.15.1",
-    "firebase": "^9.7.0",
-    "firebaseui": "^6.0.1",
-    "gsap": "^3.8.0",
-    "nuxt": "^2.15.7",
-    "nuxt-i18n": "^6.28.1",
-    "slugify": "^1.6.5",
-    "three": "^0.134.0",
-    "tweakpane": "^2.4.3",
-    "uuid": "^8.3.2"
-  },
-  "devDependencies": {
-    "@babel/eslint-parser": "^7.16.3",
-    "@babel/plugin-proposal-optional-chaining": "^7.16.0",
-    "@nuxtjs/dotenv": "^1.4.1",
-    "@nuxtjs/eslint-config": "^7.0.0",
-    "@nuxtjs/style-resources": "^1.2.1",
-    "@nuxtjs/stylelint-module": "^4.0.0",
-    "@nuxtjs/svg": "^0.3.0",
-    "eslint-plugin-nuxt": "^3.0.0",
-    "glslify-loader": "^2.0.0",
-    "raw-loader": "^4.0.2",
-    "sass": "^1.43.4",
-    "sass-loader": "^10.2.0",
-    "stylelint": "^13.13.1",
-    "stylelint-config-standard": "^21.0.0",
-    "stylelint-order": "^4.1.0",
-    "stylelint-scss": "^3.20.1",
-    "vue-eslint-parser": "^8.0.1"
-  }
+    "name": "axis-hub",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "start": "nuxt start",
+        "generate": "nuxt generate",
+        "fix-stylelint": "npx stylelint \"**/*.scss\" --fix  \n"
+    },
+    "pre-commit": [
+        "fix-stylelint"
+    ],
+    "dependencies": {
+        "bowser": "^2.11.0",
+        "core-js": "^3.15.1",
+        "firebase": "^9.7.0",
+        "firebaseui": "^6.0.1",
+        "gsap": "^3.8.0",
+        "nuxt": "^2.15.7",
+        "nuxt-i18n": "^6.28.1",
+        "slugify": "^1.6.5",
+        "three": "^0.134.0",
+        "tweakpane": "^2.4.3",
+        "uuid": "^8.3.2",
+        "verte": "^0.0.12",
+        "vuelidate": "^0.7.7"
+    },
+    "devDependencies": {
+        "@babel/eslint-parser": "^7.16.3",
+        "@babel/plugin-proposal-optional-chaining": "^7.16.0",
+        "@nuxtjs/dotenv": "^1.4.1",
+        "@nuxtjs/eslint-config": "^7.0.0",
+        "@nuxtjs/style-resources": "^1.2.1",
+        "@nuxtjs/stylelint-module": "^4.0.0",
+        "@nuxtjs/svg": "^0.3.0",
+        "eslint-plugin-nuxt": "^3.0.0",
+        "glslify-loader": "^2.0.0",
+        "pre-commit": "^1.2.2",
+        "raw-loader": "^4.0.2",
+        "sass": "^1.43.4",
+        "sass-loader": "^10.2.0",
+        "stylelint": "^13.13.1",
+        "stylelint-config-standard": "^21.0.0",
+        "stylelint-order": "^4.1.0",
+        "stylelint-scss": "^3.20.1",
+        "vue-eslint-parser": "^8.0.1"
+    }
 }

@@ -1,6 +1,13 @@
 // Colors
 $color-black: #000000;
 $color-white: #ffffff;
+$color-text: #f9f9f9;
+$grey: #6D6E70;
+$lightGrey: #C7C7C7;
+$black: #333333;
+$green: #7fef08;
+$purple: #7E00FF;
+$red: rgb(221, 46, 70);
 
 // Fonts
 $font-primary: Arial;
@@ -35,13 +42,14 @@ $breakpoints: (
         min-width: 0,
     ),
     'medium': (
-        min-width: 500px,
+        min-width: 800px,
     ),
     'large': (
-        min-width: 850px,
+        min-width: 1200px,
     ),
 );
-
+// Fonts
+$darker: 'Darker Grotesque', sans-serif;
 // Easings
 
 // Sin
