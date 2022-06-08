@@ -1,5 +1,5 @@
 import { initializeApp, getApps } from 'firebase/app';
-import { getFirestore, getDoc, collection, getDocs, doc } from 'firebase/firestore';
+import {getFirestore, getDoc, collection, getDocs, doc, setDoc} from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { getStorage, ref } from 'firebase/storage';
 
@@ -68,6 +68,7 @@ export default ({ store }, inject) => {
         return new Promise((resolve) => {
             auth.onAuthStateChanged((user) => {
                 resolve(user);
+                store.dispatch('user/setLoggedInUser', user);
             });
         });
     }
@@ -78,7 +79,8 @@ export default ({ store }, inject) => {
     ];
 
     return Promise.all(promises).then(([games, user]) => {
+        console.log('user', user)
         store.dispatch('games/setGames', games);
-        store.dispatch('user/setLoggedInUser', user);
+
     });
 };

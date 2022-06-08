@@ -4,12 +4,10 @@ const mutations = {
             state.user = null;
             state.isLoggedIn = false;
         } else {
-            const {uid, email, emailVerified} = user;
-            state.user = {uid, email, emailVerified};
+            const {uid, email, emailVerified, displayName} = user;
+            state.user = {uid, email, emailVerified, name: displayName};
             state.isLoggedIn = true;
         }
-
-        console.log(state.user);
     },
 
     DISCONNECT(state, user) {

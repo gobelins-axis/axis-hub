@@ -1,10 +1,11 @@
 // Vendor
 import * as firebase from 'firebase/auth';
-import { mapGetters } from 'vuex';
+import {mapGetters} from 'vuex';
 
 // Mixins
 import seo from '@/mixins/seo';
 import pageTransitions from '@/mixins/pageTransitions';
+import {collection, doc, setDoc} from "firebase/firestore";
 
 export default {
     mixins: [seo, pageTransitions],
@@ -19,7 +20,12 @@ export default {
     mounted() {
         if (this.isUserLoggedIn) return;
 
-        const ui = new this.$firebaseui.auth.AuthUI(this.$firebase.auth);
+        let ui;
+        if (firebaseui.auth.AuthUI.getInstance()) {
+            ui = firebaseui.auth.AuthUI.getInstance()
+        } else {
+            ui = new this.$firebaseui.auth.AuthUI(this.$firebase.auth);
+        }
 
         ui.start(
             this.$refs.firebaseLoginContainer,
@@ -36,8 +42,21 @@ export default {
                 ],
                 callbacks: {
                     signInSuccessWithAuthResult: (authResult) => {
-                        console.log(authResult);
-                        return false;
+                        const userStructure = {
+                            name: authResult.user.displayName,
+                            email: authResult.user.email,
+                            userID: authResult.user.uid,
+                        }
+
+                        const userDocName = userStructure.name.replace(/\s/g, '')
+
+                        setDoc(doc(collection(this.$firebase.firestore, 'users'), userDocName), {
+                            ...userStructure
+                        }).then(() => {
+                            this.$router.push('/hub')
+                            return false;
+                        })
+
                     },
                 },
             },
