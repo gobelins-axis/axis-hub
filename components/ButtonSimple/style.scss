@@ -6,19 +6,31 @@
 
     height: 100%;
 
-
-    padding: 5px 15px;
-
     font-family: $darker;
     font-weight: 600;
 
     transition: all 1s;
 
     cursor: pointer;
+
+    @include respond-to('small') {
+        font-size: rem(16px, small);
+        padding: rem(10px, small) rem(15px, small);
+    }
+
+    @include respond-to('medium') {
+        font-size: rem(16px, medium);
+        padding: rem(5px, medium) rem(15px, medium);
+    }
+
+    @include respond-to('large') {
+        font-size: rem(16px, large);
+        padding: rem(5px, large) rem(15px, large);
+    }
 }
 
 .button.simple {
-    color: $black;
+    color: $white;
 
     background-color: $color-text;
 
@@ -28,12 +40,26 @@
 .button.styled {
     width: auto;
 
-    padding: 5px 15px 8px;
+    @include respond-to('small') {
+        font-size: rem(16px, small);
+        padding: rem(10px, small) rem(15px, small);
+    }
+
+    @include respond-to('medium') {
+        font-size: rem(16px, medium);
+        padding: rem(10px, medium) rem(15px, medium);
+    }
+
+    @include respond-to('large') {
+        font-size: rem(16px, large);
+        padding: rem(10px, large) rem(15px, large);
+    }
 
     background-color: $purple;
+    color: $white;
 
-    border-radius: 6px 6px 6px 20px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px 6px 6px 6px;
+    //box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .button.success {
@@ -42,7 +68,7 @@
     background-color: $green;
 }
 
-.button.error {
+.button.fail {
     color: $white;
 
     background-color: $red;
