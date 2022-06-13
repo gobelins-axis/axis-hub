@@ -11,8 +11,17 @@
 
     width: 100%;
 
-    height: rem(90px, large);
+    @include respond-to('small'){
+        height: rem(75px, small);
+    }
 
+    @include respond-to('medium'){
+        height: rem(100px, medium);
+    }
+
+    @include respond-to('large'){
+        height: rem(100px, large);
+    }
 
     padding: 2rem;
     flex-direction: row;
@@ -24,10 +33,30 @@
 
 .logo {
     &-image {
-        width: rem(110px, large);
+        @include respond-to('small'){
+            width: rem(104px, small);
+        }
+
+        @include respond-to('medium') {
+            width: rem(150px, medium);
+        }
+
+        @include respond-to('large') {
+            width: rem(150px, large);
+        }
     }
     &-tagline {
         color: black;
+    }
+}
+
+.mobile-menu {
+    position: absolute;
+    top:0;
+    right: 0;
+
+    @include respond-to('small'){
+        width: rem(80px, small);
     }
 }
 
