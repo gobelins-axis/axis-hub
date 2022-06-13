@@ -10,4 +10,4 @@
 </template>
 
 <script src="./default/script.js"></script>
-<style src="./default/style.scss" lang="scss" scoped></style>
+<style src="./default/style.scss" lang="scss"></style>

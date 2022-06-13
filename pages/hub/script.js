@@ -17,7 +17,7 @@ export default {
 
     computed: {
         ...mapGetters({
-            games: 'games/games',
+            games: 'user/games',
         }),
     },
 };
