@@ -3,19 +3,23 @@ const mutations = {
         if (!user) {
             state.user = null;
             state.isLoggedIn = false;
+            state.games = {};
         } else {
-            const {uid, email, emailVerified} = user;
-            state.user = {uid, email, emailVerified};
+            const {uid, email, emailVerified, displayName} = user;
+            state.user = {uid, email, emailVerified, name: displayName};
             state.isLoggedIn = true;
         }
-
-        console.log(state.user);
     },
 
-    DISCONNECT(state, user) {
+    DISCONNECT(state) {
         state.user = null;
         state.isLoggedIn = false;
+        state.games = {};
     },
+
+    SET_USER_GAMES(state, games) {
+        state.games = games
+    }
 };
 
 export default mutations;

@@ -7,6 +7,10 @@ const actions = {
         commit('DISCONNECT');
     },
 
+    setGames: ({ commit }, games) => {
+        commit('SET_USER_GAMES', games);
+    },
+
 };
 
 export default actions;
