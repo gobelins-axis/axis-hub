@@ -1,7 +1,7 @@
-import { initializeApp, getApps } from 'firebase/app';
+import {initializeApp, getApps} from 'firebase/app';
 import {getFirestore, getDoc, collection, getDocs, doc, setDoc} from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
-import { getStorage, ref } from 'firebase/storage';
+import {getAuth} from 'firebase/auth';
+import {getStorage, ref} from 'firebase/storage';
 
 // TODO: migration to axis firebase account
 const config = {
@@ -14,7 +14,7 @@ const config = {
     measurementId: 'G-YSGEBD6L4W',
 };
 
-export default ({ store }, inject) => {
+export default ({store}, inject) => {
     const apps = getApps();
     const firebaseApp = !apps.length ? initializeApp(config) : apps[0];
 
@@ -29,7 +29,7 @@ export default ({ store }, inject) => {
         const promise = new Promise((resolve, reject) => {
             getDocs(collectionRef).then((response) => {
                 const games = response.docs.map((doc) => {
-                    return { id: doc.id, fields: doc.data() };
+                    return {id: doc.id, fields: doc.data()};
                 });
                 resolve(games);
             });
@@ -55,6 +55,14 @@ export default ({ store }, inject) => {
         return promise;
     }
 
+    auth.onAuthStateChanged((user) => {
+        store.dispatch('user/setLoggedInUser', user).then(() => {
+            let userGames = store.state.games.games.filter(game => game.fields.creatorID === user.uid)
+            console.log(userGames)
+            store.dispatch('user/setGames', userGames)
+        });
+    })
+
     inject('firebase', {
         auth,
         firestore,
@@ -64,23 +72,13 @@ export default ({ store }, inject) => {
         getGameLeaderboard,
     });
 
-    function authPromise() {
-        return new Promise((resolve) => {
-            auth.onAuthStateChanged((user) => {
-                resolve(user);
-                store.dispatch('user/setLoggedInUser', user);
-            });
-        });
-    }
-
     const promises = [
         getGames(),
-        authPromise(),
     ];
 
-    return Promise.all(promises).then(([games, user]) => {
-        console.log('user', user)
+    return Promise.all(promises).then(([games]) => {
         store.dispatch('games/setGames', games);
-
     });
+
+
 };
