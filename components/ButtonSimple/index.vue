@@ -1,8 +1,8 @@
 <template>
-    <div v-if="type === 'styled'" class="button styled" :class="{success: success}">
+    <div v-if="type === 'styled'" class="button styled" :class="{success: success, fail: error}">
         <p v-if="text">{{ text }}</p>
     </div>
-    <div v-else class="button simple" :class="{success: success}" >
+    <div v-else class="button simple" :class="{success: success, fail: error}" >
         <p v-if="text">{{ text }}</p>
     </div>
 </template>

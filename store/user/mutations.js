@@ -19,6 +19,16 @@ const mutations = {
 
     SET_USER_GAMES(state, games) {
         state.games = games
+    },
+
+    ADD_USER_GAME(state, game) {
+        state.games.push(game)
+    },
+
+    REMOVE_USER_GAME(state, game) {
+        state.games = state.games.filter(filteredGames => {
+            return filteredGames.id !== game
+        })
     }
 };
 

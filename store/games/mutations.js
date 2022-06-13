@@ -3,10 +3,11 @@ const mutations = {
         state.games = games
     },
 
-    DELETE_GAME(state, deletedGameID) {
-        console.log(state)
-        console.log('deleted', deletedGameID)
+    ADD_GAMES(state, gameToAdd) {
+        state.games.push(gameToAdd)
+    },
 
+    DELETE_GAME(state, deletedGameID) {
         state.games = state.games.filter(filteredGames => {
             console.log(filteredGames.id)
 

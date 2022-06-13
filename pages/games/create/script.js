@@ -47,14 +47,6 @@ export default {
         /**
          * Private
          */
-        addedFileHandler() {
-            console.log('file added');
-
-            if(this.$refs.file.files[0]){
-            this.$refs.filename.innerHTML = this.$refs.file.files[0].name
-            }
-        },
-
         createFileReader() {
             const reader = new FileReader();
             return reader;
@@ -65,7 +57,7 @@ export default {
 
             const fileReader = this.createFileReader();
 
-            if(this.$refs.mediumImage.files[0]){
+            if (this.$refs.mediumImage.files[0]) {
                 this.mediumImageAdded = true
                 fileReader.readAsDataURL(this.$refs.mediumImage.files[0]);
                 fileReader.addEventListener('load', () => {
@@ -80,7 +72,7 @@ export default {
 
             const fileReader = this.createFileReader();
 
-            if(this.$refs.largeImage.files[0]){
+            if (this.$refs.largeImage.files[0]) {
                 this.largeImageAdded = true
                 fileReader.readAsDataURL(this.$refs.largeImage.files[0]);
                 fileReader.addEventListener('load', () => {
@@ -94,11 +86,14 @@ export default {
             // reset
             e.preventDefault();
             document.querySelectorAll('.error').forEach(item => item.classList.remove('error'))
+
             this.error = false
             this.success = false
 
             const mediumImage = this.$refs.mediumImage.files[0];
             const largeImage = this.$refs.largeImage.files[0];
+
+            console.log(mediumImage)
 
 
             // ERRORS
@@ -117,21 +112,24 @@ export default {
             if (this.$refs.credits.value === '') {
                 errors.push('credits')
             }
+            if (this.$refs.url.value === '') {
+                errors.push('url')
+            }
             if (!this.$refs.onePlayer.checked & !this.$refs.multiPlayer.checked & !this.$refs.game.checked & !this.$refs.experience.checked) {
                 errors.push('tags')
             }
             if (this.color1 === '#000000' || this.color2 === '#000000') {
                 errors.push('colors')
             }
-            if (mediumImage === null) {
-                errors.push('mediumImage')
+            if (mediumImage === undefined) {
+                errors.push('medium')
             }
-            if (largeImage === null) {
-                errors.push('largeImage')
+            if (largeImage === undefined) {
+                errors.push('large')
             }
 
             if (errors.length > 0) {
-                console.log('errors are', errors)
+                this.error = true;
                 errors.forEach(error => {
                     this.$refs[error].classList.add('error')
                 })
@@ -153,7 +151,7 @@ export default {
                     game: this.$refs.game.checked,
                 },
                 leaderboardActive: this.$refs.leaderboard.checked,
-                file: this.$refs.file.value,
+                url: this.$refs.url.value,
                 largeImage: {},
                 mediumImage: {},
                 colors: {
@@ -188,12 +186,17 @@ export default {
                         ...fields,
                         id: gameUID,
                         creatorName: this.$store.state.user.user.name,
-                        creatorID: this.$store.state.user.user.userID,
+                        creatorID: this.$store.state.user.user.uid,
                     }).then(() => {
                         this.success = true
-                    }, () => {
-                        this.error = true;
-                    } );
+                        this.$store.dispatch('games/addGames', fields).then(() => {
+                            this.$store.dispatch('user/addGame', fields).then(() => {
+                                // this.$router.push('/hub')
+                            })
+                        }), () => {
+                            this.error = true;
+                        }
+                    });
                 });
             });
         },
