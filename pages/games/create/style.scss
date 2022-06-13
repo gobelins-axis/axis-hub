@@ -8,6 +8,19 @@
     flex-wrap: wrap;
 
     height: 100%;
+
+
+    @include respond-to('small') {
+        flex-direction: column;
+        margin-bottom: rem(45px, small);
+    }
+
+    @include respond-to('medium') {
+        flex-direction: row;
+        margin-bottom: 0;
+    }
+
+
 }
 
 .panel {
@@ -20,21 +33,63 @@
     font-size: rem(16px, large);
 
     &.left {
-        width: rem(481px, large);
+
+        @include respond-to('small') {
+            width: 100%;
+            margin-bottom: rem(30px, small);
+        }
+
+        @include respond-to('medium') {
+            width: rem(481px, medium);
+            margin-bottom: 0;
+        }
+
+        @include respond-to('large') {
+            width: rem(481px, large);
+        }
     }
 
     &.right {
-        width: rem(550px, large);
+        @include respond-to('small') {
+            width: 100%;
+        }
 
+        @include respond-to('medium') {
+            width: rem(550px, medium);
+        }
+
+        @include respond-to('large') {
+            width: rem(550px, large);
+        }
+
+        .section {
+            @include respond-to('small') {
+                margin-bottom: rem(30px, small);
+            }
+
+            @include respond-to('medium') {
+                margin-bottom: 0;
+            }
+        }
     }
 }
 
 .error {
-    border: 1px solid red!important;
+    border: 1px solid red !important;
 }
 
 .field {
-    margin-bottom: rem(40px, large);
+    @include respond-to('small') {
+        margin-bottom: rem(15px, small);
+    }
+
+    @include respond-to('medium') {
+        margin-bottom: rem(40px, medium);
+    }
+
+    @include respond-to('large') {
+        margin-bottom: rem(40px, large);
+    }
 
     &:last-child {
         margin-bottom: 0;
@@ -42,6 +97,8 @@
 
     fieldset {
         display: flex;
+        border-radius: 26px;
+        padding: 4px;
 
         justify-content: space-between;
         flex-wrap: wrap;
@@ -56,11 +113,25 @@
     }
 
     .section-title {
-        margin-bottom: rem(30px, large);
 
         font-family: $darker;
         font-weight: 800;
-        font-size: rem(32px, large);
+
+
+        @include respond-to('small') {
+            font-size: rem(32px, small);
+            margin-bottom: rem(16px, small);
+        }
+
+        @include respond-to('medium') {
+            margin-bottom: rem(30px, medium);
+            font-size: rem(32px, medium);
+        }
+
+        @include respond-to('large') {
+            margin-bottom: rem(30px, large);
+            font-size: rem(32px, large);
+        }
     }
 
 }
@@ -70,15 +141,37 @@
 
     padding: 5px;
 
-    font-size: rem(16px, large);
+    @include respond-to('small') {
+        font-size: rem(16px, small);
+        padding: rem(6px, small);
+    }
 
-    background-color: $grey;
+    @include respond-to('medium') {
+        font-size: rem(16px, medium);
+        padding: rem(10px, medium);
+    }
 
-    border-radius: 6px;
+    @include respond-to('medium') {
+        font-size: rem(16px, large);
+        padding: rem(10px, large);
+    }
+
+    border: 1px solid $black;
+    border-radius: 27px;
+
+    background-color: $white;
 
     label {
         margin: 0;
-        margin-left: 5px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+
+    .checkbox-title {
+        margin-right: 5px;
     }
 
     input {
@@ -91,24 +184,44 @@
     display: flex;
 
     justify-content: space-between;
+
+    align-items: center;
 }
 
 input[type=text], input[type=number], textarea {
     width: 100%;
     height: 40px;
 
+    @include respond-to('small') {
+        height: rem(33px, small);
+        font-size: rem(16px, small);
+        line-height: rem(16px, small);
+    }
+
+    @include respond-to('medium') {
+        height: rem(40px, medium);
+        font-size: rem(16px, medium);
+        line-height: rem(16px, medium);
+    }
+
+    @include respond-to('large') {
+        height: rem(40px, large);
+        font-size: rem(16px, large);
+        line-height: rem(16px, large);
+    }
+
     padding: 8px 10px;
 
     font-family: $darker;
-    font-size: rem(16px, large);
     color: $color-text;
 
-    background-color: #6D6E70;
+
+    background-color: $white;
     background-position: 10px 10px;
     background-repeat: no-repeat;
 
-    border: none;
-    border-radius: 10px;
+    border: 1px solid $black;
+    border-radius: 6px;
     box-shadow: none;
 
     resize: none;
@@ -118,6 +231,18 @@ input[type=text], input[type=number], textarea {
         opacity: 0.65;
 
         color: $color-text;
+
+        @include respond-to('small') {
+            font-size: rem(16px, small);
+        }
+
+        @include respond-to('medium') {
+            font-size: rem(16px, medium);
+        }
+
+        @include respond-to('large') {
+            font-size: rem(16px, large);
+        }
     }
 }
 
@@ -132,7 +257,18 @@ input[type=text], input[type=number], textarea {
 
         align-items: center;
 
-        height: 23px;
+        @include respond-to('small') {
+            height: rem(23px, small);
+        }
+
+        @include respond-to('medium') {
+            height: rem(23px, medium);
+        }
+
+        @include respond-to('large') {
+            height: rem(23px, large);
+        }
+
 
         background-color: $grey;
 
@@ -152,10 +288,36 @@ input[type=text], input[type=number], textarea {
 
     &.switchbox {
         + .custom__check {
-            width: 44px;
+            @include respond-to('small') {
+                width: rem(44px, small);
+            }
+
+            @include respond-to('medium') {
+                width: rem(44px, medium);
+            }
+
+            @include respond-to('large') {
+                width: rem(44px, large);
+            }
 
             &:after {
-                left: 6px;
+                @include respond-to('small') {
+                    left: rem(10px, small);
+                    width: rem(6px, small);
+                    height: rem(6px, small);
+                }
+
+                @include respond-to('medium') {
+                    left: rem(10px, medium);
+                    width: rem(6px, medium);
+                    height: rem(6px, medium);
+                }
+
+                @include respond-to('large') {
+                    left: rem(10px, large);
+                    width: rem(6px, large);
+                    height: rem(6px, large);
+                }
 
                 transform: scale(1.5);
             }
@@ -172,7 +334,17 @@ input[type=text], input[type=number], textarea {
         &:checked {
             ~ .custom__check {
                 &:after {
-                    left: 30px;
+                    @include respond-to('small') {
+                        left: rem(28px, small);
+                    }
+
+                    @include respond-to('medium') {
+                        left: rem(28px, medium);
+                    }
+
+                    @include respond-to('large') {
+                        left: rem(28px, large);
+                    }
                 }
             }
         }
@@ -188,11 +360,29 @@ input[type=text], input[type=number], textarea {
 
     &:checked {
         ~ .custom__check {
-            background-color: $green;
+            background-color: $purple;
 
             &:after {
                 visibility: visible;
             }
+        }
+    }
+}
+
+// LEADERBOARD
+.leaderboard {
+
+    label {
+        @include respond-to('small') {
+            font-size: rem(16px, small);
+        }
+
+        @include respond-to('medium') {
+            font-size: rem(16px, medium);
+        }
+
+        @include respond-to('large') {
+            font-size: rem(16px, large);
         }
     }
 }
@@ -228,9 +418,10 @@ input[type=text], input[type=number], textarea {
 
         padding: 10px;
 
-        background-color: $grey;
+        background-color: $white;
 
-        border-radius: 10px;
+        border-radius: 6px;
+        border: 1px solid $black;
 
         > p {
             text-overflow: ellipsis;
@@ -279,6 +470,17 @@ input[type=text], input[type=number], textarea {
     flex-wrap: nowrap;
     flex-direction: row;
 
+    @include respond-to('small') {
+        flex-direction: column;
+        gap: rem(15px, small)
+    }
+
+    @include respond-to('medium') {
+        flex-direction: row;
+        gap: unset;
+    }
+
+
     .image-wrapper {
         .inputContainer {
             position: relative;
@@ -307,19 +509,68 @@ input[type=text], input[type=number], textarea {
 
                 text-align: center;
 
-                background-color: $color-text;
-                border-radius: 10px;
+                @include respond-to('small') {
+                    font-size: rem(16px, small)
+                }
+
+                @include respond-to('medium') {
+                    font-size: rem(16px, medium);
+                }
+
+                @include respond-to('large') {
+                    font-size: rem(16px, large);
+                }
+
+                background-color: $blackAlpha;
+                color: $black;
+
+                border-radius: 6px;
             }
+        }
+
+        &.medium, &.large {
+            border-radius: 6px;
         }
 
         &.medium .inputContainer {
             width: rem(310px, large);
             height: rem(155px, large);
+
+            @include respond-to('small') {
+                width: 100%;
+                height: rem(155px, small);
+            }
+
+            @include respond-to('medium') {
+                width: rem(310px, medium);
+                height: rem(155px, medium);
+            }
+
+            @include respond-to('large') {
+                width: rem(310px, large);
+                height: rem(155px, large);
+            }
+
         }
 
         &.large .inputContainer {
             width: rem(200px, large);
             height: rem(155px, large);
+
+            @include respond-to('small') {
+                width: 100%;
+                height: rem(155px, small);
+            }
+
+            @include respond-to('medium') {
+                width: rem(200px, medium);
+                height: rem(155px, medium);
+            }
+
+            @include respond-to('large') {
+                width: rem(200px, large);
+                height: rem(155px, large);
+            }
         }
 
         .previewImage {
@@ -332,7 +583,7 @@ input[type=text], input[type=number], textarea {
             width: 100%;
             height: 100%;
 
-            border-radius: 10px;
+            border-radius: 6px;
             object-fit: cover;
 
         }
@@ -345,19 +596,55 @@ input[type=text], input[type=number], textarea {
 
     justify-content: space-between;
     flex-wrap: nowrap;
-    flex-direction: row;
+
+    @include respond-to('small') {
+        flex-direction: column;
+        gap: rem(10px, small);
+    }
+
+    @include respond-to('medium') {
+        flex-direction: row;
+        gap: 0;
+    }
+
+    border-radius: 6px 6px 18px 18px;
 
 
     .label {
         margin-bottom: 10px;
+
+        @include respond-to('small') {
+            font-size: rem(16px, small);
+        }
+
+        @include respond-to('medium') {
+            font-size: rem(16px, medium);
+        }
+
+        @include respond-to('large') {
+            font-size: rem(16px, large);
+        }
     }
 
     .color-picker-container {
         display: flex;
         position: relative;
 
-        width: rem(227px, large);
-        height: 34px;
+        @include respond-to('small') {
+
+            width: rem(227px, small);
+            height: rem(34px, small);
+        }
+
+        @include respond-to('medium') {
+            width: rem(227px, medium);
+            height: rem(34px, medium);
+        }
+
+        @include respond-to('large') {
+            width: rem(227px, large);
+            height: rem(34px, large);
+        }
 
         border-radius: 10px;
         flex-direction: row;
@@ -373,15 +660,29 @@ input[type=text], input[type=number], textarea {
         width: 50%;
         height: 100%;
 
-        background-color: $grey;
-        border-radius: 10px 0 0 10px;
+        color: $white;
+
+        @include respond-to('small') {
+            font-size: rem(16px, small);
+        }
+
+        @include respond-to('medium') {
+            font-size: rem(16px, medium);
+        }
+
+        @include respond-to('large') {
+            font-size: rem(16px, large);
+        }
+
+        background-color: $lightGrey;
+        border-radius: 27px 0 0 27px;
     }
 
     .preview {
         width: 50%;
         height: 100%;
 
-        border-radius: 0px 10px 10px 0px;
+        border-radius: 0px 27px 27px 0px;
     }
 
     .color1 .verte {
@@ -410,10 +711,22 @@ input[type=text], input[type=number], textarea {
         border-radius: 50rem;
 
         &:after {
-            width: 8px;
-            height: 8px;
+            @include respond-to('small') {
+                height: rem(10px, small);
+                width: rem(10px, small);
+            }
 
-            background-color: $grey;
+            @include respond-to('medium') {
+                height: rem(23px, medium);
+                width: rem(23px, medium);
+            }
+
+            @include respond-to('large') {
+                height: rem(23px, large);
+                width: rem(23px, large);
+            }
+
+            background-color: $white;
             border-radius: 50rem;
         }
     }
@@ -425,52 +738,66 @@ input[type=text], input[type=number], textarea {
 
     justify-content: flex-end;
 
-    height: 35px;
+    //height: 35px;
 }
 
-.default__check[type="checkbox"]:not(.switchbox) {
-    display: none;
+.checkbox {
 
-    ~ .custom__check {
-        display: flex;
-        position: relative;
+    .default__check[type="checkbox"]:not(.switchbox) {
+        display: none;
 
-        align-items: center;
+        ~ .custom__check {
+            display: flex;
+            position: relative;
 
-        height: 16px;
+            align-items: center;
 
-        background-color: $lightGrey;
+            @include respond-to('small') {
+                height: rem(10px, small);
+                width: rem(10px, small);
+            }
 
-        transition: all 0.4s ease;
+            @include respond-to('medium') {
+                height: rem(10px, medium);
+                width: rem(10px, medium);
+            }
 
-        cursor: pointer;
+            @include respond-to('large') {
+                height: rem(10px, large);
+                width: rem(10px, large);
+            }
 
-        &:after {
-            display: inline-block;
-            position: absolute;
+            background-color: $lightGrey;
 
             transition: all 0.4s ease;
-            content: "";
+
+            cursor: pointer;
+
         }
-    }
 
-    ~ .custom__check {
-        justify-content: center;
-
-        width: 16px;
-
-        &:after {
-            visibility: hidden;
-        }
-    }
-
-
-    &:checked {
         ~ .custom__check {
-            background-color: $green;
+            justify-content: center;
 
-            &:after {
-                visibility: visible;
+            @include respond-to('small') {
+                height: rem(10px, small);
+                width: rem(10px, small);
+            }
+
+            @include respond-to('medium') {
+                height: rem(10px, medium);
+                width: rem(10px, medium);
+            }
+
+            @include respond-to('large') {
+                height: rem(10px, large);
+                width: rem(10px, large);
+            }
+        }
+
+
+        &:checked {
+            ~ .custom__check {
+                background-color: $purple;
             }
         }
     }
@@ -479,20 +806,20 @@ input[type=text], input[type=number], textarea {
 .default__check[type="checkbox"] {
     &:not(.switchbox) {
         ~ .custom__check {
-            border-radius: 0.375rem;
-
-            &:after {
-                width: 3px;
-                height: 7px;
-
-                margin-top: -1px;
-
-                border-right: 2px solid #000;
-                border-bottom: 2px solid #000;
-
-                transform: rotate(45deg);
-            }
+            border-radius: 3rem;
         }
+    }
+}
+
+#credits {
+    height: 77px;
+
+    @include respond-to('small') {
+        height: rem(77px, small);
+    }
+
+    @include respond-to('medium') {
+        height: initial;
     }
 }
 

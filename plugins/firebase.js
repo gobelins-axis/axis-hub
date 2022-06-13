@@ -58,7 +58,6 @@ export default ({store}, inject) => {
     auth.onAuthStateChanged((user) => {
         store.dispatch('user/setLoggedInUser', user).then(() => {
             let userGames = store.state.games.games.filter(game => game.fields.creatorID === user.uid)
-            console.log(userGames)
             store.dispatch('user/setGames', userGames)
         });
     })

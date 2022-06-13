@@ -11,6 +11,14 @@ const actions = {
         commit('SET_USER_GAMES', games);
     },
 
+    addGame: ({ commit }, game) => {
+        commit('ADD_USER_GAME', game);
+    },
+
+    removeGame: ({ commit }, game) => {
+        commit('REMOVE_USER_GAME', game);
+    },
+
 };
 
 export default actions;
