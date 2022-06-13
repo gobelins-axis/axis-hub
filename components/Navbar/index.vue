@@ -1,13 +1,10 @@
 <template>
     <div class="navbar">
         <div class="logo-container">
-            <img class="logo-image" src="~/assets/images/logo.jpg" alt="">
-            <span class="logo-tagline">Hub</span>
+            <img class="logo-image" src="~/assets/images/logo.svg" alt="">
         </div>
 
-        <div class="buttons-container">
-            <div>
-            </div>
+        <div class="buttons-container desktop-only">
             <div v-if="!isUserLoggedIn">
                 <ButtonLink :link="`/login`" class="btn btn-login">
                     Connexion
@@ -21,6 +18,10 @@
                     Déconnexion
                 </ButtonLink>
             </div>
+        </div>
+
+        <div class="hamburger-icon mobile-only">
+            <img class="mobile-menu" src="~/assets/images/mobile-menu.svg" alt="">
         </div>
     </div>
 </template>
