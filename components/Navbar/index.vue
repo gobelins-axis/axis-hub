@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-    </div></template>
+</template>
 
 <style src="./style.scss" lang="scss" scoped></style>
 <script src="./script.js"></script>

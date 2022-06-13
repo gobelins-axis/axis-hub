@@ -1,9 +1,39 @@
 .my-games {
     display: flex;
 
+    justify-content: space-between;
+
     flex-wrap: wrap;
 
     margin-top: 1rem;
     flex-direction: row;
+
+}
+
+.page-title {
+    margin-bottom: rem(80px, large);
+
+    font-family: $darker, sans-serif;
+    font-weight: 800;
+    font-size: rem(48px, large);
+    color: $black
+}
+
+.add-game-button {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-end;
+
+    font-size: rem(24px, large);
+    color: $white;
+
+    background-color: $purple;
+    flex-direction: row;
+
+    span {
+        font-size: rem(34px, large);
+    }
+
 
 }

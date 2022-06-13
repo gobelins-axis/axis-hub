@@ -3,8 +3,6 @@
 
     color: $color-text;
 
-
-    background-color: $black;
 }
 
 .content {
@@ -18,6 +16,9 @@
 
 }
 
+.template {
+    margin-top: rem(30px, large);
+}
 
 .demo-text {
     width: 100%;
