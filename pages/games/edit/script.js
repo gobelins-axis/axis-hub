@@ -1,14 +1,38 @@
 import {mapGetters} from "vuex";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {addDoc, collection, doc, updateDoc, deleteDoc} from "firebase/firestore";
+import Verte from "verte";
+import 'verte/dist/verte.css';
+import {v4 as uuidv4} from 'uuid';
+
+import ButtonSimple from "@/components/ButtonSimple";
 
 export default {
+    components: {
+        Verte,
+        ButtonSimple
+    },
+
+    data() {
+        return {
+            color1: '',
+            color2: '',
+            mediumImageAdded: true,
+            largeImageAdded: true,
+            success: false,
+            error: false
+        }
+
+    },
+
+
     computed: {
         ...mapGetters({
-            games: 'games/games',
+            games: 'user/games',
         }),
 
         getSelectGameDatas() {
+            console.log(this.games.find(r => r.id === this.$route.params.id))
             return this.games.find(r => r.id === this.$route.params.id)
         },
 
@@ -19,6 +43,46 @@ export default {
     },
 
     methods: {
+        copyToClipboard() {
+            this.$refs.tokenID.focus()
+            document.execCommand('copy')
+        },
+
+        createFileReader() {
+            const reader = new FileReader();
+            return reader;
+        },
+
+        addedMediumImage() {
+            console.log('medium image added');
+
+            const fileReader = this.createFileReader();
+
+            if (this.$refs.mediumImage.files[0]) {
+                this.mediumImageAdded = true
+                fileReader.readAsDataURL(this.$refs.mediumImage.files[0]);
+                fileReader.addEventListener('load', () => {
+                    this.$refs.previewMediumImage.alt = this.$refs.mediumImage.files[0].name;
+                    this.$refs.previewMediumImage.src = fileReader.result;
+                })
+            }
+        },
+
+        addedLargeImage() {
+            console.log('large image added');
+
+            const fileReader = this.createFileReader();
+
+            if (this.$refs.largeImage.files[0]) {
+                this.largeImageAdded = true
+                fileReader.readAsDataURL(this.$refs.largeImage.files[0]);
+                fileReader.addEventListener('load', () => {
+                    this.$refs.previewLargeImage.alt = this.$refs.largeImage.files[0].name;
+                    this.$refs.previewLargeImage.src = fileReader.result;
+                })
+            }
+        },
+
         submitHandler(e) {
             e.preventDefault();
 
@@ -53,16 +117,11 @@ export default {
             const storageLargeRef = ref(this.$firebase.storage, `large-image-${this.getSelectGameID}`);
 
             uploadBytes(storageMediumRef, mediumImage).then(() => {
-                console.log('1')
                 getDownloadURL(storageMediumRef).then((url) => {
-                    console.log('2')
                     fields.mediumImage.url = url;
                 }).then(() => {
-                    console.log('3')
                     uploadBytes(storageLargeRef, largeImage).then(() => {
-                        console.log('4')
                         getDownloadURL(storageLargeRef).then((url) => {
-                            console.log('5')
                             fields.largeImage.url = url;
                             updateDoc(doc(this.$firebase.firestore, 'games', this.getSelectGameID), {
                                 ...fields,
@@ -75,8 +134,11 @@ export default {
 
         deleteHandler(e) {
             deleteDoc(doc(this.$firebase.firestore, 'games', this.getSelectGameID)).then(() => {
-                    this.$store.dispatch('games/deleteGame', this.getSelectGameID)
-                    this.$router.push('/hub')
+                    this.$store.dispatch('games/deleteGame', this.getSelectGameID).then(() => {
+                        this.$store.dispatch('user/removeGame', this.getSelectGameID).then(() => {
+                            this.$router.push('/hub')
+                        })
+                    })
                 }
             )
         }
