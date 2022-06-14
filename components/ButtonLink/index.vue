@@ -1,8 +1,14 @@
 <template>
-    <NuxtLink class="nuxt-link" :to="link">
-        <slot />
+    <NuxtLink v-if="type === 'styled'" class="button styled" :to="link">
+        <p v-if="text">{{ text }}</p>
+    </NuxtLink>
+    <NuxtLink v-else-if="type === 'blank'" class="button blank" :to="link">
+        <p v-if="text">{{ text }}</p>
+    </NuxtLink>
+    <NuxtLink v-else class="button simple" :to="link">
+        <p v-if="text">{{ text }}</p>
     </NuxtLink>
 </template>
 
 <script src="./script.js"></script>
-<style src="./style.scss" lang="scss" scoped></style>
+<style src="./style.scss" lang="scss"></style>

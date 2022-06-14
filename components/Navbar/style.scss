@@ -61,8 +61,29 @@
 }
 
 .buttons-container {
-    font-family: 'Darker Grotesque', sans-serif;
+    display: flex;
 
+    font-family: 'Darker Grotesque', sans-serif;
+    flex-direction: row;
+}
+
+.logged-btns {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+
+    @include respond-to('medium'){
+        gap: rem(35px, medium);
+
+        font-size: rem(20px, medium)!important;
+    }
+
+    @include respond-to('large'){
+        gap: rem(35px, large);
+
+        font-size: rem(20px, large)!important;
+    }
 }
 
 .btn {
@@ -70,11 +91,15 @@
 
     border-radius: 6px;
 
-    &.btn-login, &.btn-myspace {
-        margin-right: rem(15px, large)
+    @include respond-to('medium'){
+        font-size: rem(20px, medium)!important;
+    }
+
+    @include respond-to('large'){
+        font-size: rem(20px, large)!important;
     }
 
     &.btn-logout {
-        background: rgb(221, 46, 70);
+        background: $purple;
     }
 }

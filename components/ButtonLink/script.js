@@ -1,3 +1,4 @@
 export default {
-    props: ['link'],
+    props: ['link', 'text', 'type', 'success', 'error', 'theme', 'color'],
+
 };
