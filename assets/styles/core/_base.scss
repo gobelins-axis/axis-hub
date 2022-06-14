@@ -49,16 +49,16 @@ html,body, #__nuxt, #__layout{
 
 .desktop-only {
     @include respond-to('small') {
-        display: none;
+        display: none!important;
     }
 
     @include respond-to('medium'){
-        display: block;
+        display: block!important;
     }
 }
 
 .mobile-only {
     @include respond-to('medium'){
-        display: none;
+        display: none!important;
     }
 }

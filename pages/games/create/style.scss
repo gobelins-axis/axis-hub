@@ -12,11 +12,13 @@
 
     @include respond-to('small') {
         flex-direction: column;
+
         margin-bottom: rem(45px, small);
     }
 
     @include respond-to('medium') {
         flex-direction: row;
+
         margin-bottom: 0;
     }
 
@@ -36,11 +38,13 @@
 
         @include respond-to('small') {
             width: 100%;
+
             margin-bottom: rem(30px, small);
         }
 
         @include respond-to('medium') {
             width: rem(481px, medium);
+
             margin-bottom: 0;
         }
 
@@ -97,11 +101,17 @@
 
     fieldset {
         display: flex;
-        border-radius: 26px;
-        padding: 4px;
 
         justify-content: space-between;
         flex-wrap: wrap;
+
+        padding: 4px;
+
+        padding: 4px;
+
+        border-radius: 26px;
+
+        border-radius: 26px;
     }
 }
 
@@ -113,23 +123,25 @@
     }
 
     .section-title {
-
         font-family: $darker;
         font-weight: 800;
 
 
         @include respond-to('small') {
-            font-size: rem(32px, small);
             margin-bottom: rem(16px, small);
+
+            font-size: rem(32px, small);
         }
 
         @include respond-to('medium') {
             margin-bottom: rem(30px, medium);
+
             font-size: rem(32px, medium);
         }
 
         @include respond-to('large') {
             margin-bottom: rem(30px, large);
+
             font-size: rem(32px, large);
         }
     }
@@ -141,33 +153,39 @@
 
     padding: 5px;
 
-    @include respond-to('small') {
-        font-size: rem(16px, small);
-        padding: rem(6px, small);
-    }
-
-    @include respond-to('medium') {
-        font-size: rem(16px, medium);
-        padding: rem(10px, medium);
-    }
-
-    @include respond-to('medium') {
-        font-size: rem(16px, large);
-        padding: rem(10px, large);
-    }
+    background-color: $white;
 
     border: 1px solid $black;
     border-radius: 27px;
 
-    background-color: $white;
+    @include respond-to('small') {
+        padding: rem(6px, small);
+
+        font-size: rem(16px, small);
+    }
+
+    @include respond-to('medium') {
+        padding: rem(10px, medium);
+
+        font-size: rem(16px, medium);
+    }
+
+    @include respond-to('medium') {
+        padding: rem(10px, large);
+
+        font-size: rem(16px, large);
+    }
 
     label {
-        margin: 0;
         display: flex;
-        flex-direction: row;
-        align-items: center;
+
         justify-content: space-between;
+        align-items: center;
+
+        margin: 0;
+
         cursor: pointer;
+        flex-direction: row;
     }
 
     .checkbox-title {
@@ -190,22 +208,24 @@
 
 input[type=text], input[type=number], textarea {
     width: 100%;
-    height: 40px;
 
     @include respond-to('small') {
         height: rem(33px, small);
+
         font-size: rem(16px, small);
         line-height: rem(16px, small);
     }
 
     @include respond-to('medium') {
         height: rem(40px, medium);
+
         font-size: rem(16px, medium);
         line-height: rem(16px, medium);
     }
 
     @include respond-to('large') {
         height: rem(40px, large);
+
         font-size: rem(16px, large);
         line-height: rem(16px, large);
     }
@@ -303,18 +323,21 @@ input[type=text], input[type=number], textarea {
             &:after {
                 @include respond-to('small') {
                     left: rem(10px, small);
+
                     width: rem(6px, small);
                     height: rem(6px, small);
                 }
 
                 @include respond-to('medium') {
                     left: rem(10px, medium);
+
                     width: rem(6px, medium);
                     height: rem(6px, medium);
                 }
 
                 @include respond-to('large') {
                     left: rem(10px, large);
+
                     width: rem(6px, large);
                     height: rem(6px, large);
                 }
@@ -412,20 +435,17 @@ input[type=text], input[type=number], textarea {
         align-items: center;
 
         flex-wrap: nowrap;
-        flex-direction: row;
 
         width: 100%;
 
         padding: 10px;
 
         background-color: $white;
-
-        border-radius: 6px;
         border: 1px solid $black;
 
-        > p {
-            text-overflow: ellipsis;
+        border-radius: 6px;
 
+        > p {
             overflow: hidden;
 
             font-size: rem(16px, large);
@@ -433,6 +453,7 @@ input[type=text], input[type=number], textarea {
             line-height: 1.7;
 
             white-space: nowrap;
+            text-overflow: ellipsis;
         }
     }
 }
@@ -507,7 +528,14 @@ input[type=text], input[type=number], textarea {
                 width: 100%;
                 height: 100%;
 
+                color: $black;
+                color: $black;
+
                 text-align: center;
+
+                background-color: $blackAlpha;
+
+                border-radius: 6px;
 
                 @include respond-to('small') {
                     font-size: rem(16px, small)
@@ -520,11 +548,6 @@ input[type=text], input[type=number], textarea {
                 @include respond-to('large') {
                     font-size: rem(16px, large);
                 }
-
-                background-color: $blackAlpha;
-                color: $black;
-
-                border-radius: 6px;
             }
         }
 
@@ -631,7 +654,6 @@ input[type=text], input[type=number], textarea {
         position: relative;
 
         @include respond-to('small') {
-
             width: rem(227px, small);
             height: rem(34px, small);
         }
@@ -712,18 +734,18 @@ input[type=text], input[type=number], textarea {
 
         &:after {
             @include respond-to('small') {
-                height: rem(10px, small);
                 width: rem(10px, small);
+                height: rem(10px, small);
             }
 
             @include respond-to('medium') {
-                height: rem(23px, medium);
                 width: rem(23px, medium);
+                height: rem(23px, medium);
             }
 
             @include respond-to('large') {
-                height: rem(23px, large);
                 width: rem(23px, large);
+                height: rem(23px, large);
             }
 
             background-color: $white;
@@ -738,7 +760,64 @@ input[type=text], input[type=number], textarea {
 
     justify-content: flex-end;
 
-    //height: 35px;
+    &.edit {
+        @include respond-to('small') {
+            flex-direction: column;
+            justify-content: center;
+            gap: rem(35px, small);
+            align-items: center;
+        }
+
+        @include respond-to('medium') {
+            flex-direction: row;
+            justify-content: flex-end;
+            gap: rem(15px, medium);
+        }
+
+        & .second-row {
+            display: flex;
+
+            @include respond-to('small') {
+                flex-direction: row;
+                gap: rem(25px, small);
+            }
+
+            @include respond-to('medium') {
+                flex-direction: row-reverse;
+                gap: rem(15px, large);
+            }
+        }
+
+        & .cancel-edit {
+            text-decoration: underline;
+
+            @include respond-to('small') {
+                font-size: rem(16px, small);
+            }
+
+            @include respond-to('medium') {
+                font-size: rem(16px, medium);
+            }
+
+            @include respond-to('large') {
+                font-size: rem(16px, large);
+            }
+        }
+    }
+
+    .delete-btn {
+        @include respond-to('small') {
+            width: rem(15px, small);
+        }
+
+        @include respond-to('medium') {
+            width: rem(20px, medium);
+        }
+
+        @include respond-to('large') {
+            width: rem(20px, large);
+        }
+    }
 }
 
 .checkbox {
@@ -753,18 +832,18 @@ input[type=text], input[type=number], textarea {
             align-items: center;
 
             @include respond-to('small') {
-                height: rem(10px, small);
                 width: rem(10px, small);
+                height: rem(10px, small);
             }
 
             @include respond-to('medium') {
-                height: rem(10px, medium);
                 width: rem(10px, medium);
+                height: rem(10px, medium);
             }
 
             @include respond-to('large') {
-                height: rem(10px, large);
                 width: rem(10px, large);
+                height: rem(10px, large);
             }
 
             background-color: $lightGrey;
@@ -779,18 +858,18 @@ input[type=text], input[type=number], textarea {
             justify-content: center;
 
             @include respond-to('small') {
-                height: rem(10px, small);
                 width: rem(10px, small);
+                height: rem(10px, small);
             }
 
             @include respond-to('medium') {
-                height: rem(10px, medium);
                 width: rem(10px, medium);
+                height: rem(10px, medium);
             }
 
             @include respond-to('large') {
-                height: rem(10px, large);
                 width: rem(10px, large);
+                height: rem(10px, large);
             }
         }
 
@@ -822,6 +901,39 @@ input[type=text], input[type=number], textarea {
         height: initial;
     }
 }
+
+#tokenID {
+    padding: 4px 10px;
+    background-color: $yellowAlpha;
+    @include respond-to('small') {
+        height: rem(23px, small);
+        margin: rem(5px, small) 0;
+
+        font-size: rem(16px, small);
+        line-height: rem(16px, small);
+    }
+
+    @include respond-to('medium') {
+        height: rem(30px, medium);
+        margin: rem(5px, medium) 0;
+
+        font-size: rem(16px, medium);
+        line-height: rem(16px, medium);
+    }
+
+    @include respond-to('large') {
+        height: rem(30px, large);
+        margin: rem(5px, large) 0;
+
+        font-size: rem(16px, large);
+        line-height: rem(16px, large);
+    }
+}
+
+.token-id-btn {
+    width: fit-content !important;
+}
+
 
 #description {
     height: 77px;
