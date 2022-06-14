@@ -1,5 +1,5 @@
 export default {
-    props: ['text', 'type', 'success', 'error', 'theme'],
+    props: ['text', 'type', 'success', 'error', 'theme', 'color'],
 };
 
 
