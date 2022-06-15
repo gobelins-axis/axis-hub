@@ -8,15 +8,35 @@
     margin-top: 1rem;
     flex-direction: row;
 
+    @include respond-to('small') {
+        flex-direction: column;
+    }
+    @include respond-to('medium') {
+        flex-direction: row;
+    }
 }
 
 .page-title {
-    margin-bottom: rem(80px, large);
-
     font-family: $darker, sans-serif;
     font-weight: 800;
     font-size: rem(48px, large);
-    color: $black
+    color: $black;
+
+    @include respond-to('small') {
+        margin-bottom: rem(40px, small);
+
+        font-size: rem(48px, small);
+    }
+    @include respond-to('medium') {
+        margin-bottom: rem(80px, medium);
+
+        font-size: rem(48px, medium);
+    }
+    @include respond-to('large') {
+        margin-bottom: rem(80px, large);
+
+        font-size: rem(48px, large);
+    }
 }
 
 .add-game-button {
@@ -25,15 +45,18 @@
     justify-content: space-between;
     align-items: flex-end;
 
-    font-size: rem(24px, large);
     color: $white;
 
     background-color: $purple;
     flex-direction: row;
+}
 
-    span {
-        font-size: rem(34px, large);
-    }
+fieldset {
+    display: flex;
 
+    justify-content: space-between;
 
+    margin-bottom: rem(40px, small);
+
+    font-family: $darker, sans-serif
 }
