@@ -1,5 +1,25 @@
 <template>
     <form class="form-container template" @submit="submitHandler">
+        <div class="popin-overlay delete" ref="deleteOverlay">
+            <div class="confirm-box-wrapper">
+                <div class="confirm-box">
+                    <div class="confirm-text">Êtes-vous sûr de vouloir supprimer ce projet ?</div>
+                    <div class="confirm-text secondary">(Cette action est irréversible.)</div>
+                    <ButtonSimple class="decline" color="yellow" type="styled" text="Non" @click.native="closePopin('delete')"/>
+                    <ButtonSimple class="confirm" type="blank" text="Oui" @click.native="deleteHandler"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="popin-overlay cancel" ref="cancelOverlay">
+            <div class="confirm-box-wrapper">
+                <div class="confirm-box">
+                    <div class="confirm-text">Êtes-vous sûr de vouloir annuler vos modifications ?</div>
+                    <ButtonSimple class="decline" color="yellow" type="styled" text="Non" @click.native="closePopin('cancel')"/>
+                    <ButtonSimple class="confirm" type="blank" text="Oui" @click.native="cancelHandler"/>
+                </div>
+            </div>
+        </div>
         <div class="panel left">
             <div class="section">
                 <div class="section-title">Informations</div>
@@ -98,7 +118,7 @@
                            :value="`${getSelectGameDatas.fields.url}`">
                     <input @focus="$event.target.select()" readonly id="tokenID" ref="tokenID" name="tokenID"
                            type="text"
-                           :value="`${getSelectGameDatas.fields.id}`">
+                           :value="`${getSelectGameID}`">
                     <ButtonSimple class="token-id-btn" @click.native="copyToClipboard" ref="tokenIDBtn"
                                   text="Copier l'ID" type="styled" color="yellow"/>
                 </div>
@@ -117,8 +137,8 @@
                                 accept="image/png, image/jpeg"
                                 @change="addedMediumImage">
 
-                            <img v-if="mediumImageAdded" class="previewImage" ref="previewMediumImage"
-                                 src="" alt=""/>
+                            <img class="previewImage" ref="previewMediumImage"
+                                 :src="getSelectGameDatas.fields.mediumImage.url" alt=""/>
                             <ButtonSimple text="Aperçu liste (1200x470px)" class="overlay" icon="download"
                                           theme="light"/>
 
@@ -136,8 +156,8 @@
                                 @change="addedLargeImage"
                             >
 
-                            <img v-if="largeImageAdded" class="previewImage" ref="previewLargeImage"
-                                 src="" alt=""/>
+                            <img class="previewImage" ref="previewLargeImage"
+                                 :src="getSelectGameDatas.fields.largeImage.url" alt=""/>
                             <ButtonSimple text="Visuel plein écran (2560x1440) " class="overlay" icon="download"/>
 
                         </div>
@@ -153,8 +173,9 @@
                         <div class="color-picker-container color1">
                             <div class="hexa-code">{{ color1 }}</div>
                             <div class="preview" :style="{backgroundColor: color1 } "></div>
-                            <verte v-model="color1" picker="square" model="hex"
-                                   value="`${getSelectGameDatas.fields.colors.secondary}`"></verte>
+
+                            <verte v-model="color1" picker="square" model="hex" ref="color1"
+                                   :value="getSelectGameDatas.fields.colors.first"></verte>
                         </div>
                     </div>
 
@@ -164,16 +185,16 @@
                             <div class="hexa-code">{{ color2 }}</div>
                             <div class="preview" :style="{backgroundColor: color2 } "></div>
                             <verte v-model="color2" menuPosition="top" picker="square" model="hex"
-                                   value="`${getSelectGameDatas.fields.colors.secondary}`"></verte>
+                                   ref="color2" :value="getSelectGameDatas.fields.colors.secondary"></verte>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="action-buttons edit">
-                <div class="cancel-edit">Annuler les modifications</div>
+                <div class="cancel-edit" @click="openPopin('cancel')">Annuler les modifications</div>
                 <div class="second-row">
-                    <img class="delete-btn" src="~/assets/images/delete.svg" alt="" @click="deleteHandler"/>
+                    <img class="delete-btn" src="~/assets/images/delete.svg" alt="" @click="openPopin('delete')"/>
                     <ButtonSimple @click.native="submitHandler" ref="submitButton"
                                   :text="success ? 'Jeu mis à jour 👍🏼' : error ? 'Verifiez les infos 🚫' : 'Sauvegarder' "
                                   type="styled"

@@ -29,6 +29,8 @@ export default {
         height: '0',
     },
 
+    ssr: false,
+
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: ['@/assets/styles/app.scss'],
 
@@ -48,7 +50,7 @@ export default {
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
         '@/plugins/context.js',
-        '@/plugins/firebase.js',
+        '@/plugins/firebase.client.js',
         // Client Side
         '@/plugins/init.client.js',
         '@/plugins/browser.client.js',

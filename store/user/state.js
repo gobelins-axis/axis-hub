@@ -1,7 +1,7 @@
 const state = () => ({
     user: null,
     isLoggedIn: false,
-    games: {},
+    games: [],
 });
 
 export default state;
