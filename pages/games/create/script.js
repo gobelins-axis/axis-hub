@@ -86,6 +86,8 @@ export default {
         submitHandler(e) {
             // reset
             e.preventDefault();
+
+            // ERROR HANDLING
             document.querySelectorAll('.error').forEach(item => item.classList.remove('error'))
 
             this.error = false
@@ -94,10 +96,6 @@ export default {
             const mediumImage = this.$refs.mediumImage.files[0];
             const largeImage = this.$refs.largeImage.files[0];
 
-            console.log(mediumImage)
-
-
-            // ERRORS
             let errors = [];
             let yearRegex = /^[2][0-1][0-9]{2}$/
 
@@ -189,9 +187,9 @@ export default {
                         creatorName: this.$store.state.user.user.name,
                         creatorID: this.$store.state.user.user.uid,
                     }).then(() => {
-                        this.success = true
-                        this.$store.dispatch('games/addGames', fields).then(() => {
-                            this.$store.dispatch('user/addGame', fields).then(() => {
+                        this.$store.dispatch('games/addGames', { id: gameUID, fields }).then(() => {
+                            this.$store.dispatch('user/addGame', { id: gameUID, fields }).then(() => {
+                                this.success = true
                                 // this.$router.push('/hub')
                             })
                         }), () => {
