@@ -45,8 +45,9 @@ export default {
         },
 
         /**
-         * Private
+         * Private/assets/images/logo.svg
          */
+
         createFileReader() {
             const reader = new FileReader();
             return reader;
