@@ -438,9 +438,9 @@ input[type=text], input[type=number], textarea {
 
         background-color: $white;
         border: 1px solid $black;
+        border: 1px solid $black;
 
         border-radius: 6px;
-        border: 1px solid $black;
 
         > p {
             overflow: hidden;
@@ -754,7 +754,67 @@ input[type=text], input[type=number], textarea {
 
     justify-content: flex-end;
 
-    //height: 35px;
+    &.edit {
+        @include respond-to('small') {
+            flex-direction: column;
+
+            justify-content: center;
+            gap: rem(35px, small);
+
+            align-items: center;
+        }
+
+        @include respond-to('medium') {
+            flex-direction: row;
+
+            justify-content: flex-end;
+            gap: rem(15px, medium);
+        }
+
+        & .second-row {
+            display: flex;
+
+            @include respond-to('small') {
+                flex-direction: row;
+                gap: rem(25px, small);
+            }
+
+            @include respond-to('medium') {
+                flex-direction: row-reverse;
+                gap: rem(15px, large);
+            }
+        }
+
+        & .cancel-edit {
+            text-decoration: underline;
+
+            @include respond-to('small') {
+                font-size: rem(16px, small);
+            }
+
+            @include respond-to('medium') {
+                font-size: rem(16px, medium);
+            }
+
+            @include respond-to('large') {
+                font-size: rem(16px, large);
+            }
+        }
+    }
+
+    .delete-btn {
+        @include respond-to('small') {
+            width: rem(15px, small);
+        }
+
+        @include respond-to('medium') {
+            width: rem(20px, medium);
+        }
+
+        @include respond-to('large') {
+            width: rem(20px, large);
+        }
+    }
 }
 
 .checkbox {
@@ -837,6 +897,42 @@ input[type=text], input[type=number], textarea {
     @include respond-to('medium') {
         height: initial;
     }
+}
+
+#tokenID {
+    padding: 4px 10px;
+
+    background-color: $yellowAlpha;
+    @include respond-to('small') {
+        height: rem(23px, small);
+
+        margin: rem(5px, small) 0;
+
+        font-size: rem(16px, small);
+        line-height: rem(16px, small);
+    }
+
+    @include respond-to('medium') {
+        height: rem(30px, medium);
+
+        margin: rem(5px, medium) 0;
+
+        font-size: rem(16px, medium);
+        line-height: rem(16px, medium);
+    }
+
+    @include respond-to('large') {
+        height: rem(30px, large);
+
+        margin: rem(5px, large) 0;
+
+        font-size: rem(16px, large);
+        line-height: rem(16px, large);
+    }
+}
+
+.token-id-btn {
+    width: fit-content !important;
 }
 
 #description {
