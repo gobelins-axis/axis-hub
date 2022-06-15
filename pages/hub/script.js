@@ -6,7 +6,11 @@ import { mapGetters } from 'vuex';
 export default {
     data() {
         return {
-            gameList: games
+            gameList: games,
+            onePlayer: '',
+            multiplayer: '',
+            experience: '',
+            game: '',
         };
     },
 
