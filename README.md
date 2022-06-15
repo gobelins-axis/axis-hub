@@ -39,7 +39,7 @@ FIREBASE_API_KEY=XXX
 
 ### Config
 
-Edit the firebase configuration in **@/plugins/firebase.js**.
+Edit the firebase configuration in **@/plugins/firebase.client.js**.
 
 ### Usage
 
