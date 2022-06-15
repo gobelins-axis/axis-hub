@@ -1,23 +1,32 @@
 .default {
-    height: 100%;
-
     color: $color-text;
-
 }
 
 .content {
-    max-width: rem(1200px, large);
-
     margin: 0 auto;
 
     padding-top: rem(90px, large);
 
+    @include respond-to('small'){
+        padding: rem(75px, small) 20px 20px;
+    }
+
+    @include respond-to('medium'){
+        padding: rem(100px, medium) 0 0;
+    }
+
+    @include respond-to('large'){
+        max-width: rem(1200px, large);
+
+        padding: rem(100px, large) 0 0;
+    }
 
 
 }
 
 .template {
-    margin-top: rem(30px, large);
+    //margin-top: rem(30px, large);
+
 }
 
 .demo-text {

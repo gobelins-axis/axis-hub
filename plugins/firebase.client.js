@@ -23,7 +23,7 @@ export default ({store}, inject) => {
     const storage = getStorage(firebaseApp);
     const storageRef = ref(storage);
 
-    function getGames() {
+    function getAllGames() {
         const collectionRef = collection(firestore, 'games');
 
         const promise = new Promise((resolve, reject) => {
@@ -31,11 +31,25 @@ export default ({store}, inject) => {
                 const games = response.docs.map((doc) => {
                     return {id: doc.id, fields: doc.data()};
                 });
+                store.dispatch('games/setGames', games)
                 resolve(games);
             });
         });
 
         return promise;
+    }
+
+    function getUserGames(user) {
+        console.log('5')
+        let userGames = store.state.games.games.filter(game => game.fields.creatorID === user.uid)
+        store.dispatch('user/setGames', userGames).then(() => {
+            console.log('state updated')
+        })
+    }
+
+    function fetchGames(user) {
+        console.log('4')
+        getAllGames().then(() => getUserGames(user))
     }
 
     function getGameLeaderboard(id) {
@@ -56,11 +70,14 @@ export default ({store}, inject) => {
     }
 
     auth.onAuthStateChanged((user) => {
+        console.log('2')
+        console.log(user)
         store.dispatch('user/setLoggedInUser', user).then(() => {
-            let userGames = store.state.games.games.filter(game => game.fields.creatorID === user.uid)
-            console.log(userGames)
-            store.dispatch('user/setGames', userGames)
-        });
+            if (user !== null) {
+                console.log('3')
+                getUserGames(user)
+            }
+        })
     })
 
     inject('firebase', {
@@ -68,16 +85,21 @@ export default ({store}, inject) => {
         firestore,
         storage,
         storageRef, // Custom methods
-        getGames,
+        getAllGames,
+        getUserGames,
+        fetchGames,
         getGameLeaderboard,
     });
 
     const promises = [
-        getGames(),
+        getAllGames(),
     ];
 
     return Promise.all(promises).then(([games]) => {
-        store.dispatch('games/setGames', games);
+        console.log('1')
+        if (store.state.user.user) {
+            getUserGames(store.state.user.user)
+        }
     });
 
 

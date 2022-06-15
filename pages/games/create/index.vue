@@ -1,5 +1,5 @@
 <template xmlns="http://www.w3.org/1999/html">
-    <form class="form-container" @submit="submitHandler">
+    <form class="form-container template" @submit="submitHandler">
         <div class="panel left">
             <div class="section">
                 <div class="section-title">Informations</div>
@@ -39,34 +39,32 @@
                 <div class="field">
                     <fieldset ref="tags">
                         <div class="checkbox">
-                            Solo
                             <label>
+                                <span class="checkbox-title">Solo</span>
                                 <input ref="onePlayer" type="checkbox" name="filter" class="default__check"
                                        value="Solo">
                                 <span class="custom__check"></span>
                             </label>
                         </div>
                         <div class="checkbox">
-                            Multijoueurs
                             <label>
-
+                                <span class="checkbox-title">Multijoueurs</span>
                                 <input ref="multiPlayer" type="checkbox" name="filter" class="default__check"
                                        value="Multijoueur">
                                 <span class="custom__check"></span>
                             </label>
                         </div>
                         <div class="checkbox">
-                            Experience
                             <label>
-
+                                <span class="checkbox-title">Experience</span>
                                 <input ref="experience" type="checkbox" name="filter" class="default__check"
                                        value="Experience">
                                 <span class="custom__check"></span>
                             </label>
                         </div>
                         <div class="checkbox">
-                            Jeu
                             <label>
+                                <span class="checkbox-title">Jeu</span>
                                 <input ref="game" type="checkbox" name="filter" class="default__check" value="Jeu">
                                 <span class="custom__check"></span>
                             </label>
@@ -74,7 +72,7 @@
                     </fieldset>
                 </div>
 
-                <div class="field flex">
+                <div class="field flex leaderboard">
                     <label>Afficher le tableau des scores</label>
                     <label>
                         <input id="leaderboard" ref="leaderboard" name="leaderboard" type="checkbox"
@@ -89,23 +87,15 @@
         <div class="panel right">
             <div class="section">
                 <div class="section-title">Projet</div>
-                <div class="dropfile-container">
-                    <input id="file" ref="file" name="file" type="file" @change="addedFileHandler">
-                    <div class="droparea">
-                        <p class="file-name" ref="filename">Télécharger le projet</p>
-                        <ButtonSimple text="Ajouter" icon="download"/>
-                    </div>
+                <div class="field">
+                    <input id="file" ref="url" name="file" type="text" placeholder="Insérer une URL">
                 </div>
-                <!--                    <div class="id-to-paste-container">-->
-                <!--                        <ButtonSimple text="Copier l'ID" class="copy-id" icon="download"/>-->
-                <!--                        <input class="id-to-paste" name="name" type="text">-->
-                <!--                    </div>-->
             </div>
 
             <div class="section">
                 <div class="section-title">Images</div>
                 <div class="image-section">
-                    <div class="image-wrapper medium">
+                    <div class="image-wrapper medium" ref="medium">
                         <div class="inputContainer">
                             <input
                                 id="mediumImage"
@@ -116,12 +106,13 @@
                                 @change="addedMediumImage">
 
                             <img v-if="mediumImageAdded" class="previewImage" ref="previewMediumImage" src="" alt=""/>
-                            <ButtonSimple text="Aperçu liste (1200x470px)" class="overlay" icon="download"/>
+                            <ButtonSimple text="Aperçu liste (1200x470px)" class="overlay" icon="download"
+                                          theme="light"/>
 
                         </div>
                     </div>
 
-                    <div class="image-wrapper large">
+                    <div class="image-wrapper large" ref="large">
                         <div class="inputContainer">
                             <input
                                 id="largeImage"
@@ -164,7 +155,9 @@
             </div>
 
             <div class="action-buttons">
-                <ButtonSimple @click.native="submitHandler" ref="submitButton" :text="success ? 'Jeu ajouté' : error ? 'Erreur' : 'Ajouter un jeu' " type="styled" :success="success" :error="error" />
+                <ButtonSimple @click.native="submitHandler" ref="submitButton"
+                              :text="success ? 'Jeu ajouté 👍🏼' : error ? 'Verifiez les infos 🚫' : 'Ajouter un jeu' " type="styled"
+                              :success="success" :error="error"/>
             </div>
         </div>
 
