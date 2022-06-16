@@ -1,1 +1,135 @@
+.form-container {
+    @include respond-to('medium') {
+        max-width: rem(500px, medium);
+    }
 
+    @include respond-to('large') {
+        max-width: rem(500px, large);
+    }
+
+    .field {
+        @include respond-to('medium') {
+            margin-bottom: rem(11px, medium);
+        }
+
+        @include respond-to('large') {
+            margin-bottom: rem(11px, large);
+        }
+    }
+}
+
+.connectionButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+
+    @include respond-to('small') {
+        padding: rem(25px, small) 0 rem(25px, small);
+    }
+
+    @include respond-to('medium') {
+        padding: rem(25px, medium) 0 rem(25px, medium);
+    }
+
+    @include respond-to('large') {
+        padding: rem(25px, large) 0 rem(25px, large);
+    }
+
+    .or {
+        font-family: $darker;
+
+        @include respond-to('small') {
+            font-size: rem(15px, small);
+            margin: rem(10px, small) 0 rem(15px, small);
+        }
+
+        @include respond-to('medium') {
+            font-size: rem(15px, medium);
+            margin: rem(10px, medium) 0 rem(15px, medium);
+        }
+
+        @include respond-to('large') {
+            font-size: rem(15px, large);
+            margin: rem(10px, large) 0 rem(15px, large);
+        }
+    }
+}
+
+.reset-password {
+    font-family: $darker;
+
+    &:visited {
+        color: $black;
+    }
+
+    @include respond-to('small') {
+        font-size: rem(15px, small);
+    }
+
+    @include respond-to('medium') {
+        font-size: rem(15px, medium);
+    }
+
+    @include respond-to('large') {
+        font-size: rem(15px, large);
+    }
+}
+
+.toggleLabel {
+    font-family: $darker;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+
+    @include respond-to('small') {
+        font-size: rem(16px, small);
+        margin-top: rem(35px, small);
+    }
+
+    @include respond-to('medium') {
+        font-size: rem(16px, medium);
+        margin-top: rem(35px, medium);
+    }
+
+    @include respond-to('large') {
+        font-size: rem(16px, large);
+        margin-top: rem(35px, large);
+    }
+}
+
+.error-message {
+    color: $red;
+    font-family: $darker;
+    text-align: center;
+
+    @include respond-to('small') {
+        font-size: rem(15px, small);
+    }
+
+    @include respond-to('medium') {
+        font-size: rem(15px, medium);
+    }
+
+    @include respond-to('large') {
+        font-size: rem(15px, large);
+    }
+}
+
+.submit-button {
+    @include respond-to('small') {
+       padding-left: rem(50px, small);
+       padding-right: rem(50px, small);
+    }
+
+    @include respond-to('medium') {
+       padding-left: rem(50px, medium);
+       padding-right: rem(50px, medium);
+    }
+
+    @include respond-to('large') {
+        padding-left: rem(50px, large);
+        padding-right: rem(50px, large);
+    }
+}
