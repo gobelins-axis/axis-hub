@@ -1,0 +1,21 @@
+.section-title {
+    font-family: $darker;
+    font-weight: 800;
+
+    @include respond-to('small') {
+        margin-bottom: rem(20px, small);
+        font-size: rem(32px, small);
+    }
+
+    @include respond-to('medium') {
+        margin-bottom: rem(30px, medium);
+
+        font-size: rem(32px, medium);
+    }
+
+    @include respond-to('large') {
+        margin-bottom: rem(30px, large);
+
+        font-size: rem(32px, large);
+    }
+}

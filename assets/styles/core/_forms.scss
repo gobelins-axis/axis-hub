@@ -1,0 +1,181 @@
+.button {
+    display: inline-block;
+
+    padding: 0;
+
+    color: inherit;
+    text-decoration: none;
+
+    background: none;
+    border: 0;
+    outline: none;
+
+    cursor: pointer;
+}
+
+.firebaseui {
+    &-container {
+        max-width: unset;
+    }
+    &-idp-button {
+        border-radius: 6px;
+        background-color: $blue!important;
+        color: white;
+        max-width: unset;
+        min-height: unset;
+        @include respond-to('small') {
+            padding: rem(8px, small) rem(16px, small);
+        }
+
+        @include respond-to('medium') {
+            padding: rem(8px, medium) rem(16px, medium);
+        }
+
+        @include respond-to('large') {
+            padding: rem(8px, large) rem(16px, large);
+        }
+    }
+    &-idp-list {
+        margin: 0;
+    }
+    &-list-item {
+        margin: 0!important;
+    }
+    &-idp-icon {
+        filter: drop-shadow( 1px 3px 4px rgba(0, 0, 0, .7   ));
+        @include respond-to('small') {
+            height: rem(16px, small);
+            width: rem(16px, small);
+        }
+
+        @include respond-to('medium') {
+            height: rem(16px, medium);
+            width: rem(16px, medium);
+        }
+
+        @include respond-to('large') {
+            height: rem(16px, large);
+            width: rem(16px, large);
+        }
+    }
+    &-idp-text {
+        color: $white!important;
+        font-family: $darker;
+        @include respond-to('small') {
+            font-size: rem(16px, small);
+        }
+
+        @include respond-to('medium') {
+            font-size: rem(16px, medium);
+        }
+
+        @include respond-to('large') {
+            font-size: rem(16px, large);
+        }
+    }
+}
+
+textarea, input {
+    width: 100%;
+
+    @include respond-to('small') {
+        height: rem(33px, small);
+
+        font-size: rem(16px, small);
+        line-height: rem(16px, small);
+    }
+
+    @include respond-to('medium') {
+        height: rem(40px, medium);
+
+        font-size: rem(16px, medium);
+        line-height: rem(16px, medium);
+    }
+
+    @include respond-to('large') {
+        height: rem(40px, large);
+
+        font-size: rem(16px, large);
+        line-height: rem(16px, large);
+    }
+
+    padding: 8px 10px;
+
+    font-family: $darker;
+    color: $color-text;
+
+
+    background-color: $white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+
+    border: 1px solid $black;
+    border-radius: 6px;
+    box-shadow: none;
+
+    resize: none;
+
+
+    &::placeholder {
+        opacity: 0.65;
+
+        color: $color-text;
+
+        @include respond-to('small') {
+            font-size: rem(16px, small);
+        }
+
+        @include respond-to('medium') {
+            font-size: rem(16px, medium);
+        }
+
+        @include respond-to('large') {
+            font-size: rem(16px, large);
+        }
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.field {
+    @include respond-to('small') {
+        margin-bottom: rem(15px, small);
+    }
+
+    @include respond-to('medium') {
+        margin-bottom: rem(40px, medium);
+    }
+
+    @include respond-to('large') {
+        margin-bottom: rem(40px, large);
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    fieldset {
+        display: flex;
+
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        padding: 4px;
+
+        border-radius: 26px;
+    }
+}
+
+.errorOnForm {
+    border: 1px solid $red;
+}
