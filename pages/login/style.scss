@@ -21,8 +21,10 @@
 .connectionButtons {
     display: flex;
     flex-direction: column;
+
     justify-content: center;
     align-items: center;
+
     border-bottom: 1px solid black;
 
     @include respond-to('small') {
@@ -41,18 +43,21 @@
         font-family: $darker;
 
         @include respond-to('small') {
-            font-size: rem(15px, small);
             margin: rem(10px, small) 0 rem(15px, small);
+
+            font-size: rem(15px, small);
         }
 
         @include respond-to('medium') {
-            font-size: rem(15px, medium);
             margin: rem(10px, medium) 0 rem(15px, medium);
+
+            font-size: rem(15px, medium);
         }
 
         @include respond-to('large') {
-            font-size: rem(15px, large);
             margin: rem(10px, large) 0 rem(15px, large);
+
+            font-size: rem(15px, large);
         }
     }
 }
@@ -81,27 +86,31 @@
     font-family: $darker;
     font-weight: 600;
     text-align: center;
+
     cursor: pointer;
 
     @include respond-to('small') {
-        font-size: rem(16px, small);
         margin-top: rem(35px, small);
+
+        font-size: rem(16px, small);
     }
 
     @include respond-to('medium') {
-        font-size: rem(16px, medium);
         margin-top: rem(35px, medium);
+
+        font-size: rem(16px, medium);
     }
 
     @include respond-to('large') {
-        font-size: rem(16px, large);
         margin-top: rem(35px, large);
+
+        font-size: rem(16px, large);
     }
 }
 
 .error-message {
-    color: $red;
     font-family: $darker;
+    color: $red;
     text-align: center;
 
     @include respond-to('small') {
@@ -119,17 +128,17 @@
 
 .submit-button {
     @include respond-to('small') {
-       padding-left: rem(50px, small);
        padding-right: rem(50px, small);
+       padding-left: rem(50px, small);
     }
 
     @include respond-to('medium') {
-       padding-left: rem(50px, medium);
        padding-right: rem(50px, medium);
+       padding-left: rem(50px, medium);
     }
 
     @include respond-to('large') {
-        padding-left: rem(50px, large);
         padding-right: rem(50px, large);
+        padding-left: rem(50px, large);
     }
 }

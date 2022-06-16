@@ -132,7 +132,7 @@ export default {
             e.preventDefault();
 
             // ERROR HANDLING
-            document.querySelectorAll('.error').forEach(item => item.classList.remove('error'))
+            document.querySelectorAll('.errorOnForm').forEach(item => item.classList.remove('errorOnForm'))
 
             this.error = false
             this.success = false
@@ -175,7 +175,7 @@ export default {
                 console.log('errors are', errors)
                 this.error = true;
                 errors.forEach(error => {
-                    this.$refs[error].classList.add('error')
+                    this.$refs[error].classList.add('errorOnForm')
                 })
                 return;
             }
@@ -270,6 +270,8 @@ export default {
         ,
 
         deleteHandler(e) {
+            this.$refs.cancelOverlay.classList.remove('open')
+            document.querySelector('body').style.overflowY = 'initial';
             deleteDoc(doc(this.$firebase.firestore, 'games', this.getSelectGameID)).then(() => {
                     this.$store.dispatch('games/deleteGame', this.getSelectGameID).then(() => {
                         this.$store.dispatch('user/removeGame', this.getSelectGameID).then(() => {
