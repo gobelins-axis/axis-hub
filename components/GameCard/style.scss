@@ -1,12 +1,47 @@
 .game-card {
     position: relative;
 
-    width: rem(331px, large);
-    height: rem(137px, large);
-
     margin-bottom: 24px;
 
-    padding: 1em;
+    @include respond-to('small') {
+        height: rem(137px, small);
+
+        padding: rem(15px, small);
+
+        font-size: rem(24px, small);
+
+    }
+    @include respond-to('medium') {
+        width: rem(331px, medium);
+        height: rem(137px, medium);
+
+        padding: rem(15px, medium);
+
+        font-size: rem(24px, medium);
+
+    }
+    @include respond-to('large') {
+        width: rem(331px, large);
+        height: rem(137px, large);
+
+        padding: rem(15px, large);
+
+        font-size: rem(24px, large);
+
+    }
+
+    &.add-game-button span {
+
+        @include respond-to('small') {
+            font-size: rem(34px, small);
+        }
+        @include respond-to('medium') {
+            font-size: rem(34px, medium);
+        }
+        @include respond-to('large') {
+            font-size: rem(34px, large);
+        }
+    }
 
     font-family: $darker, sans-serif;
 
@@ -42,7 +77,6 @@
     }
 
     .game-title {
-        font-size: rem(24px, large);
         color: $white;
     }
 }

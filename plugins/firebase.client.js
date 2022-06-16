@@ -1,6 +1,6 @@
 import {initializeApp, getApps} from 'firebase/app';
 import {getFirestore, getDoc, collection, getDocs, doc, setDoc} from 'firebase/firestore';
-import {getAuth} from 'firebase/auth';
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail} from 'firebase/auth';
 import {getStorage, ref} from 'firebase/storage';
 
 // TODO: migration to axis firebase account
@@ -19,6 +19,9 @@ export default ({store}, inject) => {
     const firebaseApp = !apps.length ? initializeApp(config) : apps[0];
 
     const auth = getAuth(firebaseApp);
+    const createUser = createUserWithEmailAndPassword;
+    const signInUser = signInWithEmailAndPassword;
+    const resetPassword = sendPasswordResetEmail;
     const firestore = getFirestore(firebaseApp);
     const storage = getStorage(firebaseApp);
     const storageRef = ref(storage);
@@ -40,7 +43,6 @@ export default ({store}, inject) => {
     }
 
     function getUserGames(user) {
-        console.log('5')
         let userGames = store.state.games.games.filter(game => game.fields.creatorID === user.uid)
         store.dispatch('user/setGames', userGames).then(() => {
             console.log('state updated')
@@ -48,7 +50,6 @@ export default ({store}, inject) => {
     }
 
     function fetchGames(user) {
-        console.log('4')
         getAllGames().then(() => getUserGames(user))
     }
 
@@ -70,11 +71,8 @@ export default ({store}, inject) => {
     }
 
     auth.onAuthStateChanged((user) => {
-        console.log('2')
-        console.log(user)
         store.dispatch('user/setLoggedInUser', user).then(() => {
             if (user !== null) {
-                console.log('3')
                 getUserGames(user)
             }
         })
@@ -82,6 +80,9 @@ export default ({store}, inject) => {
 
     inject('firebase', {
         auth,
+        createUser,
+        signInUser,
+        resetPassword,
         firestore,
         storage,
         storageRef, // Custom methods
