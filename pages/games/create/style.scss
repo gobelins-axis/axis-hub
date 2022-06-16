@@ -80,39 +80,6 @@
     }
 }
 
-.error {
-    border: 1px solid red !important;
-}
-
-.field {
-    @include respond-to('small') {
-        margin-bottom: rem(15px, small);
-    }
-
-    @include respond-to('medium') {
-        margin-bottom: rem(40px, medium);
-    }
-
-    @include respond-to('large') {
-        margin-bottom: rem(40px, large);
-    }
-
-    &:last-child {
-        margin-bottom: 0;
-    }
-
-    fieldset {
-        display: flex;
-
-        justify-content: space-between;
-        flex-wrap: wrap;
-
-        padding: 4px;
-
-        border-radius: 26px;
-    }
-}
-
 .section {
     margin-bottom: rem(40px, large);
 
@@ -120,31 +87,9 @@
         margin-bottom: 0;
     }
 
-    .section-title {
-        font-family: $darker;
-        font-weight: 800;
-
-
-        @include respond-to('small') {
-            margin-bottom: rem(16px, small);
-
-            font-size: rem(32px, small);
-        }
-
-        @include respond-to('medium') {
-            margin-bottom: rem(30px, medium);
-
-            font-size: rem(32px, medium);
-        }
-
-        @include respond-to('large') {
-            margin-bottom: rem(30px, large);
-
-            font-size: rem(32px, large);
-        }
-    }
-
 }
+
+
 
 .checkbox {
     display: flex;
@@ -202,66 +147,6 @@
     justify-content: space-between;
 
     align-items: center;
-}
-
-input[type=text], input[type=number], textarea {
-    width: 100%;
-
-    @include respond-to('small') {
-        height: rem(33px, small);
-
-        font-size: rem(16px, small);
-        line-height: rem(16px, small);
-    }
-
-    @include respond-to('medium') {
-        height: rem(40px, medium);
-
-        font-size: rem(16px, medium);
-        line-height: rem(16px, medium);
-    }
-
-    @include respond-to('large') {
-        height: rem(40px, large);
-
-        font-size: rem(16px, large);
-        line-height: rem(16px, large);
-    }
-
-    padding: 8px 10px;
-
-    font-family: $darker;
-    color: $color-text;
-
-
-    background-color: $white;
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-
-    border: 1px solid $black;
-    border-radius: 6px;
-    box-shadow: none;
-
-    resize: none;
-
-
-    &::placeholder {
-        opacity: 0.65;
-
-        color: $color-text;
-
-        @include respond-to('small') {
-            font-size: rem(16px, small);
-        }
-
-        @include respond-to('medium') {
-            font-size: rem(16px, medium);
-        }
-
-        @include respond-to('large') {
-            font-size: rem(16px, large);
-        }
-    }
 }
 
 // CUSTOM SWITCHBOX
@@ -1077,14 +962,4 @@ input[type=text], input[type=number], textarea {
     vertical-align: text-top;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
 
-    margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-    -moz-appearance: textfield;
-}

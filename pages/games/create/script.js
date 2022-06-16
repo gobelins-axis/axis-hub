@@ -88,7 +88,7 @@ export default {
             e.preventDefault();
 
             // ERROR HANDLING
-            document.querySelectorAll('.error').forEach(item => item.classList.remove('error'))
+            document.querySelectorAll('.errorOnForm').forEach(item => item.classList.remove('errorOnForm'))
 
             this.error = false
             this.success = false
@@ -130,7 +130,7 @@ export default {
             if (errors.length > 0) {
                 this.error = true;
                 errors.forEach(error => {
-                    this.$refs[error].classList.add('error')
+                    this.$refs[error].classList.add('errorOnForm')
                 })
                 return;
             }

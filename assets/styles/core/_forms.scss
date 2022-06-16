@@ -18,11 +18,13 @@
         max-width: unset;
     }
     &-idp-button {
-        border-radius: 6px;
-        background-color: $blue!important;
-        color: white;
         max-width: unset;
         min-height: unset;
+
+        color: white;
+
+        background-color: $blue!important;
+        border-radius: 6px;
         @include respond-to('small') {
             padding: rem(8px, small) rem(16px, small);
         }
@@ -44,23 +46,23 @@
     &-idp-icon {
         filter: drop-shadow( 1px 3px 4px rgba(0, 0, 0, .7   ));
         @include respond-to('small') {
-            height: rem(16px, small);
             width: rem(16px, small);
+            height: rem(16px, small);
         }
 
         @include respond-to('medium') {
-            height: rem(16px, medium);
             width: rem(16px, medium);
+            height: rem(16px, medium);
         }
 
         @include respond-to('large') {
-            height: rem(16px, large);
             width: rem(16px, large);
+            height: rem(16px, large);
         }
     }
     &-idp-text {
-        color: $white!important;
         font-family: $darker;
+        color: $white!important;
         @include respond-to('small') {
             font-size: rem(16px, small);
         }
