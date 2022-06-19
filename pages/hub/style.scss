@@ -16,6 +16,17 @@
     }
 }
 
+.filter-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: rem(280px, large);
+    height: 100%;
+
+    padding-top: inherit;
+}
+
 .page-title {
     font-family: $darker, sans-serif;
     font-weight: 800;
@@ -28,7 +39,7 @@
         font-size: rem(48px, small);
     }
     @include respond-to('medium') {
-        margin-bottom: rem(80px, medium);
+        margin-bottom: rem(40px, medium);
 
         font-size: rem(48px, medium);
     }

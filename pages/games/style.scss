@@ -1,0 +1,64 @@
+.gallery {
+    position: relative;
+
+    height: 100vh;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: row;
+
+    position: relative;
+
+    justify-content: space-evenly;
+    align-content: center;
+
+    flex-wrap: wrap;
+
+    height: 100%;
+
+
+    @include respond-to('small') {
+        flex-direction: column;
+
+        margin-bottom: rem(45px, small);
+    }
+
+    @include respond-to('medium') {
+        flex-direction: row;
+
+        margin-bottom: 0;
+    }
+
+
+}
+
+.games {
+    display: flex;
+
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+
+    margin-top: 1rem;
+    flex-direction: row;
+
+    @include respond-to('small') {
+        flex-direction: column;
+    }
+    @include respond-to('medium') {
+        flex-direction: row;
+    }
+}
+
+
+.filter-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: rem(280px, large);
+    height: 100%;
+
+    padding-top: inherit;
+}

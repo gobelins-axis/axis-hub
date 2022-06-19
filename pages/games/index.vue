@@ -1,17 +1,12 @@
 <template>
-    <div class="content">
+    <div class="content gallery">
         <div class="filter-panel desktop-only">
-            <Filters @filter="setFilter"/>
+            <Filters background @filter="setFilter"/>
         </div>
         <div class="boxed">
-            <div class="big-title">Espace créateur</div>
-
-            <Filters class="mobile-tablet-only" @filter="setFilter"/>
-            <div class="my-games">
-                <NuxtLink to="/games/create" class="game-card add-game-button">
-                    Ajouter un jeu
-                    <span>+</span>
-                </NuxtLink>
+            <div class="big-title">Jeux</div>
+            <Filters class="mobile-tablet-only" @filter="setFilter" />
+            <div class="games">
                 <GameCard v-for="(game, index) in gamesList" :key="index" :game="game" :empty="false"/>
                 <GameCard class="desktop-tablet-only" v-for="index in getNumberOfEmpty" :empty="true"/>
             </div>
