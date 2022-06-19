@@ -1,17 +1,22 @@
 .background {
+    z-index: -1;
+
     position: absolute;
     top: 0;
     left: 0;
-    background-color: $yellow;
-    height: 100%;
+
     width: 100%;
+    height: 100%;
+
+    background-color: $yellow;
     border-top-right-radius: 300px;
-    z-index: -1;
 }
 
 .filter-container {
-    height: 100%;
     position: relative;
+
+    height: 100%;
+
     font-family: $darker;
 
     @include respond-to('small') {
@@ -23,9 +28,10 @@
     }
 
     @include respond-to('large') {
-        font-size: rem(24px, large);
-        padding-left: rem(70px, large);
         padding-top: rem(80px, large);
+        padding-left: rem(70px, large);
+
+        font-size: rem(24px, large);
     }
 
     .filter {
@@ -51,11 +57,12 @@
         font-weight: 800;
 
         &:before {
-            content: url("data:image/svg+xml,%3Csvg width='11' height='13' viewBox='0 0 11 13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.5 5.63398C11.1667 6.01888 11.1667 6.98113 10.5 7.36603L2.25 12.1292C1.58333 12.5141 0.749998 12.0329 0.749998 11.2631L0.749998 1.73686C0.749998 0.967059 1.58333 0.485935 2.25 0.870835L10.5 5.63398Z' fill='%231F1F1F'/%3E%3C/svg%3E%0A");
             width: 15px;
             height: 15px;
-            margin-left: -21px;
+
             margin-right: 10px;
+            margin-left: -21px;
+            content: url("data:image/svg+xml,%3Csvg width='11' height='13' viewBox='0 0 11 13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.5 5.63398C11.1667 6.01888 11.1667 6.98113 10.5 7.36603L2.25 12.1292C1.58333 12.5141 0.749998 12.0329 0.749998 11.2631L0.749998 1.73686C0.749998 0.967059 1.58333 0.485935 2.25 0.870835L10.5 5.63398Z' fill='%231F1F1F'/%3E%3C/svg%3E%0A");
         }
     }
 }
@@ -71,6 +78,7 @@ fieldset {
 
     @include respond-to('medium') {
         justify-content: initial;
+
         margin-bottom: rem(35px, medium);
     }
 
@@ -85,8 +93,8 @@ fieldset {
     }
 
     @include respond-to('medium') {
-        padding: rem(10px, medium);
-        margin-right: rem(15px, medium)
+        margin-right: rem(15px, medium);
+        padding: rem(10px, medium)
     }
 
     @include respond-to('large') {
