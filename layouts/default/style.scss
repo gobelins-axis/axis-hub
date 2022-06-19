@@ -1,5 +1,6 @@
 .default {
     color: $color-text;
+    height: 100%;
 }
 
 .content {
@@ -14,12 +15,23 @@
     }
 
     @include respond-to('large'){
-        max-width: rem(1200px, large);
 
         padding: rem(180px, large) 0 rem(50px, large);
     }
 
 
+}
+
+.boxed {
+    @include respond-to('medium'){
+        max-width: rem(1200px, medium);
+        margin: 0 auto;
+    }
+
+    @include respond-to('large'){
+        max-width: rem(1200px, large);
+        margin: 0 auto;
+    }
 }
 
 .demo-text {

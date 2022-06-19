@@ -47,7 +47,7 @@ html,body, #__nuxt, #__layout{
     height:100%!important;
 }
 
-.desktop-only {
+.desktop-tablet-only {
     @include respond-to('small') {
         display: none!important;
     }
@@ -57,8 +57,24 @@ html,body, #__nuxt, #__layout{
     }
 }
 
+.desktop-only {
+    @include respond-to('small') {
+        display: none!important;
+    }
+
+    @include respond-to('large') {
+        display: block!important;
+    }
+}
+
 .mobile-only {
     @include respond-to('medium'){
+        display: none!important;
+    }
+}
+
+.mobile-tablet-only {
+    @include respond-to('large'){
         display: none!important;
     }
 }

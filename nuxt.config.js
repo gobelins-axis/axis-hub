@@ -61,7 +61,7 @@ export default {
     ],
 
     router: {
-        middleware: ['checkQueries'],
+        middleware: ['checkQueries', 'redirect'],
     },
 
     // Auto import components: https://go.nuxtjs.dev/config-components

@@ -1,18 +1,15 @@
-import games from './games';
+// Vendor
 import GameCard from '@/components/GameCard';
 import ButtonLink from '@/components/ButtonLink';
 import Filters from '@/components/Filters';
-import {mapGetters} from 'vuex';
+
+// Mixins
+import seo from '@/mixins/seo';
+import pageTransitions from '@/mixins/pageTransitions';
+import {mapGetters} from "vuex";
 
 export default {
-    data() {
-        return {
-            onePlayer: '',
-            multiplayer: '',
-            experience: '',
-            gamesList: this.$store.state.user.games,
-        };
-    },
+    mixins: [seo, pageTransitions],
 
     components: {
         GameCard,
@@ -20,31 +17,48 @@ export default {
         Filters
     },
 
-    computed: {
-        getNumberOfEmpty() {
-            if (this.gamesList.length === 0) return 8
-            else {
-                switch (this.gamesList.length % 3) {
-                    case 0:
-                        return 5;
-                        break
-                    case 1:
-                        return 7;
-                        break;
-                    case 2:
-                        return 6;
-                        break;
-                }
-            }
+    data() {
+        return {
+            gamesList: this.$store.state.games.games
         }
     },
 
+    computed: {
+        getNumberOfEmpty() {
+            if (this.gamesList.length === 0) return 9
+            else {
+                switch (this.gamesList.length % 3) {
+                    case 0:
+                        return 3;
+                        break
+                    case 1:
+                        return 5;
+                        break;
+                    case 2:
+                        return 4;
+                        break;
+                }
+            }
+        },
+    },
+
     methods: {
+        /**
+         * Public
+         */
+        transitionIn(done, routeInfos) {
+            if (done) done();
+        },
+
+        transitionOut(done, routeInfos) {
+            if (done) done();
+        },
+
         setFilter(str) {
             console.log('oui')
             switch (str) {
                 case 'all':
-                    this.gamesList = this.$store.state.user.games
+                    this.gamesList = this.$store.state.games.games
                     break;
                 case 'games':
                     this.gamesList = this.gamesList.filter(game => {
@@ -66,8 +80,13 @@ export default {
                         return game.fields.filters.multiPlayer === true
                     })
                     break;
-                default: this.gamesList = this.$store.state.user.games
+                default: this.gamesList = this.$store.state.games.games
             }
         }
-    }
+
+        /**
+         * Private
+         */
+
+    },
 };

@@ -153,7 +153,7 @@
 .default__check[type="checkbox"].switchbox {
     display: none;
 
-    ~ .custom__check {
+     .custom__check {
         display: flex;
 
         position: relative;

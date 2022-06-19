@@ -64,6 +64,8 @@
 
 .reset-password {
     font-family: $darker;
+    text-decoration: underline;
+    cursor: pointer;
 
     &:visited {
         color: $black;

@@ -1,5 +1,5 @@
 <template>
-    <form class="form-container template" @submit="submitHandler">
+    <form class="form-container template boxed" @submit="submitHandler">
         <div class="popin-overlay delete" ref="deleteOverlay">
             <div class="confirm-box-wrapper">
                 <div class="confirm-box">

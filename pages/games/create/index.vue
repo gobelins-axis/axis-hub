@@ -1,5 +1,5 @@
-<template xmlns="http://www.w3.org/1999/html">
-    <form class="form-container template" @submit="submitHandler">
+<template>
+    <form class="form-container template boxed" @submit="submitHandler">
         <div class="panel left">
             <div class="section">
                 <div class="section-title">Informations</div>
