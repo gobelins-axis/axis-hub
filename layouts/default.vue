@@ -1,11 +1,8 @@
 <template>
     <div class="default">
-        <client-only>
-            <NavBar />
-        </client-only>
+        <NavBar/>
 
-        <Nuxt class="content" />
-        <!--        <Preloader />-->
+        <Nuxt class="content"/>
     </div>
 </template>
 

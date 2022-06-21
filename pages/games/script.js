@@ -9,6 +9,8 @@ import pageTransitions from '@/mixins/pageTransitions';
 import {mapGetters} from "vuex";
 
 export default {
+    name: 'games',
+
     mixins: [seo, pageTransitions],
 
     components: {

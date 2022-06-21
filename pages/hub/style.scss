@@ -27,28 +27,7 @@
     padding-top: inherit;
 }
 
-.page-title {
-    font-family: $darker, sans-serif;
-    font-weight: 800;
-    font-size: rem(48px, large);
-    color: $black;
 
-    @include respond-to('small') {
-        margin-bottom: rem(40px, small);
-
-        font-size: rem(48px, small);
-    }
-    @include respond-to('medium') {
-        margin-bottom: rem(40px, medium);
-
-        font-size: rem(48px, medium);
-    }
-    @include respond-to('large') {
-        margin-bottom: rem(80px, large);
-
-        font-size: rem(48px, large);
-    }
-}
 
 .add-game-button {
     display: flex;

@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink v-if="!empty" class="game-card" :to="`games/edit/${ game.id }`" :style="backgroundImage">
+    <NuxtLink v-if="!empty" class="game-card" :to="edit ? `games/edit/${ game.id }` : `/games/${game.fields.name}`" :style="backgroundImage">
         <div class="shadow-overlay"></div>
         <div class="game-card-content">
             <div v-if="!empty" class="game-title">

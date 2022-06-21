@@ -1,0 +1,164 @@
+.cover-image {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+
+    object-fit: cover;
+
+    @include respond-to('small') {
+        height: rem(324px, small);
+    }
+
+    @include respond-to('medium') {
+        height: 40%;
+    }
+
+}
+
+.tag-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: rem(15px, small);
+
+    @include respond-to('small') {
+        margin-bottom: rem(15px, small);
+    }
+
+    @include respond-to('medium') {
+        margin-bottom: rem(15px, medium);
+    }
+}
+
+.page-wrapper {
+    padding: rem(140px, small) rem(15px, small) 0;
+
+    @include respond-to('small') {
+        height: rem(324px, small);
+        width: 100%;
+    }
+
+    @include respond-to('medium') {
+        height: 100%;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .back-button {
+        font-family: $darker;
+        font-weight: 500;
+        color: $white;
+
+        @include respond-to('small') {
+            font-size: rem(20px, small);
+            margin-bottom: rem(15px, small);
+
+            ::v-deep img {
+                height: rem(15px, small);
+            }
+        }
+
+
+        @include respond-to('medium') {
+            font-size: rem(25px, medium);
+            margin-bottom: rem(15px, medium);
+
+            ::v-deep img {
+                height: rem(15px, medium);
+            }
+        }
+
+        @include respond-to('large') {
+            font-size: rem(25px, large);
+            margin-bottom: rem(15px, large);
+
+            ::v-deep img {
+                height: rem(15px, large);
+            }
+        }
+    }
+
+    .game-infos {
+        height: auto;
+        display: flex;
+
+        @include respond-to('small') {
+            width: 100%;
+            flex-direction: column;
+            border-radius: 30px 30px 30px 60px;
+
+        }
+
+        @include respond-to('medium') {
+            height: 60%;
+            flex-direction: row-reverse;
+            border-radius: 30px 30px 30px 100px;
+
+        }
+
+        .page-title {
+            @include respond-to('medium') {
+                font-size: rem(65px, medium)
+            }
+
+            @include respond-to('large') {
+                font-size: rem(65px, large)
+            }
+        }
+
+        //
+        .text {
+            @include respond-to('medium') {
+                font-size: rem(25px, medium)
+            }
+
+            @include respond-to('large') {
+                font-size: rem(25px, large)
+            }
+        }
+
+
+        background-color: white;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+        &-text {
+            overflow: scroll;
+            @include respond-to('small') {
+                padding: rem(30px, small) rem(25px, small) 0;
+            }
+
+            @include respond-to('medium') {
+                padding: rem(30px, medium) rem(70px, medium) 0;
+                width: 40%;
+            }
+
+            @include respond-to('large') {
+                padding: rem(80px, large);
+                width: 40%;
+            }
+        }
+
+        &-image {
+            width: 100%;
+            object-fit: cover;
+
+            @include respond-to('small') {
+                border-radius: 0 0 30px 60px;
+            }
+
+            @include respond-to('medium') {
+                border-radius: 30px 0 0 100px;
+                width: 60%;
+            }
+        }
+    }
+
+    .credits {
+        font-weight: 800;
+    }
+}

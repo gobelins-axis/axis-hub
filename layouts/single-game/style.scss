@@ -1,0 +1,5 @@
+.content {
+    @include respond-to('medium') {
+        height: 100vh;
+    }
+}

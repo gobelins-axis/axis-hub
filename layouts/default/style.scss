@@ -2,61 +2,62 @@
     height: 100%;
 
     color: $color-text;
-}
-
-.content {
-    margin: 0 auto;
-
-    @include respond-to('small'){
-        padding: rem(100px, small) 20px 20px;
-    }
-
-    @include respond-to('medium'){
-        padding: rem(180px, medium) 0 rem(50px, medium);
-    }
-
-    @include respond-to('large'){
-        padding: rem(180px, large) 0 rem(50px, large);
-    }
 
 
-}
-
-.boxed {
-    @include respond-to('medium'){
-        max-width: rem(1200px, medium);
-
+    .content {
         margin: 0 auto;
+
+        @include respond-to('small') {
+            padding: rem(100px, small) 20px 20px;
+        }
+
+        @include respond-to('medium') {
+            padding: rem(180px, medium) 0 rem(50px, medium);
+        }
+
+        @include respond-to('large') {
+            padding: rem(180px, large) 0 rem(50px, large);
+        }
+
+
     }
 
-    @include respond-to('large'){
-        max-width: rem(1200px, large);
 
-        margin: 0 auto;
-    }
-}
+    .boxed {
+        @include respond-to('medium') {
+            max-width: rem(1200px, medium);
 
-.demo-text {
-    width: 100%;
+            margin: 0 auto;
+        }
 
+        @include respond-to('large') {
+            max-width: rem(1200px, large);
 
-
-    margin-top: rem(100px, 'small');
-
-    font-size: rem(40px, 'small');
-    text-align: center;
-    text-transform: uppercase;
-
-    @include respond-to('medium') {
-        margin-top: rem(100px, 'medium');
-
-        font-size: rem(30px, 'medium');
+            margin: 0 auto;
+        }
     }
 
-    @include respond-to('large') {
-        margin-top: rem(100px, 'large');
+    .demo-text {
+        width: 100%;
 
-        font-size: rem(30px, 'large');
+
+        margin-top: rem(100px, 'small');
+
+        font-size: rem(40px, 'small');
+        text-align: center;
+        text-transform: uppercase;
+
+        @include respond-to('medium') {
+            margin-top: rem(100px, 'medium');
+
+            font-size: rem(30px, 'medium');
+        }
+
+        @include respond-to('large') {
+            margin-top: rem(100px, 'large');
+
+            font-size: rem(30px, 'large');
+        }
     }
 }
 

@@ -12,8 +12,8 @@
                     Ajouter un jeu
                     <span>+</span>
                 </NuxtLink>
-                <GameCard v-for="(game, index) in gamesList" :key="index" :game="game" :empty="false"/>
-                <GameCard class="desktop-tablet-only" v-for="index in getNumberOfEmpty" :empty="true"/>
+                <GameCard v-for="(game, index) in gamesList" :key="index" :game="game" edit/>
+                <GameCard class="desktop-tablet-only" v-for="index in getNumberOfEmpty" empty />
             </div>
         </div>
     </div>

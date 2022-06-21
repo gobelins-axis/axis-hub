@@ -1,8 +1,6 @@
-import games from './games';
 import GameCard from '@/components/GameCard';
 import ButtonLink from '@/components/ButtonLink';
 import Filters from '@/components/Filters';
-import {mapGetters} from 'vuex';
 
 export default {
     data() {
@@ -41,7 +39,6 @@ export default {
 
     methods: {
         setFilter(str) {
-            console.log('oui')
             switch (str) {
                 case 'all':
                     this.gamesList = this.$store.state.user.games
@@ -52,17 +49,17 @@ export default {
                     })
                     break;
                 case 'experiences':
-                    this.gamesList = this.$store.state.games.games.filter(game => {
+                    this.gamesList = this.gamesList.filter(game => {
                         return game.fields.filters.experience === true
                     })
                     break;
                 case 'solo':
-                    this.gamesList = this.$store.state.games.games.filter(game => {
+                    this.gamesList = this.gamesList.filter(game => {
                         return game.fields.filters.onePlayer === true
                     })
                     break;
                 case 'multi':
-                    this.gamesList = this.$store.state.games.games.filter(game => {
+                    this.gamesList = this.gamesList.filter(game => {
                         return game.fields.filters.multiPlayer === true
                     })
                     break;
