@@ -1,0 +1,180 @@
+.cover-image {
+    z-index: -1;
+
+    position: absolute;
+    top: 0;
+
+    width: 100%;
+
+    object-fit: cover;
+
+    @include respond-to('small') {
+        height: rem(324px, small);
+    }
+
+    @include respond-to('medium') {
+        height: 40%;
+    }
+
+}
+
+.tag-container {
+    display: flex;
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: rem(15px, small);
+
+    @include respond-to('small') {
+        margin-bottom: rem(15px, small);
+    }
+
+    @include respond-to('medium') {
+        margin-bottom: rem(15px, medium);
+    }
+}
+
+.page-wrapper {
+    padding: rem(140px, small) rem(15px, small) 0;
+
+    @include respond-to('small') {
+        width: 100%;
+        height: rem(324px, small);
+    }
+
+    @include respond-to('medium') {
+        display: flex;
+
+        justify-content: center;
+
+        width: 70%;
+        height: 100%;
+
+        margin: 0 auto;
+        padding: 0;
+        flex-direction: column;
+    }
+
+    .back-button {
+        font-family: $darker;
+        font-weight: 500;
+        color: $white;
+
+        @include respond-to('small') {
+            margin-bottom: rem(15px, small);
+
+            font-size: rem(20px, small);
+
+            ::v-deep img {
+                height: rem(15px, small);
+            }
+        }
+
+
+        @include respond-to('medium') {
+            margin-bottom: rem(15px, medium);
+
+            font-size: rem(25px, medium);
+
+            ::v-deep img {
+                height: rem(15px, medium);
+            }
+        }
+
+        @include respond-to('large') {
+            margin-bottom: rem(15px, large);
+
+            font-size: rem(25px, large);
+
+            ::v-deep img {
+                height: rem(15px, large);
+            }
+        }
+    }
+
+    .game-infos {
+        display: flex;
+
+        height: auto;
+
+
+        background-color: white;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+        @include respond-to('small') {
+            width: 100%;
+
+            border-radius: 30px 30px 30px 60px;
+            flex-direction: column;
+
+        }
+
+        @include respond-to('medium') {
+            height: 60%;
+
+            border-radius: 30px 30px 30px 100px;
+            flex-direction: row-reverse;
+
+        }
+
+        .page-title {
+            @include respond-to('medium') {
+                font-size: rem(65px, medium)
+            }
+
+            @include respond-to('large') {
+                font-size: rem(65px, large)
+            }
+        }
+
+        //
+        .text {
+            @include respond-to('medium') {
+                font-size: rem(25px, medium)
+            }
+
+            @include respond-to('large') {
+                font-size: rem(25px, large)
+            }
+        }
+
+        &-text {
+            overflow: scroll;
+            @include respond-to('small') {
+                padding: rem(30px, small) rem(25px, small) 0;
+            }
+
+            @include respond-to('medium') {
+                width: 40%;
+
+                padding: rem(30px, medium) rem(70px, medium) 0;
+            }
+
+            @include respond-to('large') {
+                width: 40%;
+
+                padding: rem(80px, large);
+            }
+        }
+
+        &-image {
+            width: 100%;
+            object-fit: cover;
+
+            @include respond-to('small') {
+                border-radius: 0 0 30px 60px;
+            }
+
+            @include respond-to('medium') {
+                width: 60%;
+
+                border-radius: 30px 0 0 100px;
+            }
+        }
+    }
+
+    .credits {
+        font-weight: 800;
+    }
+}

@@ -7,8 +7,8 @@
             <div class="big-title">Jeux</div>
             <Filters class="mobile-tablet-only" @filter="setFilter" />
             <div class="games">
-                <GameCard v-for="(game, index) in gamesList" :key="index" :game="game" :empty="false"/>
-                <GameCard class="desktop-tablet-only" v-for="index in getNumberOfEmpty" :empty="true"/>
+                <GameCard v-for="(game, index) in gamesList" :key="index" :game="game"  />
+                <GameCard class="desktop-tablet-only" v-for="index in getNumberOfEmpty" empty />
             </div>
         </div>
     </div>

@@ -1,5 +1,9 @@
 export default {
-    props: ['game', 'empty'],
+    props: {
+        game: Object,
+        empty: Boolean,
+        edit: Boolean
+    },
 
     computed: {
         backgroundImage() {

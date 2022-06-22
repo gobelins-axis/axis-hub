@@ -29,6 +29,8 @@ export default {
         height: '0',
     },
 
+    target: 'static',
+
     ssr: false,
 
     // Global CSS: https://go.nuxtjs.dev/config-css

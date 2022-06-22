@@ -88,6 +88,27 @@ fieldset {
 }
 
 .checkbox {
+    display: flex;
+
+    padding: 5px;
+
+    background-color: $white;
+
+    border: 1px solid $black;
+    border-radius: 27px;
+
+    label {
+        display: flex;
+
+        justify-content: space-between;
+        align-items: center;
+
+        margin: 0;
+
+        cursor: pointer;
+        flex-direction: row;
+    }
+
     @include respond-to('small') {
         padding: rem(6px, small);
     }
@@ -102,6 +123,7 @@ fieldset {
     }
 
     .checkbox-title {
+        margin-right: 5px;
         @include respond-to('small') {
             font-size: rem(16px, small);
         }

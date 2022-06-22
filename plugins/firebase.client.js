@@ -45,7 +45,6 @@ export default ({store}, inject) => {
     function getUserGames(user) {
         let userGames = store.state.games.games.filter(game => game.fields.creatorID === user.uid)
         store.dispatch('user/setGames', userGames).then(() => {
-            console.log('state updated')
         })
     }
 
@@ -97,7 +96,6 @@ export default ({store}, inject) => {
     ];
 
     return Promise.all(promises).then(([games]) => {
-        console.log('1')
         if (store.state.user.user) {
             getUserGames(store.state.user.user)
         }

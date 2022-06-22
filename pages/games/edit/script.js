@@ -29,8 +29,6 @@ export default {
 
 
     mounted() {
-        console.log('color', this.getSelectGameDatas.fields.colors.first)
-
         this.color1 = this.getSelectGameDatas.fields.colors.first
         this.color2 = this.getSelectGameDatas.fields.colors.secondary
 
