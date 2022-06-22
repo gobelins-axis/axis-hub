@@ -1,11 +1,15 @@
 .tag-item {
-    background-color: $black;
-    color: $white;
     display: flex;
-    flex-direction: row;
-    border-radius: 20px 20px 20px 0;
-    width: fit-content;
+
     align-items: center;
+
+    width: fit-content;
+
+    color: $white;
+
+    background-color: $black;
+    border-radius: 20px 20px 20px 0;
+    flex-direction: row;
 
     @include respond-to('small') {
         padding: rem(5px, small) rem(10px, small) rem(5px, small) rem(15px, small);
@@ -46,11 +50,13 @@
 
         @include respond-to('medium') {
             margin-left: rem(20px, medium);
+
             font-size: rem(20px, medium);
         }
 
         @include respond-to('large') {
             margin-left: rem(10px, large);
+
             font-size: rem(20px, large);
         }
     }

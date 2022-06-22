@@ -71,22 +71,23 @@
 
     @include respond-to('small') {
         margin-bottom: rem(20px, small);
-        line-height: rem(22px, small);
 
         font-size: rem(16px, small);
+        line-height: rem(22px, small);
     }
 
     @include respond-to('medium') {
         margin-bottom: rem(30px, medium);
-        line-height: rem(22px, medium);
 
 
         font-size: rem(16px, medium);
+        line-height: rem(22px, medium);
     }
 
     @include respond-to('large') {
         margin-bottom: rem(30px, large);
-        line-height: rem(22px, large);
+
         font-size: rem(16px, large);
+        line-height: rem(22px, large);
     }
 }
