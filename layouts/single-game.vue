@@ -1,6 +1,6 @@
 <template>
     <div class="single-game">
-        <NavBar/>
+        <NavBar theme="white" />
         <Nuxt class="content"/>
     </div>
 </template>
