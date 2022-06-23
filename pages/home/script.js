@@ -9,6 +9,8 @@ import pageTransitions from '@/mixins/pageTransitions';
 export default {
     mixins: [seo, pageTransitions],
 
+    layout: 'home',
+
     async mounted() {
         // Create a new leaderboard for game: "Test"
         // setDoc(doc(this.$firebase.firestore, 'leaderboards', 'test'), {

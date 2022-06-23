@@ -1,6 +1,6 @@
 <template>
     <div class="default">
-        <NavBar/>
+        <NavBar theme="black"/>
 
         <Nuxt class="content"/>
     </div>

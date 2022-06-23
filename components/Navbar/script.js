@@ -6,6 +6,8 @@ export default {
         ButtonLink,
     },
 
+    props: ['theme'],
+
     computed: {
         ...mapGetters({
             isUserLoggedIn: 'user/isLoggedIn',
