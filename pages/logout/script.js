@@ -1,30 +1,18 @@
-// Vendor
-import * as firebase from 'firebase/auth';
-import { mapGetters } from 'vuex';
-import { signOut } from 'firebase/auth';
-
 // Mixins
 import seo from '@/mixins/seo';
 import pageTransitions from '@/mixins/pageTransitions';
 
 export default {
-    mixins: [pageTransitions],
+    mixins: [seo, pageTransitions],
 
-    computed: {
-        ...mapGetters({
-            isUserLoggedIn: 'user/isLoggedIn',
-        }),
-
-    },
-
-    mounted() {
-        signOut(this.$firebase.auth).then(() => {
-            console.log(this.$firebase.auth)
-            this.$store.dispatch('user/disconnect')
-        });
+    data() {
+        return {};
     },
 
     methods: {
+        /**
+         * Public
+         */
         transitionIn(done, routeInfos) {
             if (done) done();
         },

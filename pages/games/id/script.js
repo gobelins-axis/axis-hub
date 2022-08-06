@@ -1,44 +1,24 @@
-import {mapGetters} from "vuex";
-import slugify from "slugify";
-import Gametag from '@/components/Gametag';
-import ButtonLink from '@/components/ButtonLink';
+// Mixins
+import seo from '@/mixins/seo';
+import pageTransitions from '@/mixins/pageTransitions';
 
 export default {
-    layout: 'single-game',
-
-    name: 'single-game',
-
-    components: {Gametag, ButtonLink},
+    mixins: [seo, pageTransitions],
 
     data() {
-        return {
-            formatedName: slugify(this.$route.params.id)
-        }
+        return {};
     },
 
-
-    computed: {
-        ...mapGetters({
-            games: 'games/games',
-        }),
-
-        getSelectGameDatas() {
-            return this.games.find(r => r.id.includes(this.formatedName))
+    methods: {
+        /**
+         * Public
+         */
+        transitionIn(done, routeInfos) {
+            if (done) done();
         },
 
-        getSelectGameID() {
-            return this.games.find(r => r.id.includes(this.formatedName).id)
+        transitionOut(done, routeInfos) {
+            if (done) done();
         },
-
-        getTags() {
-            const game = this.games.find(r => r.id.includes(this.formatedName))
-            const filtersArray = Object.entries(game.fields.filters);
-            return filtersArray.filter(filter => filter[1] === true)
-        },
-
-        tagList() {
-            return getSelectGameDatas()
-        }
-    }
-
-}
+    },
+};

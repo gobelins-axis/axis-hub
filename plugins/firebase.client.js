@@ -1,9 +1,8 @@
-import {initializeApp, getApps} from 'firebase/app';
-import {getFirestore, getDoc, collection, getDocs, doc, setDoc} from 'firebase/firestore';
-import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail} from 'firebase/auth';
-import {getStorage, ref} from 'firebase/storage';
+import { initializeApp, getApps } from 'firebase/app';
+import { getFirestore, getDoc, collection, getDocs, doc, setDoc } from 'firebase/firestore';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+import { getStorage, ref } from 'firebase/storage';
 
-// TODO: migration to axis firebase account
 const config = {
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: 'gobelins-axis.firebaseapp.com',
@@ -14,7 +13,7 @@ const config = {
     measurementId: 'G-YSGEBD6L4W',
 };
 
-export default ({store}, inject) => {
+export default ({ store }, inject) => {
     const apps = getApps();
     const firebaseApp = !apps.length ? initializeApp(config) : apps[0];
 
@@ -32,9 +31,9 @@ export default ({store}, inject) => {
         const promise = new Promise((resolve, reject) => {
             getDocs(collectionRef).then((response) => {
                 const games = response.docs.map((doc) => {
-                    return {id: doc.id, fields: doc.data()};
+                    return { id: doc.id, fields: doc.data() };
                 });
-                store.dispatch('games/setGames', games)
+                store.dispatch('games/setGames', games);
                 resolve(games);
             });
         });
@@ -43,13 +42,13 @@ export default ({store}, inject) => {
     }
 
     function getUserGames(user) {
-        let userGames = store.state.games.games.filter(game => game.fields.creatorID === user.uid)
+        const userGames = store.state.games.games.filter(game => game.fields.creatorID === user.uid);
         store.dispatch('user/setGames', userGames).then(() => {
-        })
+        });
     }
 
     function fetchGames(user) {
-        getAllGames().then(() => getUserGames(user))
+        getAllGames().then(() => getUserGames(user));
     }
 
     function getGameLeaderboard(id) {
@@ -72,10 +71,10 @@ export default ({store}, inject) => {
     auth.onAuthStateChanged((user) => {
         store.dispatch('user/setLoggedInUser', user).then(() => {
             if (user !== null) {
-                getUserGames(user)
+                getUserGames(user);
             }
-        })
-    })
+        });
+    });
 
     inject('firebase', {
         auth,
@@ -97,9 +96,7 @@ export default ({store}, inject) => {
 
     return Promise.all(promises).then(([games]) => {
         if (store.state.user.user) {
-            getUserGames(store.state.user.user)
+            getUserGames(store.state.user.user);
         }
     });
-
-
 };

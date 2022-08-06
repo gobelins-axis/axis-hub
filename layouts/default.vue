@@ -1,8 +1,6 @@
 <template>
     <div class="default">
-        <NavBar/>
-
-        <Nuxt class="content"/>
+        <Nuxt />
     </div>
 </template>
 

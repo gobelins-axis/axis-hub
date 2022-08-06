@@ -1,6 +1,6 @@
 <template>
     <div class="page-home">
-        CECI EST LA HOME
+        
     </div>
 </template>
 
