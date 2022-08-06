@@ -20,7 +20,6 @@ export default {
             { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
             { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
             { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@500;700;800&display=swap' },
-
         ],
     },
 
@@ -63,7 +62,7 @@ export default {
     ],
 
     router: {
-        middleware: ['checkQueries', 'redirect'],
+        middleware: ['checkQueries'],
     },
 
     // Auto import components: https://go.nuxtjs.dev/config-components

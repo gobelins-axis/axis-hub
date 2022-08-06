@@ -5,6 +5,8 @@ import pageTransitions from '@/mixins/pageTransitions';
 export default {
     mixins: [seo, pageTransitions],
 
+    middleware: ['authenticated'],
+
     data() {
         return {};
     },
