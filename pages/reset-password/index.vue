@@ -1,5 +1,10 @@
 <template>
-    <div class="page-logout">
+    <div class="page-reset-password">
+
+        <FormResetPassword />
+
+        <Footer />
+
     </div>
 </template>
 

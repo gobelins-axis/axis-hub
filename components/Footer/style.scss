@@ -1,0 +1,25 @@
+.footer {
+    width: 100%;
+
+    text-align: center;
+}
+
+.copyright {
+    padding-top: rem(8px, 'small');
+    padding-bottom: rem(8px, 'small');
+
+    font-family: 'Darker Grotesque';
+    font-style: normal;
+
+    font-weight: 700;
+    font-size: rem(15px, 'small');
+    line-height: rem(22px, 'small');
+    
+    @include respond-to('large') {
+        padding-top: rem(20px, 'large');
+        padding-bottom: rem(20px, 'large');
+
+        font-size: rem(16px, 'large');
+        line-height: rem(22px, 'large');
+    }
+}

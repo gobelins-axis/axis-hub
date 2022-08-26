@@ -1,6 +1,6 @@
 <template>
-    <div class="content">
-        
+    <div class="page-hub">
+
     </div>
 </template>
 

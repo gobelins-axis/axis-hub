@@ -1,0 +1,15 @@
+.form-login {
+    
+}
+
+input {
+    .form-login.show-errors & {
+        &:invalid {
+            color: red;
+
+            &::placeholder {
+                color: red;
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+.form-reset-password {
+    
+}
+
+input {
+    .form-reset-password.show-errors & {
+        &:invalid {
+            color: red;
+
+            &::placeholder {
+                color: red;
+            }
+        }
+    }
+}

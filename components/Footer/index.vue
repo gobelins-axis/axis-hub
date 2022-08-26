@@ -1,11 +1,11 @@
 <template>
-    <div class="page-login">
+    <footer class="footer">
 
-        <SectionLogin />
+        <div class="copyright">
+            © Axis 2022
+        </div>
 
-        <Footer />
-
-    </div>
+    </footer>
 </template>
 
 <script src="./script.js"></script>

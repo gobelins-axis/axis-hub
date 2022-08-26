@@ -20,13 +20,8 @@ export default {
 
     methods: {
         loadResources() {
-            setTimeout(() => {
-                this.$store.dispatch('preloader/setLoadingCompleted');
-            }, 10);
-
-            setTimeout(() => {
-                this.$store.dispatch('preloader/setCompleted');
-            }, 20);
+            this.$store.dispatch('preloader/setLoadingCompleted');
+            this.$store.dispatch('preloader/setCompleted');
         },
     },
 };

@@ -1,0 +1,15 @@
+.form-register {
+    
+}
+
+input {
+    .form-register.show-errors & {
+        &:invalid {
+            color: red;
+
+            &::placeholder {
+                color: red;
+            }
+        }
+    }
+}

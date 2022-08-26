@@ -15,4 +15,27 @@ export const data = {
     notSupported: {
         message: 'Désolé, ce site n\'est pas supporté par votre navigateur',
     },
+
+    // Pages
+    login: {
+        toggleLogin: 'Connexion',
+        toggleRegister: 'Créer un compte',
+        emailInputPlaceholder: 'Votre email',
+        passwordInputPlaceholder: 'Votre mot de passe',
+        passwordConfirmationInputPlaceholder: 'Confirmer votre mot de passe',
+        submitLabel: 'Valider',
+        forgotPasswordLabel: 'Mot de passe oublié',
+        resetPasswordSuccessMessage: 'Si l\'adresse email renseignée a été trouvée dans notre base de donnée, vous devriez avoir reçu un email. Pensez à vérifier vos spams.',
+        resetPasswordSuccessButtonLabel: 'Retourner à la page de connexion',
+        errors: {
+            default: 'Nous avons rencontré une erreur inconnue. Contactez l\'éditeur du site.',
+            userNotFound: 'Aucun compte ne correspond à cette adresse mail.',
+            invalidEmail: 'L\'adresse email est invalide.',
+            wrongPassword: 'Le mot de passe ne correspond pas à cette adresse mail.',
+            form: 'Certains champs ne sont pas renseignés ou invalides.',
+            emailAlreadyInUse: 'Un compte existe déja à cette adresse email.',
+            weakPassword: 'Votre mot de passe doit contenir au moins 6 caractères.',
+            passwordsNotMatching: 'Les mots de passe ne correspondent pas.',
+        },
+    },
 };

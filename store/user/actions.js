@@ -3,10 +3,6 @@ const actions = {
         commit('SET_LOGGED_UN_USER', user);
     },
 
-    disconnect: ({ commit }) => {
-        commit('DISCONNECT');
-    },
-
     setGames: ({ commit }, games) => {
         commit('SET_USER_GAMES', games);
     },

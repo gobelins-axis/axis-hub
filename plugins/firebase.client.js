@@ -1,6 +1,6 @@
 import { initializeApp, getApps } from 'firebase/app';
 import { getFirestore, getDoc, collection, getDocs, doc, setDoc } from 'firebase/firestore';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithRedirect, sendPasswordResetEmail, GoogleAuthProvider, getRedirectResult } from 'firebase/auth';
 import { getStorage, ref } from 'firebase/storage';
 
 const config = {
@@ -13,17 +13,19 @@ const config = {
     measurementId: 'G-YSGEBD6L4W',
 };
 
-export default ({ store }, inject) => {
+export default ({ store, i18n }, inject) => {
     const apps = getApps();
     const firebaseApp = !apps.length ? initializeApp(config) : apps[0];
 
     const auth = getAuth(firebaseApp);
     const createUser = createUserWithEmailAndPassword;
     const signInUser = signInWithEmailAndPassword;
+    const signInWithGoogle = signInWithRedirect;
     const resetPassword = sendPasswordResetEmail;
     const firestore = getFirestore(firebaseApp);
     const storage = getStorage(firebaseApp);
     const storageRef = ref(storage);
+    const googleAuthProvider = new GoogleAuthProvider();
 
     function getAllGames() {
         const collectionRef = collection(firestore, 'games');
@@ -43,8 +45,7 @@ export default ({ store }, inject) => {
 
     function getUserGames(user) {
         const userGames = store.state.games.games.filter(game => game.fields.creatorID === user.uid);
-        store.dispatch('user/setGames', userGames).then(() => {
-        });
+        store.dispatch('user/setGames', userGames);
     }
 
     function fetchGames(user) {
@@ -68,6 +69,13 @@ export default ({ store }, inject) => {
         return promise;
     }
 
+    // Set Auth language
+    auth.languageCode = i18n.locale;
+
+    // Get user from Google Login redirection
+    getRedirectResult(auth);
+
+    // Watch Authentification change to update store
     auth.onAuthStateChanged((user) => {
         store.dispatch('user/setLoggedInUser', user).then(() => {
             if (user !== null) {
@@ -81,9 +89,12 @@ export default ({ store }, inject) => {
         createUser,
         signInUser,
         resetPassword,
+        signInWithGoogle,
+        googleAuthProvider,
         firestore,
         storage,
-        storageRef, // Custom methods
+        storageRef,
+        // Custom methods
         getAllGames,
         getUserGames,
         fetchGames,

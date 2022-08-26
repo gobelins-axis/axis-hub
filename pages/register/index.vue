@@ -1,5 +1,10 @@
 <template>
-    <div class="page-logout">
+    <div class="page-register">
+
+        <SectionRegister />
+
+        <Footer />
+
     </div>
 </template>
 

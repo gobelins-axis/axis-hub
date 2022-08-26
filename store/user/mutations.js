@@ -11,12 +11,6 @@ const mutations = {
         }
     },
 
-    DISCONNECT(state) {
-        state.user = null;
-        state.isLoggedIn = false;
-        state.games = {};
-    },
-
     SET_USER_GAMES(state, games) {
         state.games = games;
     },

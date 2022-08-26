@@ -11,6 +11,6 @@ export default {
     },
 
     mounted() {
-        if (this.isProduction) this.$router.push('/error');
+        if (this.isProduction) this.$router.push(this.localePath('/error'));
     },
 };

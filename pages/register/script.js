@@ -3,7 +3,7 @@ import seo from '@/mixins/seo';
 import pageTransitions from '@/mixins/pageTransitions';
 
 // Components
-import SectionLogin from '@/sections/login/SectionLogin';
+import SectionRegister from '@/sections/login/SectionRegister';
 import Footer from '@/components/Footer';
 
 export default {
@@ -32,7 +32,7 @@ export default {
     },
 
     components: {
-        SectionLogin,
+        SectionRegister,
         Footer,
     },
 };

@@ -3,16 +3,11 @@ import seo from '@/mixins/seo';
 import pageTransitions from '@/mixins/pageTransitions';
 
 // Components
-import SectionLogin from '@/sections/login/SectionLogin';
+import FormResetPassword from '@/components/FormResetPassword';
 import Footer from '@/components/Footer';
 
 export default {
     mixins: [seo, pageTransitions],
-
-    middleware({ store, redirect }) {
-        const { isLoggedIn } = store.state.user;
-        if (isLoggedIn) redirect('/hub');
-    },
 
     data() {
         return {};
@@ -32,7 +27,7 @@ export default {
     },
 
     components: {
-        SectionLogin,
+        FormResetPassword,
         Footer,
     },
 };
