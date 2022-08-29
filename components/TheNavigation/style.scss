@@ -60,7 +60,7 @@
         display: flex;
     }
 
-    .button {
+    .button:not(:first-child) {
         @include respond-to('medium') {
             margin-left: rem(70px, 'medium');
         }
@@ -68,5 +68,13 @@
         @include respond-to('large') {
             margin-left: rem(70px, 'large');
         }
+    }
+}
+
+.button-navigation {
+    color: $color-text;
+
+    &.nuxt-link-exact-active {
+        color: $purple;
     }
 }
