@@ -1,0 +1,83 @@
+.button-google-login {
+    display: flex;
+
+    width: rem(200px, 'small');
+    height: rem(32px, 'small');
+
+    overflow: hidden;
+
+    background-color: #4285F4;
+    border: solid 2px #4285F4;
+
+    border-radius: rem(6px, 'small');
+
+    @include respond-to('medium') {
+        width: rem(200px, 'medium');
+        height: rem(32px, 'medium');
+
+        border-radius: rem(6px, 'medium');
+    }   
+    
+    @include respond-to('large') {
+        width: rem(200px, 'large');
+        height: rem(32px, 'large');
+
+        border-radius: rem(6px, 'large');
+    }
+}
+
+.icon-container {
+    position: relative;
+
+    width: rem(32px, 'small');
+    min-width: rem(32px, 'small');
+    height: 100%;
+
+    background-color: $white;
+
+    @include respond-to('medium') {
+        width: rem(32px, 'medium');
+        min-width: rem(32px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        width: rem(32px, 'large');
+        min-width: rem(32px, 'large');
+    }
+
+    svg {
+        position: absolute;
+
+        width: 50%;
+        height: 50%;
+
+        margin: auto;
+        inset: 0;
+    }
+}
+
+.label-container {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    font-weight: 600;
+    font-size: rem(14px, 'small');
+
+    color: $white;
+
+    text-align: center;
+
+    @include respond-to('medium') {
+        font-size: rem(14px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        font-size: rem(14px, 'large');
+    }
+}

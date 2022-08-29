@@ -1,5 +1,5 @@
 <template>
-    <form v-if="!isSuccess" :class="`form-reset-password ${showErrors ? 'show-errors' : ''}`" novalidate @submit.prevent="submitHandler">
+    <form v-if="!isSuccess" :class="`form form-reset-password ${showErrors ? 'show-errors' : ''}`" novalidate @submit.prevent="submitHandler">
 
         <input
             ref="inputEmail"
@@ -14,10 +14,16 @@
             @input="emailInputHandler"
         >
 
-        <input type="submit" class="button submit" :value="$utils.localeCopy.login.submitLabel">
+        <button type="submit" class="button button-primary submit">
+            {{ $utils.localeCopy.login.submitLabel }}
+        </button>
 
         <div v-if="showErrors && error" class="error">
             {{ error }}
+        </div>
+
+        <div v-else class="error-placeholder">
+            error
         </div>
 
     </form>
@@ -28,7 +34,7 @@
             {{ $utils.localeCopy.login.resetPasswordSuccessMessage }}
         </div>
 
-        <nuxt-link class="button success-button" :to="localePath('/login')">
+        <nuxt-link class="button button-success button-primary" :to="localePath('/login')">
             {{ $utils.localeCopy.login.resetPasswordSuccessButtonLabel }}
         </nuxt-link>
 

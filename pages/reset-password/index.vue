@@ -1,7 +1,15 @@
 <template>
     <div class="page-reset-password">
 
-        <FormResetPassword />
+        <div class="container">
+
+            <div class="title">
+                {{ $utils.localeCopy.login.titleResetPassword }}
+            </div>
+
+            <FormResetPassword />
+
+        </div>
 
         <Footer />
 

@@ -3,11 +3,21 @@
 
         <div class="container">
 
+            <h1 class="title">
+                {{ $utils.localeCopy.login.titleRegister }}
+            </h1>
+
             <FormRegister />
 
-            <nuxt-link :to="localePath('/login')" class="button button-register">
-                {{ $utils.localeCopy.login.toggleLogin }}
-            </nuxt-link>
+            <div class="separator"></div>
+
+            <div class="button-container">
+
+                <nuxt-link :to="localePath('/login')" class="button button-register">
+                    {{ $utils.localeCopy.login.toggleLogin }}
+                </nuxt-link>
+
+            </div>
 
         </div>
 

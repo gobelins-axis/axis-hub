@@ -1,0 +1,73 @@
+.form {
+    input {
+        display: block;
+
+        padding-top: rem(4px, 'small');
+        padding-right: rem(15px, 'small');
+        padding-bottom: rem(4px, 'small');
+        padding-left: rem(15px, 'small');
+
+        font-weight: 600;
+
+        font-size: rem(16px, 'small');
+        line-height: rem(22px, 'small');
+
+        border: solid 1px $black;
+        border-radius: rem(6px, 'small');
+        outline: none;
+
+        &:focus {
+            border-color: $purple;
+
+            // &::placeholder {
+            //     color: $purple;
+            // }
+        }
+
+        &::placeholder {
+            font-weight: 500;
+            color: $color-text;
+        }
+
+        @include respond-to('medium') {
+            padding-top: rem(4px, 'medium');
+            padding-right: rem(15px, 'medium');
+            padding-bottom: rem(4px, 'medium');
+            padding-left: rem(15px, 'medium');
+
+            font-size: rem(16px, 'medium');
+            line-height: rem(22px, 'medium');
+
+            border-radius: rem(6px, 'medium');
+        }
+        
+        @include respond-to('large') {
+            padding-top: rem(4px, 'large');
+            padding-right: rem(15px, 'large');
+            padding-bottom: rem(4px, 'large');
+            padding-left: rem(15px, 'large');
+
+            font-size: rem(16px, 'large');
+            line-height: rem(22px, 'large');
+
+            border-radius: rem(6px, 'large');
+        }
+    }
+
+    .error {
+        color: $red;
+    }
+
+    &.show-errors {
+        input {
+            &:invalid {
+                color: $red !important;
+                border-color: $red !important;
+    
+                &::placeholder {
+                    color: $red !important;
+                }
+            }
+        }
+    }
+}

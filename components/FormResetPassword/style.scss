@@ -1,15 +1,91 @@
 .form-reset-password {
-    
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
 }
 
-input {
-    .form-reset-password.show-errors & {
-        &:invalid {
-            color: red;
+.form {
+    display: flex;
 
-            &::placeholder {
-                color: red;
-            }
-        }
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.email {
+    width: 100%;
+
+    margin-bottom: rem(25px, 'small');
+    
+    @include respond-to('medium') {
+        width: rem(280px, 'medium');
+        
+        margin-bottom: rem(25px, 'medium');   
+    }
+    
+    @include respond-to('large') {
+        width: rem(280px, 'large');
+
+        margin-bottom: rem(25px, 'large');
+    }
+}
+
+.submit {
+    margin-bottom: rem(15px, 'small');
+    
+    @include respond-to('medium') {
+        width: min-content;
+        min-width: rem(143px, 'medium');   
+
+        margin-bottom: rem(15px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        min-width: rem(143px, 'large');
+
+        margin-bottom: rem(15px, 'large');
+    }
+}
+
+.error-placeholder {
+    visibility: hidden;
+}
+
+.success-message {
+    width: 100%;
+
+    margin: auto;
+
+    font-size: rem(16px, 'small');
+
+    @include respond-to('medium') {
+        width: rem(300px, 'medium');
+
+        font-size: rem(16px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        width: rem(300px, 'large');
+
+        font-size: rem(16px, 'large');
+    }
+}
+
+.success-message-container {
+    text-align: center;
+}
+
+.button-success {
+    margin-top: rem(20px, 'small');
+
+    @include respond-to('medium') {
+        margin-top: rem(20px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-top: rem(20px, 'large');
     }
 }

@@ -2,14 +2,84 @@
     
 }
 
-input {
-    .form-login.show-errors & {
-        &:invalid {
-            color: red;
+.inputs-container {
+    display: flex;
+    flex-direction: column;
 
-            &::placeholder {
-                color: red;
-            }
-        }
+    width: 100%;
+
+    @include respond-to('medium') {
+        width: rem(280px, 'medium');
     }
+    
+    @include respond-to('large') {
+        width: rem(280px, 'large');
+    }
+}
+
+.email {
+    margin-bottom: rem(11px, 'small');
+
+    @include respond-to('medium') {
+        margin-bottom: rem(11px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-bottom: rem(11px, 'large');
+    }
+}
+
+.forgot-password {
+    margin-top: 10px;
+    margin-left: 2px;
+}
+
+.container-buttons {
+    display: flex;
+
+    align-items: center;
+
+    margin-top: rem(24px, 'small');
+    flex-direction: column;
+
+    @include respond-to('medium') {
+        margin-top: rem(24px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-top: rem(24px, 'large');       
+    }
+}
+
+.submit {
+    margin-bottom: rem(15px, 'small');
+    
+    @include respond-to('medium') {
+        width: min-content;
+        min-width: rem(143px, 'medium');   
+
+        margin-bottom: rem(15px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        min-width: rem(143px, 'large');
+
+        margin-bottom: rem(15px, 'large');
+    }
+}
+
+.error, .error-placeholder {
+    margin-top: rem(20px, 'small');
+    
+    @include respond-to('medium') {
+        margin-top: rem(20px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-top: rem(20px, 'large');
+    }
+}
+
+.error-placeholder {
+    visibility: hidden;
 }

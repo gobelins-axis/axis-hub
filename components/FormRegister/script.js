@@ -1,3 +1,6 @@
+// Components
+import ButtonGoogleLogin from '@/components/ButtonGoogleLogin';
+
 export default {
     data() {
         return {
@@ -22,7 +25,7 @@ export default {
 
             const promise = new Promise((resolve, reject) => {
                 // Test passwords match
-                if (!this.password !== this.passwordConfirmation) reject(Error(this.$utils.localeCopy.login.errors.passwordsNotMatching));
+                if (this.password !== this.passwordConfirmation) reject(Error(this.$utils.localeCopy.login.errors.passwordsNotMatching));
                 // Test validity (input.validity)
                 if (!this.$refs.inputEmail.validity.valid) reject(Error(this.$utils.localeCopy.login.errors.form));
                 if (!this.$refs.inputPassword.validity.valid) reject(Error(this.$utils.localeCopy.login.errors.form));
@@ -35,7 +38,7 @@ export default {
 
         register() {
             this.$firebase.createUser(this.$firebase.auth, this.email, this.password)
-                .then(() => this.registerSuccededHandler)
+                .then(this.registerSuccededHandler)
                 .catch(this.registerFailedHandler);
         },
 
@@ -105,7 +108,12 @@ export default {
         },
 
         registerSuccededHandler() {
+            console.log('register succeed');
             this.$router.push(this.localePath('/hub'));
         },
+    },
+
+    components: {
+        ButtonGoogleLogin,
     },
 };

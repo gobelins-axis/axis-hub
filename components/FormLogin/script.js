@@ -1,3 +1,6 @@
+// Components
+import ButtonGoogleLogin from '@/components/ButtonGoogleLogin';
+
 export default {
     data() {
         return {
@@ -31,7 +34,7 @@ export default {
 
         login() {
             this.$firebase.signInUser(this.$firebase.auth, this.email, this.password)
-                .then(() => this.loginSuccededHandler)
+                .then(this.loginSuccededHandler)
                 .catch(this.loginFailedHandler);
         },
 
@@ -97,5 +100,9 @@ export default {
         loginSuccededHandler() {
             this.$router.push(this.localePath('/hub'));
         },
+    },
+
+    components: {
+        ButtonGoogleLogin,
     },
 };

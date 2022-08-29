@@ -12,6 +12,29 @@
     height: 100%;
 }
 
+.title {
+    margin-bottom: rem(16px, 'small');
+
+    font-weight: 800;
+    font-size: rem(32px, 'small');
+    line-height: rem(32px, 'small');
+    text-align: center;
+
+    @include respond-to('medium') {
+        margin-bottom: rem(16px, 'medium');
+
+        font-size: rem(32px, 'medium');
+        line-height: rem(32px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-bottom: rem(16px, 'large');
+
+        font-size: rem(32px, 'large');
+        line-height: rem(32px, 'large');
+    }
+}
+
 .footer {
     position: absolute;
     bottom: 0;

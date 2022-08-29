@@ -27,6 +27,19 @@
 			"}"
 		]
 	},
+	"Mediaquery: All": {
+        "scope": "scss",
+		"prefix": "mqall",
+		"body": [
+			"@include respond-to('medium') {",
+			"    $0",
+			"}",
+			"",
+			"@include respond-to('large') {",
+			"    $1",
+			"}"
+		]
+	},
 
 	// Rem
 	"Rem": {

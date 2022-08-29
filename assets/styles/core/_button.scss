@@ -3,6 +3,8 @@
 
     padding: 0;
 
+    font-size: rem(16px, 'small');
+
     color: inherit;
     text-decoration: none;
 
@@ -11,4 +13,73 @@
     outline: none;
 
     cursor: pointer;
+
+    @include respond-to('medium') {
+        font-size: rem(16px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        font-size: rem(16px, 'large');
+    }
+}
+
+.button-primary {
+    padding-top: rem(5px, 'small');
+    padding-right: rem(16px, 'small');
+    padding-bottom: rem(5px, 'small');
+    padding-left: rem(16px, 'small');
+
+    font-weight: 700;
+    font-size: rem(16px, 'small');
+    line-height: rem(22px, 'small');
+    color: $white;
+
+    background-color: $purple;
+    border-radius: rem(20px, 'small') rem(6px, 'small') rem(6px, 'small') rem(6px, 'small');
+
+    @include respond-to('medium') {
+        padding-top: rem(5px, 'medium');
+        padding-right: rem(15px, 'medium');
+        padding-bottom: rem(5px, 'medium');
+        padding-left: rem(15px, 'medium');
+        
+        font-size: rem(16px, 'medium');
+        line-height: rem(22px, 'medium');
+
+        border-radius: rem(20px, 'medium') rem(6px, 'medium') rem(6px, 'medium') rem(6px, 'medium');
+    }
+
+    @include respond-to('large') {
+        padding-top: rem(5px, 'large');
+        padding-right: rem(15px, 'large');
+        padding-bottom: rem(5px, 'large');
+        padding-left: rem(15px, 'large');
+
+        font-size: rem(16px, 'large');
+        line-height: rem(22px, 'large');
+
+        border-radius: rem(20px, 'large') rem(6px, 'large') rem(6px, 'large') rem(6px, 'large');
+    }
+}
+
+.button-secondary {
+
+}
+
+.button-third {
+    font-weight: 500;
+    font-size: rem(13px, 'small');
+    line-height: rem(13px, 'small');
+
+    border-bottom: solid 1px $color-text;
+
+    @include respond-to('medium') {
+        font-size: rem(13px, 'medium');
+        line-height: rem(13px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        font-size: rem(13px, 'large');
+        line-height: rem(13px, 'large');
+    }
 }

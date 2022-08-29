@@ -18,15 +18,19 @@ export const data = {
 
     // Pages
     login: {
+        titleLogin: 'Connexion',
+        titleRegister: 'Inscription',
+        titleResetPassword: 'Réinitialisation du mot de passe',
         toggleLogin: 'Connexion',
         toggleRegister: 'Créer un compte',
-        emailInputPlaceholder: 'Votre email',
-        passwordInputPlaceholder: 'Votre mot de passe',
+        emailInputPlaceholder: 'Email',
+        passwordInputPlaceholder: 'Mot de passe',
         passwordConfirmationInputPlaceholder: 'Confirmer votre mot de passe',
         submitLabel: 'Valider',
         forgotPasswordLabel: 'Mot de passe oublié',
         resetPasswordSuccessMessage: 'Si l\'adresse email renseignée a été trouvée dans notre base de donnée, vous devriez avoir reçu un email. Pensez à vérifier vos spams.',
         resetPasswordSuccessButtonLabel: 'Retourner à la page de connexion',
+        googleLoginLabel: 'Continuer avec google',
         errors: {
             default: 'Nous avons rencontré une erreur inconnue. Contactez l\'éditeur du site.',
             userNotFound: 'Aucun compte ne correspond à cette adresse mail.',
