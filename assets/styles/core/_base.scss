@@ -18,5 +18,7 @@ html, body {
         box-sizing: border-box;
 
         @include unselectable();
+
+        font-family: $font-primary;
     }
 }

@@ -20,7 +20,9 @@
 	}
 }
 
-// Example
-// @include font-face('FontName', 400, 'normal', 'fonts/fontFolder/FontFileName');
+// Darker Grotesque - Edited for better vertical align
+@include font-face('Darker Grotesque', 500, 'normal', 'fonts/DarkerGrotesque-Regular-edited');
+@include font-face('Darker Grotesque', 600, 'normal', 'fonts/DarkerGrotesque-Medium-edited');
+@include font-face('Darker Grotesque', 700, 'normal', 'fonts/DarkerGrotesque-SemiBold-edited');
 
-@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@500;600;700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@500;600;700&display=swap');
