@@ -1,5 +1,5 @@
 <template>
-    <button class="button button-google-login">
+    <button type="button" class="button button-google-login">
 
         <div class="icon-container">
             <IconGoogle />

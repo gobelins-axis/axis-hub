@@ -1,7 +1,7 @@
 <template>
     <div class="page-reset-password">
 
-        <div class="container">
+        <div class="container container-large">
 
             <div class="title">
                 {{ $utils.localeCopy.login.titleResetPassword }}

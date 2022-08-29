@@ -1,0 +1,13 @@
+.container-large {
+    width: 90.8vw;
+
+    margin: auto;
+
+    @include respond-to('medium') {
+        width: 93vw;
+    }
+    
+    @include respond-to('large') {
+        width: 93vw;
+    }
+}

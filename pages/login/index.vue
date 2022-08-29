@@ -1,7 +1,11 @@
 <template>
     <div class="page-login">
 
-        <SectionLogin />
+        <div class="container container-large">
+
+            <SectionLogin />
+
+        </div>
 
         <Footer />
 

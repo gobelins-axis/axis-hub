@@ -52,6 +52,9 @@
 }
 
 .submit {
+    width: min-content;
+    min-width: rem(143px, 'small');   
+
     margin-bottom: rem(15px, 'small');
     
     @include respond-to('medium') {

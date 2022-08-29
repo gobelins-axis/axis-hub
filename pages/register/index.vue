@@ -1,7 +1,11 @@
 <template>
     <div class="page-register">
 
-        <SectionRegister />
+        <div class="container container-large">
+
+            <SectionRegister />
+
+        </div>
 
         <Footer />
 
