@@ -1,0 +1,21 @@
+.button-home {
+    width: rem(152px, 'small');
+    height: rem(45px, 'small');
+
+    pointer-events: all;
+
+    @include respond-to('medium') {
+        width: rem(152px, 'medium');
+        height: rem(45px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        width: rem(152px, 'large');
+        height: rem(45px, 'large');
+    }
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}

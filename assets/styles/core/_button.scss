@@ -83,3 +83,19 @@
         line-height: rem(13px, 'large');
     }
 }
+
+.button-navigation {
+    font-weight: 700;
+    font-size: rem(20px, 'small');
+    line-height: rem(27px, 'small');
+
+    @include respond-to('medium') {
+        font-size: rem(20px, 'medium');
+        line-height: rem(27px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        font-size: rem(20px, 'large');
+        line-height: rem(27px, 'large');
+    }
+}

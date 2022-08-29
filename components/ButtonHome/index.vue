@@ -1,11 +1,9 @@
 <template>
-    <div class="preloader">
+    <nuxt-link :to="localePath('/')" class="button button-home">
 
-        <div class="loading-message">
-            Loading
-        </div>
+        <LogoBlack />
 
-    </div>
+    </nuxt-link>
 </template>
 
 <script src="./script.js"></script>

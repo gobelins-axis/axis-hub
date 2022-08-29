@@ -1,0 +1,72 @@
+.the-navigation {
+    z-index: 1;
+
+    display: flex;
+
+    position: fixed;
+    top: rem(42px, 'small');
+    right: 0;
+    left: 0;
+
+    justify-content: space-between;
+    align-items: center;
+
+    width: 90.8vw;
+    height: 0;
+
+    margin: auto;
+
+    pointer-events: none;
+
+    @include respond-to('medium') {
+        top: rem(42px, 'medium');
+        
+        width: 93vw;
+    }
+    
+    @include respond-to('large') {
+        top: rem(42px, 'large');
+
+        width: 93vw;
+    }
+}
+
+.button {
+    pointer-events: all;
+}
+
+.button-primary {
+    font-size: rem(20px, 'small');
+    line-height: rem(27px, 'small');
+
+    @include respond-to('medium') {
+        font-size: rem(20px, 'medium');
+        line-height: rem(27px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        font-size: rem(20px, 'large');
+        line-height: rem(27px, 'large');
+    }   
+}
+
+.buttons-container {
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    @include respond-to('medium') {
+        display: flex;
+    }
+
+    .button {
+        @include respond-to('medium') {
+            margin-left: rem(70px, 'medium');
+        }
+        
+        @include respond-to('large') {
+            margin-left: rem(70px, 'large');
+        }
+    }
+}

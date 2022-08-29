@@ -1,6 +1,10 @@
 <template>
     <div class="default">
+
+        <TheNavigation />
+
         <Nuxt />
+
     </div>
 </template>
 

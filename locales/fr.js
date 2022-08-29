@@ -4,6 +4,12 @@ export const data = {
     // Routes
     routes: {
         home: { name: 'Accueil', path: '/' },
+        login: { name: 'Connexion', path: '/login' },
+        register: { name: 'Inscription', path: '/inscription' },
+        logout: { name: 'Déconnexion', path: '/logout' },
+        games: { name: 'Jeux', path: '/games' },
+        hub: { name: 'Espace créateur', path: '/hub' },
+        documentation: { name: 'Documentation', path: '/documentation' },
     },
 
     // Error
