@@ -1,7 +1,9 @@
 .container-large {
     width: 90.8vw;
 
-    margin: auto;
+    margin-right: auto;
+
+    margin-left: auto;
 
     @include respond-to('medium') {
         width: 93vw;
@@ -9,5 +11,21 @@
     
     @include respond-to('large') {
         width: 93vw;
+    }
+}
+
+.container-small {
+    width: 90.8vw;
+
+    margin-right: auto;
+
+    margin-left: auto;
+
+    @include respond-to('medium') {
+        width: 65vw;
+    }
+    
+    @include respond-to('large') {
+        width: 65vw;
     }
 }

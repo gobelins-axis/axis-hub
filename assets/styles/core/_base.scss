@@ -22,3 +22,7 @@ html, body {
         font-family: $font-primary;
     }
 }
+
+body {
+    overflow-y: scroll;
+}

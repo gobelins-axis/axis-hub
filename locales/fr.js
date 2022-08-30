@@ -48,4 +48,8 @@ export const data = {
             passwordsNotMatching: 'Les mots de passe ne correspondent pas.',
         },
     },
+
+    games: {
+        title: 'Jeux',
+    },
 };

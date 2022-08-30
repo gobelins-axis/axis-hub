@@ -1,0 +1,112 @@
+.card-game {
+    position: relative;
+
+    width: rem(320px, 'small');
+    height: rem(150px, 'small');
+
+    overflow: hidden;
+
+    background-color: $light-grey;
+
+    border-radius: rem(6px, 'small');
+
+    @include respond-to('medium') {
+        width: rem(300px, 'medium');
+        height: rem(137px, 'medium');
+
+        border-radius: rem(6px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        width: rem(300px, 'large');
+        height: rem(137px, 'large');
+
+        border-radius: rem(6px, 'large');
+    }
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30.73%, rgba(0, 0, 0, 0.7) 100%)
+}
+
+.content {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    align-items: flex-end;
+
+    width: 100%;
+    height: 100%;
+
+    padding-top: rem(10px, 'small');
+    padding-right: rem(15px, 'small');
+    padding-bottom: rem(15px, 'small');
+    padding-left: rem(15px, 'small');
+
+    @include respond-to('medium') {
+        padding-top: rem(10px, 'medium');
+        padding-right: rem(15px, 'medium');
+        padding-bottom: rem(10px, 'medium');
+        padding-left: rem(15px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        padding-top: rem(10px, 'large');
+        padding-right: rem(15px, 'large');
+        padding-bottom: rem(10px, 'large');
+        padding-left: rem(15px, 'large');
+    }
+}
+
+.name {
+    font-weight: 600;
+    font-size: rem(24px, 'small');
+    line-height: rem(20px, 'small');
+
+    color: $white;
+
+    @include respond-to('medium') {
+        font-size: rem(20px, 'medium');
+        line-height: rem(20px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        font-size: rem(20px, 'large');
+        line-height: rem(24px, 'large');
+    }
+}
+
+.link {
+    opacity: 0;
+
+    display: block;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    @include unselectable();
+}
