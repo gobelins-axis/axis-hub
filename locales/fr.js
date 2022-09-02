@@ -58,4 +58,9 @@ export const data = {
         credits: 'Crédits :',
         year: 'Créé en ',
     },
+
+    hub: {
+        title: 'Espace créateur',
+        callToAction: 'Créer un jeu',
+    },
 };

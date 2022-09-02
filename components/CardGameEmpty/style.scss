@@ -1,0 +1,29 @@
+.card-game-empty {
+    opacity: 0.3;
+
+    position: relative;
+
+    width: rem(320px, 'small');
+    height: rem(150px, 'small');
+
+    overflow: hidden;
+
+    background-color: $light-grey;
+
+    border-radius: rem(6px, 'small');
+
+    @include respond-to('medium') {
+        width: rem(300px, 'medium');
+        height: rem(137px, 'medium');
+
+        border-radius: rem(6px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        width: rem(300px, 'large');
+        height: rem(137px, 'large');
+
+        border-radius: rem(6px, 'large');
+    }
+}
+

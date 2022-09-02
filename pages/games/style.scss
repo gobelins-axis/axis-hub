@@ -34,15 +34,15 @@
     @include respond-to('medium') {
         margin-bottom: rem(73px, 'medium');
         
-        font-size: rem(80px, 'medium');
-        line-height: rem(80px, 'medium');
+        font-size: rem(48px, 'medium');
+        line-height: rem(48px, 'medium');
     }
     
     @include respond-to('large') {
         margin-bottom: rem(73px, 'large');
 
-        font-size: rem(80px, 'large');
-        line-height: rem(80px, 'large');
+        font-size: rem(48px, 'large');
+        line-height: rem(48px, 'large');
     }
 }
 
