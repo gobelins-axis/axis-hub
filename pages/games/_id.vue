@@ -15,6 +15,8 @@
 
             <CardGameDetails :game="game" />
 
+            <NavigationGames :game="game" />
+
         </div>
 
         <Footer />

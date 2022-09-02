@@ -7,6 +7,7 @@ import pageTransitions from '@/mixins/pageTransitions';
 
 // Components
 import CardGameDetails from '@/components/CardGameDetails';
+import NavigationGames from '@/components/NavigationGames';
 import ButtonBack from '@/components/ButtonBack';
 import Footer from '@/components/Footer';
 
@@ -45,9 +46,10 @@ export default {
     },
 
     components: {
-        Footer,
-        ButtonBack,
         CardGameDetails,
+        NavigationGames,
+        ButtonBack,
+        Footer,
     },
 
     validate({ params, store }) {

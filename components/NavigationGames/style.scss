@@ -1,0 +1,63 @@
+.navigation-games {
+    display: flex;
+
+    justify-content: space-between;
+}
+
+.button {
+    display: flex;
+
+    align-items: center;
+
+    font-weight: 700;
+    font-size: rem(20px, 'small');
+
+    @include respond-to('medium') {
+        font-size: rem(20px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        font-size: rem(20px, 'large');
+    }
+
+    &:deep(svg) {
+        width: auto;
+        height: rem(10px, 'small');
+
+        @include respond-to('medium') {
+            height: rem(10px, 'medium');
+        }
+        
+        @include respond-to('large') {
+            height: rem(10px, 'large');
+        }
+
+        * {
+            fill: $color-text;
+        }
+    }
+
+    span {
+        margin-right: rem(10px, 'small');
+        margin-left: rem(10px, 'small');
+
+        @include respond-to('medium') {
+            margin-right: rem(10px, 'medium');
+            margin-left: rem(10px, 'medium');
+        }
+        
+        @include respond-to('large') {
+            margin-right: rem(10px, 'large');
+            margin-left: rem(10px, 'large');
+        }
+    }
+
+    &.next {
+        flex-direction: row-reverse;
+
+
+        &:deep(svg) {
+            transform: scaleX(-1);
+        }
+    }
+}

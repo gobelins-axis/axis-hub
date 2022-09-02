@@ -86,3 +86,21 @@
         margin-bottom: rem(18px, 'large');
     }
 }
+
+.navigation-games {
+    margin-top: rem(30px, 'small');
+    margin-right: auto;
+    margin-left: auto;
+
+    @include respond-to('medium') {
+        width: 80%;
+
+        margin-top: rem(30px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        width: 80%;
+
+        margin-top: rem(30px, 'large');
+    }
+}
