@@ -1,3 +1,88 @@
 .page-game {
+    display: flex;
+    position: relative;
+
+    justify-content: space-between;
     
+    min-height: vh(100);
+
+    flex-direction: column;
+}
+
+.banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: rem(324px, 'small');
+
+    background-color: $light-grey;
+
+    @include respond-to('medium') {
+        height: rem(324px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        height: rem(324px, 'large');
+    }
+}
+
+.banner-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.container {
+    position: relative;
+
+    padding-top: rem(110px, 'small');
+    padding-bottom: rem(25px, 'small');
+    
+    @include respond-to('medium') {
+        padding-top: rem(148px, 'medium');
+        padding-bottom: rem(25px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        padding-top: rem(148px, 'large');
+        padding-bottom: rem(25px, 'large');
+    }
+}
+
+.button-back {
+    margin-bottom: rem(18px, 'small');
+
+    color: $white;
+
+    &:deep(svg) {
+        * {
+            fill: $white;
+        }
+    }
+
+    @include respond-to('medium') {
+        margin-bottom: rem(18px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-bottom: rem(18px, 'large');
+    }
 }

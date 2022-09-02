@@ -52,4 +52,10 @@ export const data = {
     games: {
         title: 'Jeux',
     },
+
+    game: {
+        buttonBackLabel: 'Retour aux jeux',
+        credits: 'Crédits :',
+        year: 'Créé en ',
+    },
 };

@@ -2,9 +2,10 @@
     display: flex;
     position: relative;
 
-    align-items: space-between;
+    justify-content: space-between;
     
     min-height: vh(100);
+
     flex-direction: column;
 }
 

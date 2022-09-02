@@ -1,7 +1,8 @@
 <template>
     <nuxt-link :to="localePath('/')" class="button button-home">
 
-        <LogoBlack />
+        <LogoWhite v-if="theme === 'white'" />
+        <LogoBlack v-else />
 
     </nuxt-link>
 </template>

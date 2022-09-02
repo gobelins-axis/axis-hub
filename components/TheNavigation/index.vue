@@ -1,7 +1,7 @@
 <template>
-    <nav class="the-navigation">
+    <nav :class="`the-navigation theme-${theme}`">
 
-        <ButtonHome class="button-home" />
+        <ButtonHome class="button-home" :theme="theme" />
 
         <!-- Authentificated Nav -->
         <div v-if="isLoggedIn" class="buttons-container">

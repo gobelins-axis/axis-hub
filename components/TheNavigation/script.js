@@ -5,10 +5,39 @@ import { mapGetters } from 'vuex';
 import ButtonHome from '@/components/ButtonHome';
 
 export default {
+    data() {
+        return {
+            theme: '',
+        };
+    },
+
     computed: {
         ...mapGetters({
             isLoggedIn: 'user/isLoggedIn',
         }),
+    },
+
+    watch: {
+        $route(to, from) {
+            this.updateTheme(to);
+        },
+    },
+
+    mounted() {
+        this.updateTheme(this.$route);
+    },
+
+    methods: {
+        /**
+         * Private
+         */
+        updateTheme(route) {
+            const routesWithThemeWhite = ['games-id'];
+            const routeName = this.getRouteBaseName(route);
+
+            if (routesWithThemeWhite.includes(routeName)) this.theme = 'white';
+            else this.theme = 'black';
+        },
     },
 
     components: {

@@ -77,4 +77,8 @@
     &.nuxt-link-exact-active {
         color: $purple;
     }
+
+    .the-navigation.theme-white & {
+        color: $white;
+    }
 }

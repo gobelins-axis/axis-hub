@@ -1,0 +1,54 @@
+.button-back {
+    display: inline-flex;
+
+    position: relative;
+
+    justify-content: space-between;
+    align-items: center;
+
+    font-weight: 700;
+    font-size: rem(20px, 'small');
+    line-height: rem(20px, 'small');
+    
+    @include respond-to('medium') {
+        font-size: rem(20px, 'medium');
+        line-height: rem(20px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        font-size: rem(20px, 'large');
+        line-height: rem(20px, 'large');
+    }
+}
+
+svg {
+    width: rem(7px, 'small');    
+    height: rem(14px, 'small');    
+
+    @include respond-to('medium') {
+        width: rem(7px, 'medium');
+        height: rem(14px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        width: rem(7px, 'large');
+        height: rem(14px, 'large');
+    }
+
+    * {
+        fill: $color-text;
+    }
+}
+
+span {
+    margin-left: rem(14px, 'small');
+
+    @include respond-to('medium') {
+        margin-left: rem(14px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-left: rem(14px, 'large');
+    }
+}
+

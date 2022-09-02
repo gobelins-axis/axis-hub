@@ -1,0 +1,78 @@
+.tag {
+    display: flex;
+
+    align-items: center;
+
+    padding-top: rem(3px, 'small');
+    padding-right: rem(12px, 'small');
+    padding-bottom: rem(3px, 'small');
+    padding-left: rem(12px, 'small');
+
+    font-weight: 700;
+    font-size: rem(20px, 'small');
+    line-height: rem(27px, 'small');
+
+    color: $color-text;
+
+    background-color: $yellow;
+
+    border-top-left-radius: rem(20px, 'small');
+    border-top-right-radius: rem(20px, 'small');
+    border-bottom-right-radius: rem(20px, 'small');
+    border-bottom-left-radius: rem(0, 'small');
+
+    @include respond-to('medium') {
+        padding-top: rem(3px, 'medium');
+        padding-right: rem(12px, 'medium');
+        padding-bottom: rem(3px, 'medium');
+        padding-left: rem(12px, 'medium');
+
+        font-size: rem(20px, 'medium');
+        line-height: rem(27px, 'medium');
+
+        border-top-left-radius: rem(20px, 'medium');
+        border-top-right-radius: rem(20px, 'medium');
+        border-bottom-right-radius: rem(20px, 'medium');
+        border-bottom-left-radius: rem(0, 'medium');
+    }
+    
+    @include respond-to('large') {
+        padding-top: rem(3px, 'large');
+        padding-right: rem(12px, 'large');
+        padding-bottom: rem(3px, 'large');
+        padding-left: rem(12px, 'large');
+
+        font-size: rem(20px, 'large');
+        line-height: rem(27px, 'large');
+
+        border-top-left-radius: rem(20px, 'large');
+        border-top-right-radius: rem(20px, 'large');
+        border-bottom-right-radius: rem(20px, 'large');
+        border-bottom-left-radius: rem(0, 'large');
+    }
+}
+
+svg {
+    width: auto;
+    height: rem(20px, 'small');
+
+    margin-right: rem(10px, 'small');
+
+    @include respond-to('medium') {
+        height: rem(20px, 'medium');
+
+        margin-right: rem(10px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        height: rem(20px, 'large');
+
+        margin-right: rem(10px, 'large');
+    }
+
+    &:deep {
+        * {
+            fill: $color-text;
+        }
+    }
+}

@@ -6,6 +6,8 @@ import seo from '@/mixins/seo';
 import pageTransitions from '@/mixins/pageTransitions';
 
 // Components
+import CardGameDetails from '@/components/CardGameDetails';
+import ButtonBack from '@/components/ButtonBack';
 import Footer from '@/components/Footer';
 
 export default {
@@ -44,6 +46,8 @@ export default {
 
     components: {
         Footer,
+        ButtonBack,
+        CardGameDetails,
     },
 
     validate({ params, store }) {
