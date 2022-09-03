@@ -1,5 +1,15 @@
 <template>
-    <div class="page-create"></div>
+    <div class="page-create">
+
+        <div class="container container-small">
+
+            <FormGame />
+
+        </div>
+
+        <Footer />
+
+    </div>
 </template>
 
 <script src="./script.js"></script>

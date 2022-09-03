@@ -63,4 +63,45 @@ export const data = {
         title: 'Espace créateur',
         callToAction: 'Créer un jeu',
     },
+
+    create: {
+        informations: {
+            title: 'Informations',
+            name: 'Nom du projet',
+            year: 'Année de création',
+            credits: 'Crédits (160 caractères maximum)',
+            shortDescription: 'Description courte (160 caractères maximum)',
+            longDescription: 'Description longue (900 caractères maximum)',
+            solo: 'Solo',
+            multiplayer: 'Multijoueur',
+            experience: 'Expérience',
+            game: 'Jeu',
+            showLeaderboard: 'Afficher le tableau des scores ?',
+        },
+        project: {
+            title: 'Projet',
+            url: 'URL du projet',
+            copyID: 'Copier l\'ID',
+        },
+        images: {
+            title: 'Images',
+            image1: 'Apercu liste (1200x470px)',
+            image2: 'Visuel plein écran (2560x1440px)',
+        },
+        colors: {
+            title: 'Couleurs LEDs',
+            color1: 'Couleur 1',
+            color2: 'Couleur 2',
+        },
+        misc: {
+            add: 'Ajouter',
+            yes: 'Oui',
+            no: 'Non',
+        },
+        cancel: 'Annuler les modifications',
+        save: 'Sauvegarder',
+        cancelConfirmation: 'Êtes-vous sûr de vouloir annuler les modifications ?',
+        deleteConfirmation: 'Êtes-vous sûr de vouloir supprimer ce projet ?',
+        exitConfirmation: 'Êtes-vous sûr de vouloir quitter ? Les modifications seront perdues.',
+    },
 };

@@ -1,0 +1,160 @@
+.input-checkbox-toggle {
+    position: relative;
+
+    width: rem(56px, 'small');
+    height: rem(24px, 'small');
+
+    padding-top: rem(3px, 'small');
+    padding-right: rem(5px, 'small');
+    padding-bottom: rem(3px, 'small');
+    padding-left: rem(5px, 'small');
+
+    background-color: $light-grey;
+
+    border-radius: rem(20px, 'small');
+
+    pointer-events: none;
+
+    &.checked {
+        color: $white;
+        // background-color: transparentize($color: $purple, $amount: 0.9);
+        background-color: $purple;
+    }
+
+    @include respond-to('medium') {
+        width: rem(56px, 'medium');
+        height: rem(24px, 'medium');
+
+        padding-top: rem(3px, 'medium');
+        padding-right: rem(5px, 'medium');
+        padding-bottom: rem(3px, 'medium');
+        padding-left: rem(5px, 'medium');
+
+        border-radius: rem(20px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        width: rem(56px, 'large');
+        height: rem(24px, 'large');
+
+        padding-top: rem(3px, 'large');
+        padding-right: rem(5px, 'large');
+        padding-bottom: rem(3px, 'large');
+        padding-left: rem(5px, 'large');
+
+        border-radius: rem(20px, 'large');
+    }
+}
+
+input {
+    opacity: 0;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+
+    cursor: pointer;
+
+    pointer-events: all;
+}
+
+.toggle-score-value {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: rem(20px, 'small');
+
+    margin: auto;
+    
+    padding-right: rem(8px, 'small');
+    padding-left: rem(8px, 'small');
+
+    font-weight: 600;
+    font-size: rem(15px, 'small');
+    line-height: rem(20px, 'small');
+
+    @include respond-to('medium') {
+        height: rem(20px, 'medium');
+
+        padding-right: rem(8px, 'medium');
+        padding-left: rem(8px, 'medium');
+
+        font-size: rem(15px, 'medium');
+        line-height: rem(20px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        height: rem(20px, 'large');
+
+        padding-right: rem(8px, 'large');
+        padding-left: rem(8px, 'large');
+
+        font-size: rem(15px, 'large');
+        line-height: rem(20px, 'large');
+    }
+
+    &.no {
+        .input-checkbox-toggle.checked & {
+            opacity: 0;
+        }
+    }
+
+    &.yes {
+        opacity: 0;
+
+        text-align: right;
+
+        .input-checkbox-toggle.checked & {
+            opacity: 1;
+        }
+    }
+}
+
+.bullet-container {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+}
+
+.bullet {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+
+    width: rem(15px, 'small');
+    height: rem(15px, 'small');
+
+    margin: auto;
+
+    background-color: $color-text;
+
+    border-radius: 50%;
+
+    @include respond-to('medium') {
+        width: rem(15px, 'medium');
+        height: rem(15px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        width: rem(15px, 'large');
+        height: rem(15px, 'large');
+    }
+
+    .input-checkbox-toggle.checked & {
+        right: auto;
+        left: 0;
+
+        background-color: $white;
+    }
+}

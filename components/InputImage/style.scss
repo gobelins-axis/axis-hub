@@ -1,0 +1,125 @@
+.input-image {
+    position: relative;
+
+    overflow: hidden;
+
+    background-color: transparentize($color: $light-grey, $amount: 0.7);
+
+    border-radius: rem(6px, 'small');
+
+    cursor: pointer;
+
+    @include respond-to('medium') {
+        border-radius: rem(6px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        border-radius: rem(6px, 'large');
+    }
+
+    &:hover {
+        background-color: transparentize($color: $light-grey, $amount: 0.5);
+    }
+
+    &.is-drag-over {
+        color: $white;
+
+        background-color: $purple;
+
+        :deep(svg) {
+            filter: invert(100%) brightness(200%);
+        }
+    }
+}
+
+.image-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+input {
+    opacity: 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+
+    cursor: pointer;
+}
+
+input::-webkit-file-upload-button {
+  display: none;
+}
+
+label {
+    opacity: 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+}
+
+.label-container {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+.label {
+    display: flex;
+
+    align-items: center;
+
+    font-weight: 600;
+    font-size: rem(15px, 'small');
+
+    @include respond-to('medium') {
+        font-size: rem(15px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        font-size: rem(15px, 'large');
+    }
+}
+
+svg {
+    width: rem(9px, 'small');
+    height: auto;
+
+    margin-left: rem(10px, 'small');
+    
+    @include respond-to('medium') {
+        width: rem(9px, 'medium');
+
+        margin-left: rem(10px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        width: rem(9px, 'large');
+
+        margin-left: rem(10px, 'large');
+    }
+}

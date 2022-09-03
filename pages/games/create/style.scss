@@ -1,3 +1,22 @@
 .page-create {
+    display: flex;
+    position: relative;
+
+    justify-content: space-between;
     
+    min-height: vh(100);
+
+    flex-direction: column;      
+}
+
+.container {
+    padding-top: rem(100px, 'small');
+
+    @include respond-to('medium') {
+        padding-top: rem(127px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        padding-top: rem(127px, 'large');
+    }
 }

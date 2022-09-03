@@ -1,0 +1,106 @@
+.input-checkbox {
+    display: flex;
+    position: relative;
+
+    align-items: center;
+
+    padding-top: rem(3px, 'small');
+    padding-right: rem(8px, 'small');
+    padding-bottom: rem(3px, 'small');
+    padding-left: rem(8px, 'small');
+
+    border: solid 1px $black;
+
+    border-radius: rem(20px, 'small');
+
+    flex-direction: row-reverse;
+
+    pointer-events: none;
+
+    @include respond-to('medium') {
+        padding-top: rem(3px, 'medium');
+        padding-right: rem(8px, 'medium');
+        padding-bottom: rem(3px, 'medium');
+        padding-left: rem(8px, 'medium');
+
+        border-radius: rem(20px, 'small');
+    }
+    
+    @include respond-to('large') {
+        padding-top: rem(3px, 'large');
+        padding-right: rem(8px, 'large');
+        padding-bottom: rem(3px, 'large');
+        padding-left: rem(8px, 'large');
+
+        border-radius: rem(20px, 'small');
+    }
+
+    &.checked {
+        background-color: transparentize($color: $purple, $amount: 0.9);
+        border-color: $purple;
+    }
+}
+
+input {
+    opacity: 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+
+    background-color: $light-grey;
+
+    cursor: pointer;
+
+    pointer-events: all;
+}
+
+label {
+    margin-right: rem(5px, 'small');
+
+    font-weight: 600;
+    font-size: rem(15px, 'small');
+    line-height: rem(20px, 'small');
+
+    @include respond-to('medium') {
+        margin-right: rem(5px, 'medium');
+
+        font-size: rem(15px, 'medium');
+        line-height: rem(20px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-right: rem(5px, 'large');
+
+        font-size: rem(15px, 'large');
+        line-height: rem(20px, 'large');
+    }
+}
+
+.bullet {
+    width: rem(10px, 'small');
+    height: rem(10px, 'small');
+
+    background-color: $light-grey;
+
+    border-radius: 50%;
+
+    @include respond-to('medium') {
+        width: rem(10px, 'medium');
+        height: rem(10px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        width: rem(10px, 'large');
+        height: rem(10px, 'large');
+    }
+
+    .input-checkbox.checked & {
+        background-color: $purple;
+    }
+}

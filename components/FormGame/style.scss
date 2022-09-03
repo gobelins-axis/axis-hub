@@ -1,0 +1,274 @@
+.form-game {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100%;
+
+    @include respond-to('medium') {
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: row;
+    }
+}
+
+.title {
+    margin-bottom: rem(20px, 'small');
+
+    font-weight: 800;
+    font-size: rem(32px, 'small');
+    line-height: rem(32px, 'small');
+
+    @include respond-to('medium') {
+        margin-bottom: rem(20px, 'medium');
+
+        font-size: rem(32px, 'medium');
+        line-height: rem(32px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-bottom: rem(20px, 'large');
+
+        font-size: rem(32px, 'large');
+        line-height: rem(32px, 'large');
+    }
+}
+
+.col {
+    width: 100%;
+}
+
+.col:nth-child(1) {
+    @include respond-to('medium') {
+        width: 37.4%;
+        min-width: 37.4%;
+    }
+}
+
+.col:nth-child(2) {
+    @include respond-to('medium') {
+        width: 53.8%;
+        min-width: 53.8%;
+    }
+}
+
+.inputs-group:not(:last-child) {
+    margin-bottom: rem(20px, 'small');
+
+    @include respond-to('medium') {
+        margin-bottom: rem(20px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-bottom: rem(20px, 'large');
+    }
+}
+
+
+input {
+    display: inline-block;
+
+    width: 100%;
+}
+
+textarea {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+}
+
+.input-container:not(:last-child) {
+    margin-bottom: rem(15px, 'small');
+
+    @include respond-to('medium') {
+        margin-bottom: rem(15px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-bottom: rem(15px, 'large');
+    }
+}
+
+.checkboxes-container {
+    display: flex;
+
+    justify-content: space-between;
+}
+
+.toggle-score-container {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toggle-score-label {
+    font-weight: 500;
+    font-size: rem(16px, 'small');
+    line-height: rem(16px, 'small');
+
+    @include respond-to('medium') {
+        font-size: rem(16px, 'medium');
+        line-height: rem(16px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        font-size: rem(16px, 'large');
+        line-height: rem(16px, 'large');
+    }
+}
+
+.copy-id-container {
+    @include respond-to('medium') {
+        display: flex;
+    }
+}
+
+.id {
+    margin-right: rem(15px, 'small');
+
+    background-color: transparentize($color: $yellow, $amount: 0.85);
+
+    @include respond-to('medium') {
+        margin-right: rem(15px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-right: rem(15px, 'large');
+    }
+}
+
+.button-copy-id {
+    margin-top: rem(10px, 'small');
+
+    padding-top: rem(4px, 'small');
+    padding-right: rem(15px, 'small');
+    padding-bottom: rem(4px, 'small');
+    padding-left: rem(15px, 'small');
+
+    font-weight: 700;
+    font-size: rem(15px, 'small');
+
+    white-space: nowrap;
+
+    background-color: $yellow;
+
+    border-radius: rem(6px, 'small');
+
+    @include respond-to('medium') {
+        margin-top: 0;
+
+        padding-top: rem(4px, 'medium');
+        padding-right: rem(15px, 'medium');
+        padding-bottom: rem(4px, 'medium');
+        padding-left: rem(15px, 'medium');
+
+        font-size: rem(15px, 'medium');
+
+        border-radius: rem(6px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        padding-top: rem(4px, 'large');
+        padding-right: rem(15px, 'large');
+        padding-bottom: rem(4px, 'large');
+        padding-left: rem(15px, 'large');
+
+        font-size: rem(15px, 'large');
+
+        border-radius: rem(6px, 'large');
+    }
+}
+
+.image-inputs-container {
+    @include respond-to('medium') {
+        display: flex;
+
+        justify-content: space-between;
+    }
+}
+
+.image-input-container:not(:last-child) {
+    margin-bottom: rem(15px, 'small');
+
+    @include respond-to('medium') {
+        margin-bottom: 0;
+    }
+}
+
+.image-label {
+    display: none;
+
+    margin-bottom: rem(17px, 'small');
+
+    font-weight: 500;
+
+    font-size: rem(16px, 'small');
+
+    @include respond-to('medium') {
+        margin-bottom: rem(17px, 'medium');
+
+        font-size: rem(16px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-bottom: rem(17px, 'large');
+
+        font-size: rem(16px, 'large');
+    }
+}
+
+.input-image {
+    $input-image-height: 129;
+    $input-image-height-medium: 125;
+    $input-image-1-aspect-ratio: 0.5;
+    $input-image-2-aspect-ratio: 0.56;
+
+    width: 100%;
+    height: 0;
+
+    @include respond-to('medium') {
+        width: auto;
+        height: rem($input-image-height, 'medium');
+    }
+    
+    @include respond-to('large') {
+        width: auto;
+        height: rem($input-image-height, 'large');
+    }
+
+    &.image-1 {
+        $input-image-1-width: math.div($input-image-height, $input-image-1-aspect-ratio);
+        $input-image-1-width-medium: math.div($input-image-height-medium, $input-image-1-aspect-ratio);
+        
+        padding-bottom: calc(100% * $input-image-1-aspect-ratio);
+
+        @include respond-to('medium') {
+            width: rem($input-image-1-width-medium, 'medium');
+
+            padding-bottom: 0;
+        }
+        
+        @include respond-to('large') {
+            width: rem($input-image-1-width, 'large');
+        }
+    }
+
+    &.image-2 {
+        $input-image-2-width: math.div($input-image-height, $input-image-2-aspect-ratio);
+        $input-image-2-width-medium: math.div($input-image-height-medium, $input-image-2-aspect-ratio);
+
+        padding-bottom: calc(100% * $input-image-2-aspect-ratio);
+
+        @include respond-to('medium') {
+            width: rem($input-image-2-width-medium, 'medium');
+
+            padding-bottom: 0;
+        }
+        
+        @include respond-to('large') {
+            width: rem($input-image-2-width, 'large');
+        }
+    }
+}

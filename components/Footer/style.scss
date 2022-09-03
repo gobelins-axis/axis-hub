@@ -14,6 +14,14 @@
     font-weight: 700;
     font-size: rem(15px, 'small');
     line-height: rem(22px, 'small');
+
+    @include respond-to('medium') {
+        padding-top: rem(8px, 'medium');
+        padding-bottom: rem(8px, 'medium');
+
+        font-size: rem(15px, 'medium');
+        line-height: rem(22px, 'medium');
+    }
     
     @include respond-to('large') {
         padding-top: rem(20px, 'large');
