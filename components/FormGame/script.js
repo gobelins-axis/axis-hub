@@ -2,6 +2,7 @@
 import InputCheckbox from '@/components/InputCheckbox';
 import InputCheckboxToggle from '@/components/InputCheckboxToggle';
 import InputImage from '@/components/InputImage';
+import InputColor from '@/components/InputColor';
 
 export default {
     data() {
@@ -44,8 +45,9 @@ export default {
 
         },
 
-        inputColorHandler() {
-
+        inputColorHandler(e) {
+            const input = e.currentTarget;
+            this.fields[input.name] = input.checked;
         },
 
         clickCopyIDHandler() {
@@ -57,5 +59,6 @@ export default {
         InputCheckbox,
         InputCheckboxToggle,
         InputImage,
+        InputColor,
     },
 };

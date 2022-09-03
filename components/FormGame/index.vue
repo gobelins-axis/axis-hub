@@ -215,6 +215,30 @@
                     {{ $utils.localeCopy.create.colors.title }}
                 </div>
 
+                <div class="color-inputs-container">
+
+                    <div class="color-input-container">
+
+                        <div class="color-label">
+                            {{ $utils.localeCopy.create.colors.color1 }}
+                        </div>
+
+                        <InputColor name="color1" initial-value="" @input="inputColorHandler" />
+
+                    </div>
+
+                    <div class="color-input-container">
+
+                        <div class="color-label">
+                            {{ $utils.localeCopy.create.colors.color2 }}
+                        </div>
+
+                        <InputColor name="color1" initial-value="" @input="inputColorHandler" />
+
+                    </div>
+
+                </div>
+
             </div>
 
         </div>

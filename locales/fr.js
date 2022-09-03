@@ -85,7 +85,7 @@ export const data = {
         },
         images: {
             title: 'Images',
-            image1: 'Apercu liste (1200x470px)',
+            image1: 'Apercu liste (1000x500px)',
             image2: 'Visuel plein écran (2560x1440px)',
         },
         colors: {

@@ -197,9 +197,7 @@ textarea {
     }
 }
 
-.image-label {
-    display: none;
-
+.image-label, .color-label {
     margin-bottom: rem(17px, 'small');
 
     font-weight: 500;
@@ -270,5 +268,35 @@ textarea {
         @include respond-to('large') {
             width: rem($input-image-2-width, 'large');
         }
+    }
+}
+
+.color-inputs-container {
+    @include respond-to('medium') {
+        display: flex;
+
+        justify-content: space-between;
+    }
+}
+
+.color-input-container {
+    width: 100%;
+
+    &:not(:last-child) {
+        @include respond-to('medium') {
+            margin-right: rem(27px, 'medium');
+        }
+
+        @include respond-to('large') {
+            margin-right: rem(27px, 'large');
+        }
+    }
+}
+
+.color-input-container:not(:last-child) {
+    margin-bottom: rem(15px, 'small');
+
+    @include respond-to('medium') {
+        margin-bottom: 0;
     }
 }

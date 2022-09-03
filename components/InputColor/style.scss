@@ -1,0 +1,41 @@
+.input-color {
+    display: flex;
+
+    overflow: hidden;
+
+    border: solid 1px;
+
+    border-radius: rem(27px, 'small');
+    border-color: transparentize($color: $light-grey, $amount: 0.7);
+
+    @include respond-to('medium') {
+        border-radius: rem(27px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        border-radius: rem(27px, 'large');
+    }
+}
+
+input {
+    background-color: transparentize($color: $light-grey, $amount: 0.7);
+    border: none;
+    border-radius: 0;
+}
+
+.input-container {
+    width: 50%;
+    min-width: 50%;
+    max-width: 50%;
+}
+
+.color-preview-container {
+    width: 50%;
+
+    background-color: $red;
+}
+
+.color-preview {
+    width: 100%;
+    height: 100%;
+}
