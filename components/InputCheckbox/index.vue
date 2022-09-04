@@ -2,7 +2,7 @@
     <div :class="`input-checkbox ${value ? 'checked': ''}`">
 
         <div class="bullet"></div>
-        <input :id="name" type="checkbox" :name="name" @input="inputHandler">
+        <input :id="name" type="checkbox" :name="name" :checked="value" @input="inputHandler">
         <label :for="name">{{ label }}</label>
 
     </div>

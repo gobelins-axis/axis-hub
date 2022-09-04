@@ -8,7 +8,7 @@
                 <span class="icon">+</span>
             </div>
 
-            <nuxt-link class="link" :to="`games/create`">
+            <nuxt-link class="link" :to="localePath(`/games/create`)">
                 {{ $utils.localeCopy.hub.callToAction }}
             </nuxt-link>
 

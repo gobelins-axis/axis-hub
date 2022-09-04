@@ -7,7 +7,7 @@
 
             <CardGameEmpty v-else-if="item.isCardEmpty" />
 
-            <CardGame v-else :game="item" />
+            <CardUserGame v-else :game="item" />
 
         </li>
 

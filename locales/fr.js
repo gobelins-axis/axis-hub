@@ -67,11 +67,11 @@ export const data = {
     create: {
         informations: {
             title: 'Informations',
-            name: 'Nom du projet',
-            year: 'Année de création',
-            credits: 'Crédits (160 caractères maximum)',
-            shortDescription: 'Description courte (160 caractères maximum)',
-            longDescription: 'Description longue (900 caractères maximum)',
+            name: 'Nom du projet*',
+            year: 'Année de création*',
+            credits: 'Crédits (160 caractères maximum)*',
+            shortDescription: 'Description courte (160 caractères maximum)*',
+            longDescription: 'Description longue (900 caractères maximum)*',
             solo: 'Solo',
             multiplayer: 'Multijoueur',
             experience: 'Expérience',
@@ -80,18 +80,18 @@ export const data = {
         },
         project: {
             title: 'Projet',
-            url: 'URL du projet',
+            url: 'URL du projet*',
             copyID: 'Copier l\'ID',
         },
         images: {
             title: 'Images',
-            image1: 'Apercu liste (1000x500px)',
-            image2: 'Visuel plein écran (2560x1440px)',
+            image1: 'Apercu liste (1000x500px)*',
+            image2: 'Visuel plein écran (2560x1440px)*',
         },
         colors: {
             title: 'Couleurs LEDs',
-            color1: 'Couleur 1',
-            color2: 'Couleur 2',
+            color1: 'Couleur 1*',
+            color2: 'Couleur 2*',
         },
         misc: {
             add: 'Ajouter',

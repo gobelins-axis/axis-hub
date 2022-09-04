@@ -22,6 +22,7 @@
             accept="image/png, image/jpeg"
             @input="inputHandler"
         >
+
         <label :for="name">
             {{ label }}
         </label>

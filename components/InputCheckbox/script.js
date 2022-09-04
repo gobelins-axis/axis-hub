@@ -1,5 +1,5 @@
 export default {
-    props: ['name', 'label', 'initialValue'],
+    props: ['name', 'label', 'initialValue', 'coucou'],
 
     data() {
         return {

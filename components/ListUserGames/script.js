@@ -1,5 +1,5 @@
 // Components
-import CardGame from '@/components/CardGame';
+import CardUserGame from '@/components/CardUserGame';
 import CardCreateGame from '@/components/CardCreateGame';
 import CardGameEmpty from '@/components/CardGameEmpty';
 
@@ -21,7 +21,7 @@ export default {
     },
 
     components: {
-        CardGame,
+        CardUserGame,
         CardCreateGame,
         CardGameEmpty,
     },

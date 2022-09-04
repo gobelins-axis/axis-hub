@@ -300,3 +300,45 @@ textarea {
         margin-bottom: 0;
     }
 }
+
+.buttons-container {
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    margin-top: rem(50px, 'small');
+
+    @include respond-to('medium') {
+        margin-top: rem(50px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-top: rem(50px, 'large');
+    }
+}
+
+.button-trash, .button-save {
+    margin-left: rem(21px, 'small');
+
+    @include respond-to('medium') {
+        margin-left: rem(21px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-left: rem(21px, 'large');
+    }
+}
+
+.button-trash {
+    width: rem(15px, 'small');
+    height: auto;
+
+    @include respond-to('medium') {
+        width: rem(15px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        width: rem(15px, 'large');
+    }
+}

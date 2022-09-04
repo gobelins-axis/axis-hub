@@ -1,5 +1,5 @@
 <template>
-    <div class="card-game">
+    <div class="card-user-game">
 
         <img class="background" :src="game.fields.mediumImage.url" alt="">
 
@@ -7,7 +7,7 @@
 
         <div class="content">
 
-            <nuxt-link class="link" :to="localePath(`/games/${game.fields.id}`)">
+            <nuxt-link class="link" :to="localePath(`/games/edit/${game.fields.id}`)">
                 {{ game.fields.name }}
             </nuxt-link>
 

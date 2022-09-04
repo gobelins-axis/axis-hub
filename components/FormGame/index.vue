@@ -46,6 +46,7 @@
                         rows="3"
                         maxlength="160"
                         minlength="10"
+                        :value="fields.credits"
                         :placeholder="$utils.localeCopy.create.informations.credits"
                         autocomplete="off"
                         required
@@ -61,6 +62,7 @@
                         rows="3"
                         maxlength="160"
                         minlength="10"
+                        :value="fields.shortDescription"
                         :placeholder="$utils.localeCopy.create.informations.shortDescription"
                         autocomplete="off"
                         required
@@ -76,6 +78,7 @@
                         rows="6"
                         maxlength="900"
                         minlength="10"
+                        :value="fields.longDescription"
                         :placeholder="$utils.localeCopy.create.informations.longDescription"
                         autocomplete="off"
                         required
@@ -88,13 +91,13 @@
 
                     <div class="checkboxes-container">
 
-                        <InputCheckbox name="solo" :label="$utils.localeCopy.create.informations.solo" :initial-value="false" @input="inputCheckboxHandler" />
+                        <InputCheckbox name="solo" :label="$utils.localeCopy.create.informations.solo" :initial-value="fields.solo" @input="inputCheckboxHandler" />
 
-                        <InputCheckbox name="multiplayer" :label="$utils.localeCopy.create.informations.multiplayer" :initial-value="false" @input="inputCheckboxHandler" />
+                        <InputCheckbox name="multiplayer" :label="$utils.localeCopy.create.informations.multiplayer" :initial-value="fields.multiplayer" @input="inputCheckboxHandler" />
 
-                        <InputCheckbox name="experience" :label="$utils.localeCopy.create.informations.experience" :initial-value="false" @input="inputCheckboxHandler" />
+                        <InputCheckbox name="experience" :label="$utils.localeCopy.create.informations.experience" :initial-value="fields.experience" @input="inputCheckboxHandler" />
 
-                        <InputCheckbox name="game" :label="$utils.localeCopy.create.informations.game" :initial-value="false" @input="inputCheckboxHandler" />
+                        <InputCheckbox name="game" :label="$utils.localeCopy.create.informations.game" :initial-value="fields.game" @input="inputCheckboxHandler" />
 
                     </div>
 
@@ -108,7 +111,7 @@
                             {{ $utils.localeCopy.create.informations.showLeaderboard }}
                         </div>
 
-                        <InputCheckboxToggle name="showLeaderboard" :option1="$utils.localeCopy.create.misc.yes" :option2="$utils.localeCopy.create.misc.no" :initial-value="true" @input="inputCheckboxHandler" />
+                        <InputCheckboxToggle name="showLeaderboard" :option1="$utils.localeCopy.create.misc.yes" :option2="$utils.localeCopy.create.misc.no" :initial-value="fields.showLeaderboard" @input="inputCheckboxHandler" />
 
                     </div>
 
@@ -131,8 +134,8 @@
                     <input
                         name="url"
                         type="url"
-                        class="name"
-                        :value="fields.name"
+                        class="url"
+                        :value="fields.url"
                         :placeholder="$utils.localeCopy.create.project.url"
                         autocomplete="off"
                         required
@@ -147,7 +150,7 @@
                         name="id"
                         type="text"
                         class="id"
-                        value=""
+                        :value="id"
                         placeholder=""
                         autocomplete="off"
                         disabled
@@ -182,6 +185,7 @@
                             :required-width="1200"
                             :required-height="470"
                             :max-size="3"
+                            :initial-value="fields.image1"
                             @input="inputImageHandler"
                         />
 
@@ -200,6 +204,7 @@
                             :required-width="2560"
                             :required-height="1440"
                             :max-size="5"
+                            :initial-value="fields.image2"
                             @input="inputImageHandler"
                         />
 
@@ -223,7 +228,7 @@
                             {{ $utils.localeCopy.create.colors.color1 }}
                         </div>
 
-                        <InputColor name="color1" initial-value="" @input="inputColorHandler" />
+                        <InputColor name="color1" :initial-value="fields.color1" @input="inputColorHandler" />
 
                     </div>
 
@@ -233,11 +238,27 @@
                             {{ $utils.localeCopy.create.colors.color2 }}
                         </div>
 
-                        <InputColor name="color1" initial-value="" @input="inputColorHandler" />
+                        <InputColor name="color1" :initial-value="fields.color2" @input="inputColorHandler" />
 
                     </div>
 
                 </div>
+
+            </div>
+
+            <div class="buttons-container">
+
+                <nuxt-link class="button button-third" :to="localePath('/hub')">
+                    {{ $utils.localeCopy.create.cancel }}
+                </nuxt-link>
+
+                <button class="button button-primary button-save">
+                    {{ $utils.localeCopy.create.save }}
+                </button>
+
+                <button type="button" class="button button-trash">
+                    <IconTrash />
+                </button>
 
             </div>
 

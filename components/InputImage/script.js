@@ -2,13 +2,13 @@
 import IconUpload from '@/assets/icons/upload.svg?inline';
 
 export default {
-    props: ['name', 'label', 'requiredWidth', 'requiredHeight', 'maxSize'],
+    props: ['name', 'label', 'requiredWidth', 'requiredHeight', 'maxSize', 'initialValue'],
 
     data() {
         return {
             isDragOver: false,
-            hasFile: false,
-            fileBlob: null,
+            hasFile: !!this.initialValue,
+            fileBlob: this.initialValue,
         };
     },
 
