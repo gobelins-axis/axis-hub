@@ -72,6 +72,7 @@ export default {
             this.$emit('input', {
                 file: this.$refs.input.files[0],
                 blob: this.fileBlob,
+                name: this.name,
             });
         },
     },

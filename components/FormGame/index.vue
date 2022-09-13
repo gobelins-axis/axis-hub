@@ -1,5 +1,5 @@
 <template>
-    <form class="form form-game">
+    <form class="form form-game" novalidate @submit.prevent="submitHandler">
 
         <div class="col">
 
@@ -144,20 +144,26 @@
 
                 </div>
 
-                <div class="copy-id-container">
+                <div v-if="id" class="copy-id-container">
 
                     <input
+                        ref="inputId"
                         name="id"
                         type="text"
-                        class="id"
+                        :class="`id ${isIDCopied ? 'is-copied' : ''}`"
                         :value="id"
                         placeholder=""
                         autocomplete="off"
                         disabled
                     >
 
-                    <button type="button" class="button button-copy-id" @click="clickCopyIDHandler">
-                        {{ $utils.localeCopy.create.project.copyID }}
+                    <button type="button" :class="`button button-copy-id ${isIDCopied ? 'is-copied' : ''}`" @click="clickCopyIDHandler">
+
+                        <span class="label-container">
+                            <span class="label">{{ $utils.localeCopy.create.project.copyID }}</span>
+                            <span class="label-copied">{{ $utils.localeCopy.create.project.copied }}</span>
+                        </span>
+
                     </button>
 
                 </div>
@@ -252,14 +258,22 @@
                     {{ $utils.localeCopy.create.cancel }}
                 </nuxt-link>
 
-                <button class="button button-primary button-save">
+                <button type="submit" class="button button-primary button-save">
                     {{ $utils.localeCopy.create.save }}
                 </button>
 
-                <button type="button" class="button button-trash">
+                <button v-if="isEdit" type="button" class="button button-trash" @click="clickDeleteHandler">
                     <IconTrash />
                 </button>
 
+            </div>
+
+            <div v-if="showErrors && error" class="error">
+                {{ error }}
+            </div>
+
+            <div v-else class="error-placeholder">
+                error
             </div>
 
         </div>

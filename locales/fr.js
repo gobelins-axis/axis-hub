@@ -82,6 +82,7 @@ export const data = {
             title: 'Projet',
             url: 'URL du projet*',
             copyID: 'Copier l\'ID',
+            copied: 'Copié !',
         },
         images: {
             title: 'Images',
@@ -103,5 +104,9 @@ export const data = {
         cancelConfirmation: 'Êtes-vous sûr de vouloir annuler les modifications ?',
         deleteConfirmation: 'Êtes-vous sûr de vouloir supprimer ce projet ?',
         exitConfirmation: 'Êtes-vous sûr de vouloir quitter ? Les modifications seront perdues.',
+        errors: {
+            default: 'Nous avons rencontré une erreur inconnue. Contactez l\'éditeur du site.',
+            form: 'Certains champs ne sont pas renseignés ou invalides.',
+        },
     },
 };

@@ -76,6 +76,7 @@ textarea {
 
     width: 100%;
     max-width: 100%;
+
 }
 
 .input-container:not(:last-child) {
@@ -126,9 +127,17 @@ textarea {
 }
 
 .id {
+    position: relative;
+
     margin-right: rem(15px, 'small');
 
     background-color: transparentize($color: $yellow, $amount: 0.85);
+
+    &.is-copied {
+        color: $purple;
+
+        background-color: transparentize($color: $purple, $amount: 0.85);
+    }
 
     @include respond-to('medium') {
         margin-right: rem(15px, 'medium');
@@ -178,6 +187,34 @@ textarea {
         font-size: rem(15px, 'large');
 
         border-radius: rem(6px, 'large');
+    }
+
+    .label-container {
+        position: relative;
+    }
+
+    .label {
+        visibility: visible;
+    }
+    
+    .label-copied {
+        visibility: hidden;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+    }
+
+    &.is-copied {
+        .label {
+            visibility: hidden;
+        }
+
+        .label-copied {
+            visibility: visible;
+        }
     }
 }
 
@@ -341,4 +378,22 @@ textarea {
     @include respond-to('large') {
         width: rem(15px, 'large');
     }
+}
+
+.error, .error-placeholder {
+    margin-top: rem(20px, 'small');
+
+    text-align: right;
+    
+    @include respond-to('medium') {
+        margin-top: rem(20px, 'medium');
+    }
+    
+    @include respond-to('large') {
+        margin-top: rem(20px, 'large');
+    }
+}
+
+.error-placeholder {
+    // visibility: hidden;
 }
