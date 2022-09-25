@@ -63,13 +63,84 @@ export default {
             this.showErrors = true;
 
             const promise = new Promise((resolve, reject) => {
-                // Test validity (input.validity)
-                // if (!this.$refs.inputEmail.validity.valid) reject(Error(this.$utils.localeCopy.login.formError));
-                // if (!this.$refs.inputPassword.validity.valid) reject(Error(this.$utils.localeCopy.login.formError));
+                if (!this.validateBasicInput(this.$refs.inputName).isValid) reject(Error(this.validateBasicInput(this.$refs.inputName).error));
+                if (!this.validateYearInput().isValid) reject(Error(this.validateYearInput().error));
+                if (!this.validateBasicInput(this.$refs.inputCredits).isValid) reject(Error(this.validateBasicInput(this.$refs.inputCredits).error));
+                if (!this.validateBasicInput(this.$refs.inputShortDescription).isValid) reject(Error(this.validateBasicInput(this.$refs.inputShortDescription).error));
+                if (!this.validateBasicInput(this.$refs.inputLongDescription).isValid) reject(Error(this.validateBasicInput(this.$refs.inputLongDescription).error));
+                if (!this.validateURLInput().isValid) reject(Error(this.validateURLInput().error));
+                if (!this.validateImageInput('image1').isValid) reject(Error(this.validateImageInput('image1').error));
+                if (!this.validateImageInput('image2').isValid) reject(Error(this.validateImageInput('image2').error));
+                if (!this.validateColorInput('color1').isValid) reject(Error(this.validateColorInput('color1').error));
+                if (!this.validateColorInput('color2').isValid) reject(Error(this.validateColorInput('color2').error));
                 resolve();
             });
 
             return promise;
+        },
+
+        /**
+         * Validations
+         */
+        validateBasicInput(input) {
+            const isValid = input.validity.valid;
+            let error = null;
+
+            if (!isValid) {
+                error = this.$utils.localeCopy.create.errors.form;
+            }
+
+            return { isValid, error };
+        },
+
+        validateYearInput() {
+            const isValidInput = this.$refs.inputYear.validity.valid;
+
+            if (!isValidInput) {
+                return { isValid: false, error: this.$utils.localeCopy.create.errors.form };
+            }
+
+            const yearRegex = /^[2][0][0-9]{2}$/;
+            const isValidYear = yearRegex.test(this.fields.year);
+
+            if (!isValidYear) {
+                return { isValid: false, error: this.$utils.localeCopy.create.errors.form };
+            }
+
+            return { isValid: true, error: null };
+        },
+
+        validateURLInput() {
+            const isValidInput = this.$refs.inputUrl.validity.valid;
+
+            if (!isValidInput) {
+                return { isValid: false, error: this.$utils.localeCopy.create.errors.form };
+            }
+
+            // eslint-disable-next-line no-useless-escape
+            const urlRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+            const isValidYear = urlRegex.test(this.fields.url);
+
+            if (!isValidYear) {
+                return { isValid: false, error: this.$utils.localeCopy.create.errors.form };
+            }
+
+            return { isValid: true, error: null };
+        },
+
+        validateImageInput(name) {
+            return this.$refs[name].validate();
+        },
+
+        validateColorInput(name) {
+            const colorRegex = /^#([0-9a-f]{3}){1,2}$/i;
+            const isValidColor = colorRegex.test(this.fields[name]);
+
+            if (!isValidColor) {
+                return { isValid: false, error: this.$utils.localeCopy.create.errors.form };
+            }
+
+            return { isValid: true, error: null };
         },
 
         /**
@@ -95,7 +166,7 @@ export default {
         },
 
         inputImageHandler(e) {
-
+            this.fields[e.name] = e.blob;
         },
 
         inputColorHandler(e) {
@@ -123,18 +194,21 @@ export default {
 
             this.validateForm()
                 .then(() => {
+                    this.showErrors = false;
                     this.isFormError = false;
                     this.isInProgress = true;
                     this.isSuccess = false;
                     this.isFirebaseError = false;
+                    console.log('Success');
                     // this.login();
                 })
-                .catch(() => {
+                .catch((error) => {
                     this.isSuccess = false;
                     this.isFormError = true;
                     this.isInProgress = false;
                     this.isFirebaseError = false;
-                    this.error = this.$utils.localeCopy.create.errors.form;
+                    this.error = error.message;
+                    console.log('Error');
                 });
         },
     },

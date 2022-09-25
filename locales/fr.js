@@ -107,6 +107,8 @@ export const data = {
         errors: {
             default: 'Nous avons rencontré une erreur inconnue. Contactez l\'éditeur du site.',
             form: 'Certains champs ne sont pas renseignés ou invalides.',
+            fileToBig: 'Une image dépasse le poids maximum requis (1 Mo).',
+            wrongImageRatio: 'Une image ne respecte pas les dimensions requises.',
         },
     },
 };

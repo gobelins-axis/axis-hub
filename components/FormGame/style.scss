@@ -378,6 +378,11 @@ textarea {
     @include respond-to('large') {
         width: rem(15px, 'large');
     }
+    
+    :deep(svg) {
+        width: 100%;
+        height: auto;
+    }
 }
 
 .error, .error-placeholder {
@@ -395,5 +400,5 @@ textarea {
 }
 
 .error-placeholder {
-    // visibility: hidden;
+    visibility: hidden;
 }

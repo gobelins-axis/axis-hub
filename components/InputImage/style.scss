@@ -25,11 +25,25 @@
         color: $white;
 
         background-color: $purple;
+        border: solid 1px $purple;
+
+        .image-preview-container {
+            opacity: 0;
+        }
 
         :deep(svg) {
             filter: invert(100%) brightness(200%);
         }
     }
+}
+
+.image-preview-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
 }
 
 .image-preview {

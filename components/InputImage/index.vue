@@ -13,7 +13,11 @@
 
         </div>
 
-        <img v-if="hasFile" :src="fileBlob" alt="" class="image-preview">
+        <div class="image-preview-container">
+
+            <img v-if="hasFile" ref="image" :src="fileBlob" alt="" class="image-preview">
+
+        </div>
 
         <input
             :id="name"

@@ -69,5 +69,16 @@
                 }
             }
         }
+
+        textarea {
+            &:invalid {
+                color: $red !important;
+                border-color: $red !important;
+    
+                &::placeholder {
+                    color: $red !important;
+                }
+            }
+        }
     }
 }

@@ -17,6 +17,8 @@ export default {
     },
 
     mounted() {
+        this.savedInitialValue = this.initialValue;
+
         this.setupFileReader();
         this.setupEventListeners();
     },
@@ -26,6 +28,36 @@ export default {
     },
 
     methods: {
+        /**
+         * Public
+         */
+        validate() {
+            // Initial value
+            if (this.fileBlob === this.savedInitialValue) {
+                return { isValid: true, error: null };
+            }
+
+            // Empty
+            if (!this.fileBlob) {
+                return { isValid: false, error: this.$utils.localeCopy.create.errors.form };
+            }
+
+            // File Size
+            if (this.file.size > this.maxSize) {
+                return { isValid: false, error: this.$utils.localeCopy.create.errors.fileToBig };
+            }
+
+            // Dimensions
+            const width = Math.abs(this.$refs.image.naturalWidth);
+            const height = Math.abs(this.$refs.image.naturalHeight);
+
+            if (width > this.requiredWidth || height > this.requiredHeight) {
+                return { isValid: false, error: this.$utils.localeCopy.create.errors.wrongImageRatio };
+            }
+
+            return { isValid: true, error: null };
+        },
+
         /**
          * Private
          */
@@ -68,9 +100,10 @@ export default {
             this.hasFile = true;
             this.fileBlob = this.fileReader.result;
             this.isDragOver = false;
+            this.file = this.$refs.input.files[0];
 
             this.$emit('input', {
-                file: this.$refs.input.files[0],
+                file: this.file,
                 blob: this.fileBlob,
                 name: this.name,
             });
