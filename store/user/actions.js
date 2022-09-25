@@ -1,17 +1,17 @@
 const actions = {
-    setLoggedInUser: ({ commit }, user) => {
+    setLoggedInUser({ commit }, user) {
         commit('SET_LOGGED_UN_USER', user);
     },
 
-    setGames: ({ commit }, games) => {
+    setGames({ commit }, games) {
         commit('SET_USER_GAMES', games);
     },
 
-    addGame: ({ commit }, game) => {
+    addGame({ commit }, game) {
         commit('ADD_USER_GAME', game);
     },
 
-    removeGame: ({ commit }, game) => {
+    removeGame({ commit }, game) {
         commit('REMOVE_USER_GAME', game);
     },
 

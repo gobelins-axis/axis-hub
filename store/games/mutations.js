@@ -3,15 +3,13 @@ const mutations = {
         state.games = games;
     },
 
-    ADD_GAMES(state, gameToAdd) {
-        state.games.push(gameToAdd);
+    ADD_GAME(state, game) {
+        state.games.push(game);
     },
 
-    DELETE_GAME(state, deletedGameID) {
+    REMOVE_GAME(state, gameID) {
         state.games = state.games.filter((filteredGames) => {
-            console.log(filteredGames.id);
-
-            return filteredGames.id !== deletedGameID;
+            return filteredGames.id !== gameID;
         });
     },
 };

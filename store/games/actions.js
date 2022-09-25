@@ -1,14 +1,14 @@
 const actions = {
-    setGames: ({ commit }, games) => {
+    setGames({ commit }, games) {
         commit('SET_GAMES', games);
     },
 
-    addGames: ({ commit }, gameToAdd) => {
-        commit('ADD_GAMES', gameToAdd);
+    addGame({ commit }, game) {
+        commit('ADD_GAME', game);
     },
 
-    deleteGame: ({ commit }, gameID) => {
-        commit('DELETE_GAME', gameID);
+    removeGame({ commit }, gameID) {
+        commit('REMOVE_GAME', gameID);
     },
 
 };

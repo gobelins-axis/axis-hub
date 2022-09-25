@@ -51,9 +51,9 @@ export default {
             const width = Math.abs(this.$refs.image.naturalWidth);
             const height = Math.abs(this.$refs.image.naturalHeight);
 
-            if (width > this.requiredWidth || height > this.requiredHeight) {
-                return { isValid: false, error: this.$utils.localeCopy.create.errors.wrongImageRatio };
-            }
+            // if (width > this.requiredWidth || height > this.requiredHeight) {
+            //     return { isValid: false, error: this.$utils.localeCopy.create.errors.wrongImageRatio };
+            // }
 
             return { isValid: true, error: null };
         },

@@ -19,9 +19,9 @@ const mutations = {
         state.games.push(game);
     },
 
-    REMOVE_USER_GAME(state, game) {
-        state.games = state.games.filter((filteredGames) => {
-            return filteredGames.id !== game;
+    REMOVE_USER_GAME(state, id) {
+        state.games = state.games.filter((game) => {
+            return game.id !== id;
         });
     },
 };

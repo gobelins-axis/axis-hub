@@ -45,11 +45,19 @@ export default ({ store, i18n }, inject) => {
 
     function getUserGames(user) {
         const userGames = store.state.games.games.filter(game => game.fields.creatorID === user.uid);
-        store.dispatch('user/setGames', userGames);
+        return store.dispatch('user/setGames', userGames);
     }
 
     function fetchGames(user) {
-        getAllGames().then(() => getUserGames(user));
+        const promise = new Promise((resolve) => {
+            getAllGames().then(() => {
+                getUserGames(user).then(() => {
+                    resolve();
+                });
+            });
+        });
+
+        return promise;
     }
 
     function getGameLeaderboard(id) {

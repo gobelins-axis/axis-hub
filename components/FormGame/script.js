@@ -1,6 +1,8 @@
 // Vendor
 import slugify from 'slugify';
 import { v4 as uuidv4 } from 'uuid';
+import { collection, doc, updateDoc, deleteDoc, setDoc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 // Components
 import InputCheckbox from '@/components/InputCheckbox';
@@ -10,6 +12,12 @@ import InputColor from '@/components/InputColor';
 import IconTrash from '@/assets/icons/trash.svg?inline';
 
 const INPUT_TIMEOUT_DELAY = 500;
+
+// TODO:
+// Test update create
+// Add delete
+// Redirect to hub page on success
+// Check error messages
 
 export default {
     props: ['game'],
@@ -74,6 +82,179 @@ export default {
                 if (!this.validateColorInput('color1').isValid) reject(Error(this.validateColorInput('color1').error));
                 if (!this.validateColorInput('color2').isValid) reject(Error(this.validateColorInput('color2').error));
                 resolve();
+            });
+
+            return promise;
+        },
+
+        submit() {
+            if (this.isEdit) this.updateGame();
+            else this.createGame();
+        },
+
+        updateGame() {
+            const game = {
+                id: this.id,
+                fields: {
+                    name: this.fields.name,
+                    year: this.fields.year,
+                    credits: this.fields.credits,
+                    description: this.fields.shortDescription,
+                    longerDescription: this.fields.longDescription,
+                    filters: {
+                        onePlayer: this.fields.solo,
+                        multiPlayer: this.fields.multiplayer,
+                        experience: this.fields.experience,
+                        game: this.fields.game,
+                    },
+                    leaderboardActive: this.fields.showLeaderboard,
+                    url: this.fields.url,
+                    largeImage: {
+                        // Set initial image values
+                        name: this.game.fields.largeImage.name,
+                        url: this.game.fields.largeImage.url,
+                    },
+                    mediumImage: {
+                        // Set initial image values
+                        name: this.game.fields.mediumImage.name,
+                        url: this.game.fields.mediumImage.url,
+                    },
+                    colors: {
+                        first: this.fields.color1,
+                        secondary: this.fields.color2,
+                    },
+                    creatorName: this.$store.state.user.user.name,
+                    creatorID: this.$store.state.user.user.uid,
+                    updatedAt: new Date(),
+                },
+            };
+
+            this.uploadImages(game).then(() => {
+                const collectionRef = collection(this.$firebase.firestore, 'games');
+                const documentRef = doc(collectionRef, game.id);
+
+                updateDoc(documentRef, {
+                    ...game.fields,
+                }).then(() => {
+                    this.$firebase.fetchGames(this.$store.state.user.user).then(() => {
+                        this.isFormError = false;
+                        this.isSuccess = false;
+                        this.isFirebaseError = false;
+                    });
+                }).catch(() => {
+                    this.isFormError = false;
+                    this.isSuccess = false;
+                    this.isFirebaseError = true;
+                    this.error = this.$utils.localeCopy.create.errors.default;
+                    this.showErrors = true;
+                });
+            }).catch(() => {
+                this.isFormError = false;
+                this.isSuccess = false;
+                this.isFirebaseError = true;
+                this.error = this.$utils.localeCopy.create.errors.default;
+                this.showErrors = true;
+            });
+        },
+
+        createGame() {
+            const game = {
+                id: this.id,
+                fields: {
+                    name: this.fields.name,
+                    year: this.fields.year,
+                    credits: this.fields.credits,
+                    description: this.fields.shortDescription,
+                    longerDescription: this.fields.longDescription,
+                    filters: {
+                        onePlayer: this.fields.solo,
+                        multiPlayer: this.fields.multiplayer,
+                        experience: this.fields.experience,
+                        game: this.fields.game,
+                    },
+                    leaderboardActive: this.fields.showLeaderboard,
+                    url: this.fields.url,
+                    largeImage: {},
+                    mediumImage: {},
+                    colors: {
+                        first: this.fields.color1,
+                        secondary: this.fields.color2,
+                    },
+                    creatorName: this.$store.state.user.user.name,
+                    creatorID: this.$store.state.user.user.uid,
+                    createdAt: new Date(),
+                    updatedAt: null,
+                },
+            };
+
+            this.uploadImages(game).then(() => {
+                const collectionRef = collection(this.$firebase.firestore, 'games');
+                const documentRef = doc(collectionRef, game.id);
+
+                setDoc(documentRef, {
+                    ...game.fields,
+                    id: game.id,
+                }).then(() => {
+                    this.$firebase.fetchGames(this.$store.state.user.user).then(() => {
+                        this.isFormError = false;
+                        this.isSuccess = false;
+                        this.isFirebaseError = false;
+                    });
+                }).catch(() => {
+                    this.isFormError = false;
+                    this.isSuccess = false;
+                    this.isFirebaseError = true;
+                    this.error = this.$utils.localeCopy.create.errors.default;
+                    this.showErrors = true;
+                });
+            }).catch(() => {
+                this.isFormError = false;
+                this.isSuccess = false;
+                this.isFirebaseError = true;
+                this.error = this.$utils.localeCopy.create.errors.default;
+                this.showErrors = true;
+            });
+        },
+
+        uploadImages(game) {
+            const mediumImageName = `medium-image-${this.id}`;
+            const largeImageName = `large-image-${this.id}`;
+
+            const storageMediumRef = ref(this.$firebase.storage, mediumImageName);
+            const storageLargeRef = ref(this.$firebase.storage, largeImageName);
+
+            game.fields.mediumImage.name = mediumImageName;
+            game.fields.largeImage.name = largeImageName;
+
+            return new Promise((resolve, reject) => {
+                const uploadPromises = [];
+                if (this.fields.image1 !== this.game.fields.mediumImage.url) uploadPromises.push(this.uploadImage(game.fields.mediumImage, storageMediumRef, this.fields.image1));
+                if (this.fields.image2 !== this.game.fields.largeImage.url) uploadPromises.push(this.uploadImage(game.fields.largeImage, storageLargeRef, this.fields.image2));
+
+                if (uploadPromises.length === 0) {
+                    resolve(game);
+                } else {
+                    Promise.all(uploadPromises).then(() => {
+                        resolve(game);
+                    }).catch((error) => {
+                        reject(error);
+                    });
+                }
+            });
+        },
+
+        uploadImage(image, ref, url) {
+            const promise = new Promise((resolve, reject) => {
+                uploadBytes(ref, url).then(() => {
+                    getDownloadURL(ref).then((response) => {
+                        image.url = response;
+                        resolve(image);
+                    }).catch((error) => {
+                        reject(error);
+                    });
+                }).catch((error) => {
+                    reject(error);
+                });
             });
 
             return promise;
@@ -200,6 +381,7 @@ export default {
                     this.isSuccess = false;
                     this.isFirebaseError = false;
                     console.log('Success');
+                    this.submit();
                     // this.login();
                 })
                 .catch((error) => {
