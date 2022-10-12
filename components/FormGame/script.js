@@ -14,8 +14,9 @@ import IconTrash from '@/assets/icons/trash.svg?inline';
 const INPUT_TIMEOUT_DELAY = 500;
 
 // TODO:
-// Test update create
 // Add delete
+// Delete confirmation overlay
+// Success messages
 // Redirect to hub page on success
 // Check error messages
 
@@ -141,14 +142,16 @@ export default {
                         this.isSuccess = false;
                         this.isFirebaseError = false;
                     });
-                }).catch(() => {
+                }).catch((error) => {
+                    console.log(error);
                     this.isFormError = false;
                     this.isSuccess = false;
                     this.isFirebaseError = true;
                     this.error = this.$utils.localeCopy.create.errors.default;
                     this.showErrors = true;
                 });
-            }).catch(() => {
+            }).catch((error) => {
+                console.log(error);
                 this.isFormError = false;
                 this.isSuccess = false;
                 this.isFirebaseError = true;
@@ -200,14 +203,16 @@ export default {
                         this.isSuccess = false;
                         this.isFirebaseError = false;
                     });
-                }).catch(() => {
+                }).catch((error) => {
+                    console.log(error);
                     this.isFormError = false;
                     this.isSuccess = false;
                     this.isFirebaseError = true;
                     this.error = this.$utils.localeCopy.create.errors.default;
                     this.showErrors = true;
                 });
-            }).catch(() => {
+            }).catch((error) => {
+                console.log(error);
                 this.isFormError = false;
                 this.isSuccess = false;
                 this.isFirebaseError = true;
@@ -228,8 +233,13 @@ export default {
 
             return new Promise((resolve, reject) => {
                 const uploadPromises = [];
-                if (this.fields.image1 !== this.game.fields.mediumImage.url) uploadPromises.push(this.uploadImage(game.fields.mediumImage, storageMediumRef, this.fields.image1));
-                if (this.fields.image2 !== this.game.fields.largeImage.url) uploadPromises.push(this.uploadImage(game.fields.largeImage, storageLargeRef, this.fields.image2));
+                if (this.game) {
+                    if (this.fields.image1 !== this.game.fields.mediumImage.url) uploadPromises.push(this.uploadImage(game.fields.mediumImage, storageMediumRef, this.fields.image1));
+                    if (this.fields.image2 !== this.game.fields.largeImage.url) uploadPromises.push(this.uploadImage(game.fields.largeImage, storageLargeRef, this.fields.image2));
+                } else {
+                    if (this.fields.image1) uploadPromises.push(this.uploadImage(game.fields.mediumImage, storageMediumRef, this.fields.image1));
+                    if (this.fields.image2) uploadPromises.push(this.uploadImage(game.fields.largeImage, storageLargeRef, this.fields.image2));
+                }
 
                 if (uploadPromises.length === 0) {
                     resolve(game);
@@ -248,6 +258,7 @@ export default {
                 uploadBytes(ref, url).then(() => {
                     getDownloadURL(ref).then((response) => {
                         image.url = response;
+                        console.log(response);
                         resolve(image);
                     }).catch((error) => {
                         reject(error);
@@ -347,7 +358,7 @@ export default {
         },
 
         inputImageHandler(e) {
-            this.fields[e.name] = e.blob;
+            this.fields[e.name] = e.file;
         },
 
         inputColorHandler(e) {

@@ -102,6 +102,8 @@ export default {
             this.isDragOver = false;
             this.file = this.$refs.input.files[0];
 
+            console.log(this.file);
+
             this.$emit('input', {
                 file: this.file,
                 blob: this.fileBlob,

@@ -48,7 +48,7 @@
                         name="credits"
                         rows="3"
                         maxlength="160"
-                        minlength="10"
+                        minlength="3"
                         :value="fields.credits"
                         :placeholder="
                             $utils.localeCopy.create.informations.credits
@@ -65,7 +65,7 @@
                         name="shortDescription"
                         rows="3"
                         maxlength="160"
-                        minlength="10"
+                        minlength="3"
                         :value="fields.shortDescription"
                         :placeholder="
                             $utils.localeCopy.create.informations
@@ -83,7 +83,7 @@
                         name="longDescription"
                         rows="6"
                         maxlength="900"
-                        minlength="10"
+                        minlength="3"
                         :value="fields.longDescription"
                         :placeholder="
                             $utils.localeCopy.create.informations
