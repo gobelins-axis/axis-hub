@@ -5,6 +5,8 @@
 
         <Nuxt />
 
+        <TheOverlayDelete />
+
     </div>
 </template>
 

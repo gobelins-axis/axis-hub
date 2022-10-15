@@ -5,6 +5,14 @@
 
     width: 100%;
 
+    &.is-in-progress {
+        opacity: 0.7;
+        
+        * {
+            pointer-events: none;
+        }
+    }
+
     @include respond-to('medium') {
         justify-content: space-between;
         align-items: flex-start;

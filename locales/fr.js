@@ -103,7 +103,7 @@ export const data = {
         save: 'Sauvegarder',
         success: 'Le jeu a bien été enregistré',
         cancelConfirmation: 'Êtes-vous sûr de vouloir annuler les modifications ?',
-        deleteConfirmation: 'Êtes-vous sûr de vouloir supprimer ce projet ?',
+        deleteConfirmation: ['Êtes-vous sûr de vouloir supprimer ce projet ?', '(Cette action est irréversible.)'],
         exitConfirmation: 'Êtes-vous sûr de vouloir quitter ? Les modifications seront perdues.',
         errors: {
             default: 'Nous avons rencontré une erreur inconnue. Contactez l\'éditeur du site.',

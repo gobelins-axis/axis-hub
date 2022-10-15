@@ -1,6 +1,6 @@
 <template>
     <form
-        :class="`form form-game ${showErrors ? 'show-errors' : ''}`"
+        :class="`form form-game ${showErrors ? 'show-errors' : ''} ${isInProgress ? 'is-in-progress' : ''}`"
         novalidate
         @submit.prevent="submitHandler"
     >

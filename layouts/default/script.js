@@ -1,6 +1,7 @@
 // Components
 import ThePreloader from '@/components/ThePreloader';
 import TheNavigation from '@/components/TheNavigation';
+import TheOverlayDelete from '@/components/TheOverlayDelete';
 
 export default {
     watch: {
@@ -18,6 +19,7 @@ export default {
     components: {
         ThePreloader,
         TheNavigation,
+        TheOverlayDelete,
     },
 };
 

@@ -14,11 +14,8 @@ import IconTrash from '@/assets/icons/trash.svg?inline';
 const INPUT_TIMEOUT_DELAY = 500;
 
 // TODO:
-// Add delete
-// Delete confirmation overlay
-// Success messages
-// Redirect to hub page on success
 // Check error messages
+// Color picker
 
 export default {
     props: ['game'],
@@ -274,11 +271,24 @@ export default {
             return promise;
         },
 
+        delete() {
+            const documentRef = doc(this.$firebase.firestore, 'games', this.id);
+
+            deleteDoc(documentRef).then(() => {
+                this.$firebase.fetchGames(this.$store.state.user.user).then(() => {
+                    this.deleteRedirect();
+                });
+            });
+        },
+
         successRedirect() {
-            console.log('Redirect...');
             setTimeout(() => {
                 this.$router.push(this.localePath(`/games/${this.id}`));
-            }, 1500);
+            }, 1000);
+        },
+
+        deleteRedirect() {
+            this.$router.push(this.localePath('/hub'));
         },
 
         /**
@@ -387,7 +397,21 @@ export default {
         },
 
         clickDeleteHandler() {
+            this.$root.overlayDelete.open();
 
+            const confirmHandler = () => {
+                this.$root.overlayDelete.$off('confirm', confirmHandler);
+                this.$root.overlayDelete.close();
+                this.delete();
+            };
+
+            const cancelHandler = () => {
+                this.$root.overlayDelete.$off('cancel', cancelHandler);
+                this.$root.overlayDelete.close();
+            };
+
+            this.$root.overlayDelete.$on('confirm', confirmHandler);
+            this.$root.overlayDelete.$on('cancel', cancelHandler);
         },
 
         submitHandler() {
