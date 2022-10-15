@@ -38,16 +38,24 @@
 }
 
 .title {
+    width: rem(250px, 'small');
+
+    margin: auto;
+
     font-weight: 700;
     font-size: rem(24px, 'small');
-    line-height: rem(33px, 'small');
+    line-height: rem(28px, 'small');
 
     @include respond-to('medium') {
+        width: rem(84px, 'medium');
+
         font-size: rem(24px, 'medium');
-        line-height: rem(33px, 'medium');
+        line-height: rem(28px, 'medium');
     }
     
     @include respond-to('large') {
+        width: auto;
+
         font-size: rem(24px, 'large');
         line-height: rem(33px, 'large');
     }
@@ -58,13 +66,13 @@
 
     font-weight: 500;
     font-size: rem(16px, 'small');
-    line-height: rem(22px, 'small');
+    line-height: rem(25px, 'small');
 
     @include respond-to('medium') {
         margin-bottom: rem(19px, 'medium');
         
         font-size: rem(16px, 'medium');
-        line-height: rem(22px, 'medium');
+        line-height: rem(25px, 'medium');
     }
     
     @include respond-to('large') {

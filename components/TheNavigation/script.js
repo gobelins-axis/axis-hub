@@ -32,7 +32,7 @@ export default {
          * Private
          */
         updateTheme(route) {
-            const routesWithThemeWhite = ['games-id'];
+            const routesWithThemeWhite = ['games-id', 'index'];
             const routeName = this.getRouteBaseName(route);
 
             if (routesWithThemeWhite.includes(routeName)) this.theme = 'white';

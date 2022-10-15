@@ -1,6 +1,10 @@
 <template>
     <div class="page-home">
 
+        <img src="~/assets/images/background.jpg" alt="" class="background-image">
+
+        <Footer />
+
     </div>
 </template>
 
