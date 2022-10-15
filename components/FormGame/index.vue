@@ -286,7 +286,7 @@
                     {{ $utils.localeCopy.create.cancel }}
                 </nuxt-link>
 
-                <button type="submit" class="button button-primary button-save">
+                <button type="submit" class="button button-primary button-save" :disabled="isInProgress || isSuccess">
                     {{ $utils.localeCopy.create.save }}
                 </button>
 
@@ -300,11 +300,15 @@
                 </button>
             </div>
 
-            <div v-if="showErrors && error" class="error">
+            <div v-if="showErrors && error" class="message error">
                 {{ error }}
             </div>
 
-            <div v-else class="error-placeholder">
+            <div v-else-if="isSuccess" class="message success">
+                {{ $utils.localeCopy.create.success }}
+            </div>
+
+            <div v-else class="message-placeholder">
                 error
             </div>
         </div>

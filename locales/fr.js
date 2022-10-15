@@ -101,6 +101,7 @@ export const data = {
         },
         cancel: 'Annuler les modifications',
         save: 'Sauvegarder',
+        success: 'Le jeu a bien été enregistré',
         cancelConfirmation: 'Êtes-vous sûr de vouloir annuler les modifications ?',
         deleteConfirmation: 'Êtes-vous sûr de vouloir supprimer ce projet ?',
         exitConfirmation: 'Êtes-vous sûr de vouloir quitter ? Les modifications seront perdues.',

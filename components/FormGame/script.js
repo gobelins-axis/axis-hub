@@ -47,10 +47,11 @@ export default {
             },
             error: '',
             showErrors: false,
+            showSuccess: false,
             isSuccess: false,
             isFormError: false,
             isFirebaseError: false,
-            inProgress: false,
+            isInProgress: false,
         };
     },
 
@@ -139,8 +140,9 @@ export default {
                 }).then(() => {
                     this.$firebase.fetchGames(this.$store.state.user.user).then(() => {
                         this.isFormError = false;
-                        this.isSuccess = false;
+                        this.isSuccess = true;
                         this.isFirebaseError = false;
+                        this.successRedirect();
                     });
                 }).catch((error) => {
                     console.log(error);
@@ -200,8 +202,9 @@ export default {
                 }).then(() => {
                     this.$firebase.fetchGames(this.$store.state.user.user).then(() => {
                         this.isFormError = false;
-                        this.isSuccess = false;
+                        this.isSuccess = true;
                         this.isFirebaseError = false;
+                        this.successRedirect();
                     });
                 }).catch((error) => {
                     console.log(error);
@@ -269,6 +272,13 @@ export default {
             });
 
             return promise;
+        },
+
+        successRedirect() {
+            console.log('Redirect...');
+            setTimeout(() => {
+                this.$router.push(this.localePath(`/games/${this.id}`));
+            }, 1500);
         },
 
         /**
@@ -384,6 +394,8 @@ export default {
             if (this.isInProgress) return;
             if (this.isSuccess) return;
 
+            this.isInProgress = true;
+
             this.validateForm()
                 .then(() => {
                     this.showErrors = false;
@@ -391,9 +403,7 @@ export default {
                     this.isInProgress = true;
                     this.isSuccess = false;
                     this.isFirebaseError = false;
-                    console.log('Success');
                     this.submit();
-                    // this.login();
                 })
                 .catch((error) => {
                     this.isSuccess = false;

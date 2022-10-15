@@ -37,6 +37,10 @@
     background-color: $purple;
     border-radius: rem(20px, 'small') rem(6px, 'small') rem(6px, 'small') rem(6px, 'small');
 
+    &:disabled {
+        background-color: $grey;
+    }
+
     @include respond-to('medium') {
         padding-top: rem(5px, 'medium');
         padding-right: rem(15px, 'medium');
