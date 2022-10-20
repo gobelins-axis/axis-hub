@@ -346,7 +346,8 @@ export default {
 
         validateColorInput(name) {
             const colorRegex = /^#([0-9a-f]{3}){1,2}$/i;
-            const isValidColor = colorRegex.test(this.fields[name]);
+            const colorString = this.fields[name].toLowerCase();
+            const isValidColor = colorRegex.test(colorString);
 
             if (!isValidColor) {
                 return { isValid: false, error: this.$utils.localeCopy.create.errors.form };
