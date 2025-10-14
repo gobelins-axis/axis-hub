@@ -1,6 +1,6 @@
 import { initializeApp, getApps } from 'firebase/app';
 import { getFirestore, getDoc, collection, getDocs, doc, setDoc } from 'firebase/firestore';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithRedirect, sendPasswordResetEmail, GoogleAuthProvider, getRedirectResult } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithRedirect, signInWithPopup, sendPasswordResetEmail, GoogleAuthProvider, getRedirectResult } from 'firebase/auth';
 import { getStorage, ref } from 'firebase/storage';
 
 const config = {
@@ -20,7 +20,7 @@ export default ({ store, i18n }, inject) => {
     const auth = getAuth(firebaseApp);
     const createUser = createUserWithEmailAndPassword;
     const signInUser = signInWithEmailAndPassword;
-    const signInWithGoogle = signInWithRedirect;
+    const signInWithGoogle = signInWithPopup;
     const resetPassword = sendPasswordResetEmail;
     const firestore = getFirestore(firebaseApp);
     const storage = getStorage(firebaseApp);
@@ -45,6 +45,7 @@ export default ({ store, i18n }, inject) => {
 
     function getUserGames(user) {
         const userGames = store.state.games.games.filter(game => game.fields.creatorID === user.uid);
+
         return store.dispatch('user/setGames', userGames);
     }
 

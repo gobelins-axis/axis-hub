@@ -41,8 +41,13 @@ export default {
         /**
          * Handlers
          */
-        googleSignInClickHandler() {
-            this.$firebase.signInWithGoogle(this.$firebase.auth, this.$firebase.googleAuthProvider);
+        async googleSignInClickHandler() {
+            const user = await this.$firebase.signInWithGoogle(this.$firebase.auth, this.$firebase.googleAuthProvider);
+
+            if (user === null) return;
+
+            await this.$store.dispatch('user/setLoggedInUser', user);
+            this.$router.push(this.localePath('/hub'));
         },
 
         emailInputHandler(e) {
