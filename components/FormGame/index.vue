@@ -165,7 +165,6 @@
                         name="url"
                         type="url"
                         class="url"
-                        pattern="^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$"
                         :value="fields.url"
                         :placeholder="$utils.localeCopy.create.project.url"
                         autocomplete="off"
@@ -249,7 +248,7 @@
                 </div>
             </div>
 
-            <div class="inputs-group">
+            <!-- <div class="inputs-group">
                 <div class="title">
                     {{ $utils.localeCopy.create.colors.title }}
                 </div>
@@ -279,7 +278,7 @@
                         />
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="buttons-container">
                 <nuxt-link class="button button-third" :to="localePath('/hub')">

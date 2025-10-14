@@ -7,6 +7,7 @@ export default {
     data() {
         return {
             isDragOver: false,
+            isInvalid: false,
             hasFile: !!this.initialValue,
             fileBlob: this.initialValue,
         };
@@ -33,17 +34,19 @@ export default {
          */
         validate() {
             // Initial value
-            if (this.fileBlob === this.savedInitialValue) {
+            if (this.fileBlob && this.fileBlob === this.savedInitialValue) {
                 return { isValid: true, error: null };
             }
 
             // Empty
             if (!this.fileBlob) {
-                return { isValid: false, error: this.$utils.localeCopy.create.errors.form };
+                this.isInvalid = true;
+                return { isValid: false, error: `${this.$utils.localeCopy.create.errors.form} (${this.name})` };
             }
 
             // File Size
             if (this.file.size > this.maxSize) {
+                this.isInvalid = true;
                 return { isValid: false, error: this.$utils.localeCopy.create.errors.fileToBig };
             }
 
@@ -93,6 +96,7 @@ export default {
         },
 
         inputHandler() {
+            this.isInvalid = false;
             this.readFile();
         },
 

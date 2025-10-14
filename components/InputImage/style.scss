@@ -20,6 +20,10 @@
     &:hover {
         background-color: transparentize($color: $light-grey, $amount: 0.5);
     }
+    
+    &.is-invalid {
+        border: solid 1px $red;
+    }
 
     &.is-drag-over {
         color: $white;

@@ -309,14 +309,14 @@ export default {
             const isValidInput = this.$refs.inputYear.validity.valid;
 
             if (!isValidInput) {
-                return { isValid: false, error: this.$utils.localeCopy.create.errors.form };
+                return { isValid: false, error: `${this.$utils.localeCopy.create.errors.form} (Année)` };
             }
 
             const yearRegex = /^[2][0][0-9]{2}$/;
             const isValidYear = yearRegex.test(this.fields.year);
 
             if (!isValidYear) {
-                return { isValid: false, error: this.$utils.localeCopy.create.errors.form };
+                return { isValid: false, error: `${this.$utils.localeCopy.create.errors.form} (Année)` };
             }
 
             return { isValid: true, error: null };
@@ -326,7 +326,7 @@ export default {
             const isValidInput = this.$refs.inputUrl.validity.valid;
 
             if (!isValidInput) {
-                return { isValid: false, error: this.$utils.localeCopy.create.errors.form };
+                return { isValid: false, error: `${this.$utils.localeCopy.create.errors.form} (URL)` };
             }
 
             // eslint-disable-next-line no-useless-escape
@@ -334,7 +334,7 @@ export default {
             const isValidYear = urlRegex.test(this.fields.url);
 
             if (!isValidYear) {
-                return { isValid: false, error: this.$utils.localeCopy.create.errors.form };
+                return { isValid: false, error: `${this.$utils.localeCopy.create.errors.form} (URL)` };
             }
 
             return { isValid: true, error: null };
@@ -384,7 +384,7 @@ export default {
 
         inputColorHandler(e) {
             const input = e.currentTarget;
-            this.fields[input.name] = input.checked;
+            this.fields[input.name] = input.value;
         },
 
         clickCopyIDHandler() {

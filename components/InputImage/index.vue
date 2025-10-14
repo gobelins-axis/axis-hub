@@ -1,5 +1,5 @@
 <template>
-    <div :class="`input-image ${isDragOver ? 'is-drag-over': ''}`">
+    <div :class="`input-image ${isDragOver ? 'is-drag-over': ''} ${isInvalid ? 'is-invalid': ''}`">
 
         <div class="label-container">
 
@@ -24,6 +24,7 @@
             ref="input"
             type="file"
             accept="image/png, image/jpeg"
+            required
             @input="inputHandler"
         >
 
