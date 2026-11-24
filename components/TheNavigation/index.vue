@@ -1,7 +1,9 @@
 <template>
-    <nav :class="`the-navigation theme-${theme}`">
+    <nav :class="['the-navigation', `theme-${currentTheme}`, { 'is-scrolled': isScrolled }]">
 
-        <ButtonHome class="button-home" :theme="theme" />
+        <div class="background"></div>
+
+        <ButtonHome class="button-home" :theme="currentTheme" />
 
         <!-- Authentificated Nav -->
         <div v-if="isLoggedIn" class="buttons-container">
@@ -10,13 +12,9 @@
                 {{ $utils.localeCopy.routes.hub.name }}
             </nuxt-link>
 
-            <!-- <nuxt-link class="button button-navigation" :to="localePath($utils.localeCopy.routes.documentation.path)">
+            <nuxt-link class="button button-navigation" :to="localePath($utils.localeCopy.routes.documentation.path)">
                 {{ $utils.localeCopy.routes.documentation.name }}
-            </nuxt-link> -->
-
-            <a class="button button-navigation" href="http://github.com/gobelins-axis/axis-api" target="_blank" rel="noopener noreferrer">
-                {{ $utils.localeCopy.routes.documentation.name }}
-            </a>
+            </nuxt-link>
 
             <nuxt-link class="button button-navigation" :to="localePath($utils.localeCopy.routes.games.path)">
                 {{ $utils.localeCopy.routes.games.name }}
@@ -31,13 +29,9 @@
         <!-- Not authentificated Nav -->
         <div v-else class="buttons-container">
 
-            <!-- <nuxt-link class="button button-navigation" :to="localePath($utils.localeCopy.routes.documentation.path)">
+            <nuxt-link class="button button-navigation" :to="localePath($utils.localeCopy.routes.documentation.path)">
                 {{ $utils.localeCopy.routes.documentation.name }}
-            </nuxt-link> -->
-
-            <a class="button button-navigation" href="http://github.com/gobelins-axis/axis-api" target="_blank" rel="noopener noreferrer">
-                {{ $utils.localeCopy.routes.documentation.name }}
-            </a>
+            </nuxt-link>
 
             <nuxt-link class="button button-navigation" :to="localePath($utils.localeCopy.routes.games.path)">
                 {{ $utils.localeCopy.routes.games.name }}

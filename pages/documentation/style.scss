@@ -1,0 +1,847 @@
+.page-documentation {
+    display: flex;
+    position: relative;
+
+    justify-content: space-between;
+
+    min-height: vh(100);
+
+    flex-direction: column;
+}
+
+.container {
+    padding-top: rem(120px, 'small');
+    padding-bottom: rem(100px, 'small');
+
+    @include respond-to('medium') {
+        display: flex;
+
+        align-items: flex-start;
+
+        padding-top: rem(167px, 'medium');
+        padding-bottom: rem(100px, 'medium');
+    }
+
+    @include respond-to('large') {
+        padding-top: rem(167px, 'large');
+        padding-bottom: rem(100px, 'large');
+    }
+}
+
+/**
+ * Sidebar
+ * - Small screens: sticky bar under the navigation, the list opens as a dropdown over the content
+ * - Medium and up: sticky floating box on the left, collapses past the left edge of the screen
+ * On large screens it sits in the left gutter so the content column
+ * lines up with the other pages (.container-small)
+ */
+$sidebar-transition: 0.5s $quart-out;
+
+.sidebar {
+    z-index: 1;
+
+    position: sticky;
+    top: rem(70px, 'small');
+
+    height: rem(50px, 'small');
+
+    margin-bottom: rem(30px, 'small');
+
+    @include respond-to('medium') {
+        z-index: auto;
+
+        top: rem(140px, 'medium');
+
+        width: 24vw;
+        min-width: 24vw;
+        height: auto;
+
+        margin-bottom: 0;
+        padding-right: 3vw;
+
+        // Collapsed: only the toggle button remains, the content column takes the space
+        &.is-collapsed {
+            width: rem(60px, 'medium');
+            min-width: rem(60px, 'medium');
+
+            padding-right: 0;
+        }
+
+        &.is-animated {
+            transition: width $sidebar-transition, min-width $sidebar-transition, padding $sidebar-transition;
+        }
+    }
+
+    @include respond-to('large') {
+        top: rem(140px, 'large');
+
+        width: 14vw;
+        min-width: 14vw;
+
+        padding-right: rem(30px, 'large');
+
+        // The content column keeps its position on large screens
+        &.is-collapsed {
+            width: 14vw;
+            min-width: 14vw;
+
+            padding-right: rem(30px, 'large');
+        }
+    }
+}
+
+// Floating box, same corner shape as the buttons and code blocks
+// Solid tint so the content doesn't show through while it's sticky
+.sidebar-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    max-height: calc(100vh - #{rem(90px, 'small')});
+
+    overflow-y: auto;
+
+    padding: rem(14px, 'small') rem(18px, 'small');
+
+    background-color: mix($black, $white, 4%);
+    border-radius: rem(20px, 'small') rem(6px, 'small') rem(6px, 'small') rem(6px, 'small');
+    box-shadow: 0 rem(4px, 'small') rem(20px, 'small') rgba(0, 0, 0, 0.08);
+
+    // Collapsed on small screens: only the "Sommaire" row stays visible
+    .sidebar.is-collapsed & {
+        :deep(.summary) {
+            margin-bottom: 0;
+        }
+
+        :deep(.list) {
+            display: none;
+        }
+    }
+
+    @include respond-to('medium') {
+        position: static;
+
+        width: 21vw;
+        max-height: calc(100vh - #{rem(160px, 'medium')});
+
+        padding: rem(20px, 'medium') rem(18px, 'medium');
+
+        border-radius: rem(20px, 'medium') rem(6px, 'medium') rem(6px, 'medium') rem(6px, 'medium');
+        box-shadow: none;
+
+        .sidebar.is-animated & {
+            transition: transform $sidebar-transition, opacity $sidebar-transition, visibility $sidebar-transition;
+        }
+
+        // Slides out past the left edge of the screen, the list stays rendered during the transition
+        .sidebar.is-collapsed & {
+            opacity: 0;
+            visibility: hidden;
+
+            transform: translateX(calc(-100% - 4vw));
+
+            :deep(.summary) {
+                margin-bottom: rem(15px, 'medium');
+            }
+
+            :deep(.list) {
+                display: block;
+            }
+        }
+    }
+
+    @include respond-to('large') {
+        width: auto;
+        max-height: calc(100vh - #{rem(160px, 'large')});
+
+        padding: rem(20px, 'large') rem(18px, 'large');
+
+        border-radius: rem(20px, 'large') rem(6px, 'large') rem(6px, 'large') rem(6px, 'large');
+
+        .sidebar.is-collapsed & :deep(.summary) {
+            margin-bottom: rem(15px, 'large');
+        }
+    }
+}
+
+// Small screens: covers the whole "Sommaire" row
+// Medium and up: sits on the "Sommaire" row when open, stays on the left edge when collapsed
+.button-toggle {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    height: rem(50px, 'small');
+
+    padding-right: rem(18px, 'small');
+
+    svg {
+        width: rem(7px, 'small');
+        height: rem(14px, 'small');
+
+        transform: rotate(90deg);
+
+        transition: transform $sidebar-transition;
+
+        .sidebar.is-collapsed & {
+            transform: rotate(-90deg);
+        }
+
+        :deep(*) {
+            fill: $color-text;
+
+            transition: fill 0.2s $sine-out;
+        }
+    }
+
+    @include respond-to('medium') {
+        top: rem(17px, 'medium');
+        right: calc(3vw + #{rem(12px, 'medium')});
+        left: auto;
+
+        justify-content: center;
+
+        width: rem(28px, 'medium');
+        height: rem(28px, 'medium');
+
+        padding-right: 0;
+
+        background-color: $white;
+        border-radius: rem(6px, 'medium');
+
+        .sidebar.is-collapsed & {
+            top: 0;
+            right: auto;
+            left: 0;
+
+            width: rem(40px, 'medium');
+            height: rem(40px, 'medium');
+
+            border-radius: rem(20px, 'medium') rem(6px, 'medium') rem(6px, 'medium') rem(6px, 'medium');
+            box-shadow: rem(-2px, 'medium') rem(4px, 'medium') rem(20px, 'medium') rgba(0, 0, 0, 0.15);
+        }
+
+        svg {
+            width: rem(7px, 'medium');
+            height: rem(14px, 'medium');
+
+            transform: none;
+
+            .sidebar.is-collapsed & {
+                transform: rotate(180deg);
+            }
+        }
+
+        &:hover svg :deep(*) {
+            fill: $purple;
+        }
+    }
+
+    @include respond-to('large') {
+        top: rem(17px, 'large');
+        right: rem(42px, 'large');
+
+        width: rem(28px, 'large');
+        height: rem(28px, 'large');
+
+        border-radius: rem(6px, 'large');
+
+        .sidebar.is-collapsed & {
+            width: rem(40px, 'large');
+            height: rem(40px, 'large');
+
+            border-radius: rem(20px, 'large') rem(6px, 'large') rem(6px, 'large') rem(6px, 'large');
+            box-shadow: rem(-2px, 'large') rem(4px, 'large') rem(20px, 'large') rgba(0, 0, 0, 0.15);
+        }
+
+        svg {
+            width: rem(7px, 'large');
+            height: rem(14px, 'large');
+        }
+    }
+}
+
+.main {
+    min-width: 0;
+
+    @include respond-to('medium') {
+        flex: 1;
+    }
+
+    @include respond-to('large') {
+        flex: none;
+
+        width: 65vw;
+    }
+}
+
+.title {
+    margin-bottom: rem(15px, 'small');
+
+    font-weight: 800;
+    font-size: rem(32px, 'small');
+    line-height: rem(32px, 'small');
+
+    @include respond-to('medium') {
+        margin-bottom: rem(20px, 'medium');
+
+        font-size: rem(48px, 'medium');
+        line-height: rem(48px, 'medium');
+    }
+
+    @include respond-to('large') {
+        margin-bottom: rem(20px, 'large');
+
+        font-size: rem(48px, 'large');
+        line-height: rem(48px, 'large');
+    }
+}
+
+// Same size and corner shape as .button-primary, dark to stay secondary to it
+.button-github {
+    display: inline-flex;
+
+    align-items: center;
+
+    margin-bottom: rem(40px, 'small');
+    padding: rem(5px, 'small') rem(16px, 'small');
+
+    font-weight: 700;
+    font-size: rem(16px, 'small');
+    line-height: rem(22px, 'small');
+    color: $white;
+
+    background-color: $color-text;
+    border-radius: rem(20px, 'small') rem(6px, 'small') rem(6px, 'small') rem(6px, 'small');
+
+    transition: background-color 0.2s $sine-out;
+
+    &:hover {
+        background-color: $purple;
+    }
+
+    @include respond-to('medium') {
+        margin-bottom: rem(53px, 'medium');
+        padding: rem(5px, 'medium') rem(15px, 'medium');
+
+        font-size: rem(16px, 'medium');
+        line-height: rem(22px, 'medium');
+
+        border-radius: rem(20px, 'medium') rem(6px, 'medium') rem(6px, 'medium') rem(6px, 'medium');
+    }
+
+    @include respond-to('large') {
+        margin-bottom: rem(53px, 'large');
+        padding: rem(5px, 'large') rem(15px, 'large');
+
+        font-size: rem(16px, 'large');
+        line-height: rem(22px, 'large');
+
+        border-radius: rem(20px, 'large') rem(6px, 'large') rem(6px, 'large') rem(6px, 'large');
+    }
+}
+
+.icon-github {
+    width: rem(16px, 'small');
+    height: rem(16px, 'small');
+
+    margin-right: rem(9px, 'small');
+
+    @include respond-to('medium') {
+        width: rem(16px, 'medium');
+        height: rem(16px, 'medium');
+
+        margin-right: rem(9px, 'medium');
+    }
+
+    @include respond-to('large') {
+        width: rem(16px, 'large');
+        height: rem(16px, 'large');
+
+        margin-right: rem(9px, 'large');
+    }
+}
+
+/**
+ * Markdown content (rendered with v-html, hence :deep)
+ */
+.markdown {
+    font-weight: 500;
+    font-size: rem(16px, 'small');
+    line-height: rem(22px, 'small');
+    color: $color-text;
+
+    @include respond-to('medium') {
+        font-size: rem(16px, 'medium');
+        line-height: rem(22px, 'medium');
+    }
+
+    @include respond-to('large') {
+        font-size: rem(16px, 'large');
+        line-height: rem(22px, 'large');
+    }
+
+    // The base styles make everything unselectable, docs need to be copied
+    &,
+    :deep(*) {
+        -webkit-user-select: text !important;
+        -moz-user-select: text !important;
+        user-select: text !important;
+    }
+
+    :deep(h2),
+    :deep(h3),
+    :deep(h4) {
+        scroll-margin-top: rem(140px, 'small');
+
+        @include respond-to('medium') {
+            scroll-margin-top: rem(140px, 'medium');
+        }
+
+        @include respond-to('large') {
+            scroll-margin-top: rem(140px, 'large');
+        }
+    }
+
+    :deep(h2) {
+        margin-top: rem(50px, 'small');
+        margin-bottom: rem(20px, 'small');
+        padding-top: rem(30px, 'small');
+
+        font-weight: 800;
+        font-size: rem(32px, 'small');
+        line-height: rem(32px, 'small');
+
+        border-top: solid 1px $alpha-black;
+
+        @include respond-to('medium') {
+            margin-top: rem(60px, 'medium');
+            margin-bottom: rem(20px, 'medium');
+            padding-top: rem(40px, 'medium');
+
+            font-size: rem(32px, 'medium');
+            line-height: rem(32px, 'medium');
+        }
+
+        @include respond-to('large') {
+            margin-top: rem(60px, 'large');
+            margin-bottom: rem(20px, 'large');
+            padding-top: rem(40px, 'large');
+
+            font-size: rem(32px, 'large');
+            line-height: rem(32px, 'large');
+        }
+    }
+
+    :deep(h3) {
+        margin-top: rem(35px, 'small');
+        margin-bottom: rem(15px, 'small');
+
+        font-weight: 800;
+        font-size: rem(24px, 'small');
+        line-height: rem(28px, 'small');
+
+        @include respond-to('medium') {
+            margin-top: rem(40px, 'medium');
+            margin-bottom: rem(15px, 'medium');
+
+            font-size: rem(24px, 'medium');
+            line-height: rem(28px, 'medium');
+        }
+
+        @include respond-to('large') {
+            margin-top: rem(40px, 'large');
+            margin-bottom: rem(15px, 'large');
+
+            font-size: rem(24px, 'large');
+            line-height: rem(28px, 'large');
+        }
+    }
+
+    :deep(h4) {
+        margin-top: rem(25px, 'small');
+        margin-bottom: rem(10px, 'small');
+
+        font-weight: 700;
+        font-size: rem(20px, 'small');
+        line-height: rem(27px, 'small');
+
+        @include respond-to('medium') {
+            margin-top: rem(30px, 'medium');
+            margin-bottom: rem(10px, 'medium');
+
+            font-size: rem(20px, 'medium');
+            line-height: rem(27px, 'medium');
+        }
+
+        @include respond-to('large') {
+            margin-top: rem(30px, 'large');
+            margin-bottom: rem(10px, 'large');
+
+            font-size: rem(20px, 'large');
+            line-height: rem(27px, 'large');
+        }
+    }
+
+    :deep(p),
+    :deep(ul),
+    :deep(ol) {
+        margin-bottom: rem(15px, 'small');
+
+        @include respond-to('medium') {
+            margin-bottom: rem(15px, 'medium');
+        }
+
+        @include respond-to('large') {
+            margin-bottom: rem(15px, 'large');
+        }
+    }
+
+    :deep(strong) {
+        font-weight: 700;
+    }
+
+    :deep(em) {
+        font-style: italic;
+    }
+
+    :deep(a) {
+        color: $purple;
+        text-decoration: none;
+
+        border-bottom: solid 1px currentColor;
+    }
+
+    :deep(li) {
+        position: relative;
+
+        padding-left: rem(18px, 'small');
+
+        &:not(:last-child) {
+            margin-bottom: rem(6px, 'small');
+        }
+
+        &::before {
+            position: absolute;
+            top: rem(9px, 'small');
+            left: 0;
+
+            width: rem(6px, 'small');
+            height: rem(6px, 'small');
+
+            content: '';
+
+            background-color: $purple;
+            border-radius: 50%;
+        }
+
+        @include respond-to('medium') {
+            padding-left: rem(18px, 'medium');
+
+            &:not(:last-child) {
+                margin-bottom: rem(6px, 'medium');
+            }
+
+            &::before {
+                top: rem(9px, 'medium');
+
+                width: rem(6px, 'medium');
+                height: rem(6px, 'medium');
+            }
+        }
+
+        @include respond-to('large') {
+            padding-left: rem(18px, 'large');
+
+            &:not(:last-child) {
+                margin-bottom: rem(6px, 'large');
+            }
+
+            &::before {
+                top: rem(9px, 'large');
+
+                width: rem(6px, 'large');
+                height: rem(6px, 'large');
+            }
+        }
+    }
+
+    // Inline code, same treatment as the game ID in the creation form
+    :deep(code) {
+        padding: 0 rem(5px, 'small');
+
+        font-family: $font-code;
+        font-size: 0.85em;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+
+        background-color: transparentize($color: $yellow, $amount: 0.85);
+        border-radius: rem(4px, 'small');
+
+        @include respond-to('medium') {
+            padding: 0 rem(5px, 'medium');
+
+            border-radius: rem(4px, 'medium');
+        }
+
+        @include respond-to('large') {
+            padding: 0 rem(5px, 'large');
+
+            border-radius: rem(4px, 'large');
+        }
+    }
+
+    // Code blocks, same corner shape as .button-primary
+    :deep(.code-block) {
+        position: relative;
+
+        margin-top: rem(20px, 'small');
+        margin-bottom: rem(20px, 'small');
+
+        @include respond-to('medium') {
+            margin-top: rem(20px, 'medium');
+            margin-bottom: rem(20px, 'medium');
+        }
+
+        @include respond-to('large') {
+            margin-top: rem(20px, 'large');
+            margin-bottom: rem(20px, 'large');
+        }
+    }
+
+    :deep(pre) {
+        overflow-x: auto;
+
+        padding: rem(20px, 'small') rem(90px, 'small') rem(20px, 'small') rem(20px, 'small');
+
+        font-size: rem(13px, 'small');
+        line-height: rem(20px, 'small');
+        color: $white;
+
+        background-color: $color-text;
+        border-radius: rem(20px, 'small') rem(6px, 'small') rem(6px, 'small') rem(6px, 'small');
+
+        code {
+            padding: 0;
+
+            font-size: inherit;
+            word-break: normal;
+            overflow-wrap: normal;
+
+            background: none;
+            border-radius: 0;
+        }
+
+        @include respond-to('medium') {
+            padding: rem(20px, 'medium') rem(100px, 'medium') rem(20px, 'medium') rem(25px, 'medium');
+
+            font-size: rem(14px, 'medium');
+            line-height: rem(21px, 'medium');
+
+            border-radius: rem(20px, 'medium') rem(6px, 'medium') rem(6px, 'medium') rem(6px, 'medium');
+        }
+
+        @include respond-to('large') {
+            padding: rem(20px, 'large') rem(100px, 'large') rem(20px, 'large') rem(25px, 'large');
+
+            font-size: rem(14px, 'large');
+            line-height: rem(21px, 'large');
+
+            border-radius: rem(20px, 'large') rem(6px, 'large') rem(6px, 'large') rem(6px, 'large');
+        }
+    }
+
+    // Same look and label swap as the "Copier l'ID" button of the game form
+    :deep(.button-copy) {
+        position: absolute;
+        top: rem(12px, 'small');
+        right: rem(12px, 'small');
+
+        padding: rem(4px, 'small') rem(12px, 'small');
+
+        font-weight: 700;
+        font-size: rem(15px, 'small');
+        line-height: rem(18px, 'small');
+        color: $color-text;
+        white-space: nowrap;
+
+        background-color: $yellow;
+        border-radius: rem(6px, 'small');
+
+        transition: background-color 0.2s $sine-out;
+
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        user-select: none !important;
+
+        * {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            user-select: none !important;
+        }
+
+        .label-container {
+            position: relative;
+        }
+
+        .label-copied {
+            visibility: hidden;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            text-align: center;
+        }
+
+        &.is-copied {
+            color: $white;
+
+            background-color: $purple;
+
+            .label {
+                visibility: hidden;
+            }
+
+            .label-copied {
+                visibility: visible;
+            }
+        }
+
+        @include respond-to('medium') {
+            top: rem(14px, 'medium');
+            right: rem(14px, 'medium');
+
+            padding: rem(4px, 'medium') rem(12px, 'medium');
+
+            font-size: rem(15px, 'medium');
+            line-height: rem(18px, 'medium');
+
+            border-radius: rem(6px, 'medium');
+        }
+
+        @include respond-to('large') {
+            top: rem(14px, 'large');
+            right: rem(14px, 'large');
+
+            padding: rem(4px, 'large') rem(12px, 'large');
+
+            font-size: rem(15px, 'large');
+            line-height: rem(18px, 'large');
+
+            border-radius: rem(6px, 'large');
+        }
+    }
+
+    // Syntax highlighting, accent palette lightened for the dark background
+    // The base styles set the primary font on every element, highlighted tokens included
+    :deep(code *) {
+        font-family: $font-code;
+    }
+
+    :deep(.hljs-comment) {
+        font-style: italic;
+
+        color: mix($grey, $light-grey);
+    }
+
+    :deep(.hljs-keyword) {
+        color: lighten($purple, 18%);
+    }
+
+    :deep(.hljs-string),
+    :deep(.hljs-regexp) {
+        color: $green;
+    }
+
+    :deep(.hljs-number),
+    :deep(.hljs-literal) {
+        color: $yellow;
+    }
+
+    :deep(.hljs-built_in),
+    :deep(.hljs-variable.language_) {
+        color: lighten($red, 8%);
+    }
+
+    :deep(.hljs-title),
+    :deep(.hljs-meta) {
+        color: lighten($blue, 12%);
+    }
+
+    :deep(.table-container) {
+        overflow-x: auto;
+
+        margin-top: rem(15px, 'small');
+        margin-bottom: rem(20px, 'small');
+
+        @include respond-to('medium') {
+            margin-top: rem(15px, 'medium');
+            margin-bottom: rem(20px, 'medium');
+        }
+
+        @include respond-to('large') {
+            margin-top: rem(15px, 'large');
+            margin-bottom: rem(20px, 'large');
+        }
+    }
+
+    :deep(table) {
+        width: 100%;
+    }
+
+    :deep(th),
+    :deep(td) {
+        padding: rem(8px, 'small') rem(12px, 'small');
+
+        text-align: left;
+        vertical-align: top;
+
+        &:first-child {
+            padding-left: 0;
+        }
+
+        @include respond-to('medium') {
+            padding: rem(8px, 'medium') rem(12px, 'medium');
+        }
+
+        @include respond-to('large') {
+            padding: rem(8px, 'large') rem(12px, 'large');
+        }
+    }
+
+    :deep(th) {
+        font-weight: 700;
+        white-space: nowrap;
+
+        border-bottom: solid 1px $color-text;
+    }
+
+    :deep(td) {
+        border-bottom: solid 1px $alpha-black;
+    }
+
+    :deep(img) {
+        display: block;
+
+        max-width: 100%;
+
+        margin: rem(20px, 'small') auto;
+
+        @include respond-to('medium') {
+            margin: rem(30px, 'medium') auto;
+        }
+
+        @include respond-to('large') {
+            margin: rem(30px, 'large') auto;
+        }
+    }
+}

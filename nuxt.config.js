@@ -116,6 +116,15 @@ export default {
                 exclude: /node_modules/,
                 use: ['raw-loader', 'glslify-loader'],
             });
+
+            /**
+             * Markdown loader (documentation content)
+             */
+            config.module.rules.push({
+                test: /\.md$/,
+                exclude: /node_modules/,
+                use: ['raw-loader'],
+            });
         },
 
         transpile: ['three', 'three-bmfont-text'],

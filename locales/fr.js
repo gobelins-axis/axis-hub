@@ -59,6 +59,16 @@ export const data = {
         year: 'Créé en ',
     },
 
+    documentation: {
+        title: 'Documentation',
+        summary: 'Sommaire',
+        hideSummary: 'Masquer le sommaire',
+        showSummary: 'Afficher le sommaire',
+        github: 'View on GitHub',
+        copy: 'Copier',
+        copied: 'Copié !',
+    },
+
     hub: {
         title: 'Espace créateur',
         callToAction: 'Créer un jeu',

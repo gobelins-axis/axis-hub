@@ -16,18 +16,75 @@
 
     margin: auto;
 
+    transition: top 0.4s $quart-out;
+
     pointer-events: none;
+
+    &.is-scrolled {
+        top: rem(30px, 'small');
+    }
 
     @include respond-to('medium') {
         top: rem(42px, 'medium');
         
         width: 93vw;
+
+        &.is-scrolled {
+            top: rem(30px, 'medium');
+        }
     }
     
     @include respond-to('large') {
         top: rem(42px, 'large');
 
         width: 93vw;
+
+        &.is-scrolled {
+            top: rem(30px, 'large');
+        }
+    }
+}
+
+// Scrolled state, centered on the navigation line (2 x scrolled top)
+.background {
+    z-index: -1;
+
+    opacity: 0;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    height: rem(60px, 'small');
+
+    background-color: $white;
+    border-bottom: solid 1px $alpha-black;
+
+    transition: opacity 0.4s $quart-out;
+
+    .the-navigation.is-scrolled & {
+        opacity: 1;
+
+        pointer-events: all;
+    }
+
+    @include respond-to('medium') {
+        height: rem(60px, 'medium');
+    }
+
+    @include respond-to('large') {
+        height: rem(60px, 'large');
+    }
+}
+
+.button-home {
+    transform-origin: left center;
+
+    transition: transform 0.4s $quart-out;
+
+    .the-navigation.is-scrolled & {
+        transform: scale(0.75);
     }
 }
 
