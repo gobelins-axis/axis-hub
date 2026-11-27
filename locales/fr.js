@@ -23,6 +23,15 @@ export const data = {
     },
 
     // Pages
+    home: {
+        scroll: 'Découvrir les jeux',
+        games: {
+            title: 'Les jeux',
+            seeAll: 'Voir tous les jeux',
+            createGame: 'Créer votre jeu',
+        },
+    },
+
     login: {
         titleLogin: 'Connexion',
         titleRegister: 'Inscription',

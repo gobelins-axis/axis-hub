@@ -3,10 +3,14 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
+        "predev": "node scripts/fetch-documentation.js",
         "dev": "nuxt",
+        "prebuild": "node scripts/fetch-documentation.js",
         "build": "nuxt build",
         "start": "nuxt start",
-        "generate": "nuxt generate"
+        "pregenerate": "node scripts/fetch-documentation.js",
+        "generate": "nuxt generate",
+        "fetch-documentation": "node scripts/fetch-documentation.js"
     },
     "dependencies": {
         "bowser": "^2.11.0",

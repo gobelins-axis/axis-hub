@@ -7,6 +7,17 @@ deployed on Netlify. See `../CLAUDE.md` for the ecosystem.
 
 `npm install`, `npm run dev`, `npm run generate` for the static build.
 
+## Documentation page
+
+`content/documentation.md` is a copy of the axis-api README, **do not edit it here**:
+edit `../axis-api/README.md` and push. `scripts/fetch-documentation.js` runs before
+`dev`, `build` and `generate` (npm `pre*` hooks) and overwrites the file with the README
+from GitHub (`main`, or `AXIS_API_README_REF`). If GitHub can't be reached it keeps the
+committed copy and only warns; `SKIP_DOCUMENTATION_FETCH=1` skips the fetch (e.g. to
+preview local README edits copied by hand). Commit the refreshed file when it changes so
+the fallback stays recent. The page (`utils/parseDocumentation.js`) builds its sidebar
+from the README's "Table of contents" section and `##` headings.
+
 ## Design notes
 
 - Shares the Axis identity with `../axis-launcher-front` (Darker Grotesque, black/white) and adds the accent palette in `assets/styles/resources/_variables.scss`: green `#7fef08`, purple `#952DFF`, blue `#4285F4`, red `#FF3E3E`, yellow `#FFD600`, greys `#6D6E70` / `#ACACAC`, text `#1F1F1F`.

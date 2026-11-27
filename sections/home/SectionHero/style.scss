@@ -1,0 +1,100 @@
+// Sticky: stays in place while the next content slides over it
+.section-hero {
+    position: sticky;
+    top: 0;
+
+    width: 100%;
+    height: vh(100);
+
+    overflow: hidden;
+
+    background-color: $black;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.button-scroll {
+    display: flex;
+    position: absolute;
+    bottom: rem(30px, 'small');
+    left: 50%;
+
+    align-items: center;
+    flex-direction: column;
+
+    font-weight: 700;
+    font-size: rem(16px, 'small');
+    line-height: rem(22px, 'small');
+    color: $white;
+
+    transform: translateX(-50%);
+
+    @include respond-to('medium') {
+        bottom: rem(40px, 'medium');
+
+        font-size: rem(16px, 'medium');
+        line-height: rem(22px, 'medium');
+    }
+
+    @include respond-to('large') {
+        bottom: rem(40px, 'large');
+
+        font-size: rem(16px, 'large');
+        line-height: rem(22px, 'large');
+    }
+}
+
+.arrow {
+    width: rem(9px, 'small');
+    height: rem(15px, 'small');
+
+    margin-top: rem(8px, 'small');
+
+    transform: rotate(-90deg);
+
+    animation: bounce 1.6s $sine-in-out infinite;
+
+    @include respond-to('medium') {
+        width: rem(9px, 'medium');
+        height: rem(15px, 'medium');
+
+        margin-top: rem(8px, 'medium');
+    }
+
+    @include respond-to('large') {
+        width: rem(9px, 'large');
+        height: rem(15px, 'large');
+
+        margin-top: rem(8px, 'large');
+    }
+
+    :deep(*) {
+        fill: $white;
+    }
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: rotate(-90deg) translateX(0);
+    }
+
+    50% {
+        transform: rotate(-90deg) translateX(-6px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .arrow {
+        animation: none;
+    }
+}

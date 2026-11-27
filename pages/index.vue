@@ -1,9 +1,16 @@
 <template>
     <div class="page-home">
 
-        <img src="~/assets/images/background.jpg" alt="" class="background-image">
+        <SectionHero />
 
-        <Footer />
+        <!-- Slides over the sticky hero on scroll -->
+        <div class="content">
+
+            <SectionGames :games="games" />
+
+            <Footer />
+
+        </div>
 
     </div>
 </template>

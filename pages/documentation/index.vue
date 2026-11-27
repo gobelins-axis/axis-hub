@@ -34,7 +34,7 @@
                     {{ $utils.localeCopy.documentation.title }}
                 </h1>
 
-                <a class="button button-github" :href="githubUrl" target="_blank" rel="noopener noreferrer">
+                <a class="button button-secondary button-github" :href="githubUrl" target="_blank" rel="noopener noreferrer">
                     <IconGithub class="icon-github" />
                     <span>{{ $utils.localeCopy.documentation.github }}</span>
                 </a>

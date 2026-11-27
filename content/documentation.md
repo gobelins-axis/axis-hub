@@ -28,6 +28,7 @@ The API also exposes the **LEDs** inside the machine (see [Handling LEDs](#handl
   - [Handling sleep and awake](#handling-sleep-and-awake)
   - [Mouse interaction](#mouse-interaction)
   - [Handling LEDs](#handling-leds)
+  - [Alternative controllers](#alternative-controllers)
 - [API References](#api-references)
 - [Development](#development)
 - [Authors](#authors)
@@ -611,7 +612,45 @@ Axis.ledManager.ledGroups[0].leds[10].setColor("red"); // 11th LED of the left s
 
 Available LED names: `button-{key}-{id}` for the 10 controller buttons (`button-a-1`, `button-w-2`...), `button-home-0`, and the groups `left-strip` and `right-strip` (51 LEDs each).
 
-⚠️ **The LED strips are currently disconnected from the machine** and their control is being rewritten on the firmware side. The API above is safe to call but has no visible effect for now. It will come back without any change on your side.
+⚠️ **Hardware issue** The LEDs from the first player buttons are currently broken (a-1, x-1, i-1, s-1, w-1). Calling the API is safe but no light will be visible for now.
+
+### Alternative controllers
+
+Besides its own buttons and joysticks, the machine accepts **alternative controllers**: any board with a USB serial port (Arduino Uno, Nano, ESP32, Teensy...) plugged in while it runs. You build the controller, flash it with a sketch that speaks the launcher's protocol (see `scripts/AlternativeController` in the [arduino repository](https://github.com/gobelins-axis/arduino)), and your game reads its messages here.
+
+Each board announces a **name** (`type:ready__controller:my-controller`). Get the controller by that name, it works even before the board is plugged in and keeps your listeners across unplug / replug:
+
+```js
+const controller = Axis.getAlternativeController("my-controller");
+
+controller.addEventListener("connected", (e) => console.log(`${e.name} connected on slot ${e.slot}`));
+controller.addEventListener("disconnected", (e) => console.log(`${e.name} disconnected`));
+
+controller.addEventListener("message", (e) => {
+    // The board sent "type:alternative__key:fire__state:keydown"
+    if (e.data.key === "fire" && e.data.state === "keydown") shoot();
+});
+```
+
+Message fields are free-form: everything the board sends after `type:alternative__` arrives in `data` as **strings** (`"type:alternative__key:knob__value:512"` → `{ key: "knob", value: "512" }`), so your sketch and your game agree on the names. Convert numbers yourself (`parseInt(e.data.value)`).
+
+You can also listen to every controller at once on the singleton:
+
+```js
+Axis.addEventListener("alternative:message", (e) => console.log(e.name, e.slot, e.data));
+```
+
+Give each board a unique name. The `slot` (3, 4, ...) is assigned by the launcher in connection order and can change on replug; use the name to tell controllers apart.
+
+These events only fire on the machine, with a launcher that supports alternative controllers. On your computer, emulate a controller by calling its handlers yourself:
+
+```js
+const controller = Axis.getAlternativeController("my-controller");
+controller.connectHandler(3);
+window.addEventListener("keydown", (e) => {
+    if (e.key === "f") controller.messageHandler({ key: "fire", state: "keydown" });
+});
+```
 
 ## API References
 
@@ -652,6 +691,10 @@ The same handler can only be registered once per event.
 
 `ledManager` : instance of LedManager class
 
+`alternativeControllerManager` : instance of AlternativeControllerManager class
+
+`alternativeControllers` : Array of instances of AlternativeController class, every controller known so far
+
 #### Methods
 
 `Axis.registerKeys(keyboardKeys, key, id)` : instance of Button class
@@ -670,6 +713,12 @@ The same handler can only be registered once per event.
 | gamepadButtonIndexes | <code>Int</code> or <code>Array(Int)</code> | The gamepad button indexes                       |
 | key                  | <code>String</code>                         | The machine button key ("a", "x", "i", "s", "w") |
 | id                   | <code>Int</code>                            | The machine button group id (1 or 2)             |
+
+`Axis.getAlternativeController(name)` : instance of AlternativeController class, created if needed
+
+| Param | Type                | Description                         |
+| ----- | ------------------- | ----------------------------------- |
+| name  | <code>String</code> | The name the board announces itself with |
 
 `Axis.createGamepadEmulator(index)` : instance of GamepadEmulator class
 
@@ -716,6 +765,9 @@ The same handler can only be registered once per event.
 | `exit:completed`     | none                          | Exit confirmed, the launcher is about to close the game |
 | `sleep`              | none                          | The machine goes to sleep (machine only)                |
 | `awake`              | none                          | The machine wakes up (machine only)                     |
+| `alternative:connected`    | `{ name, slot }`        | An alternative controller connected                     |
+| `alternative:disconnected` | `{ name, slot }`        | An alternative controller disconnected                  |
+| `alternative:message`      | `{ name, slot, data }`  | A message from any alternative controller               |
 
 ### JoystickManager
 
@@ -944,6 +996,50 @@ The same handler can only be registered once per event.
 #### Methods
 
 `ledGroup.setColor(color)` : undefined, sets every LED of the group
+
+### AlternativeControllerManager
+
+#### Properties
+
+`controllers` : Array of AlternativeController instances, connected or not (read only)
+
+`connectedControllers` : Array of the connected ones (read only)
+
+#### Methods
+
+`alternativeControllerManager.getController(name)` : instance of AlternativeController class, created (disconnected) if the board has not shown up yet
+
+#### Events
+
+`alternative:connected` : `{ name, slot }`
+
+`alternative:disconnected` : `{ name, slot }`
+
+`alternative:message` : `{ name, slot, data }`
+
+### AlternativeController
+
+#### Properties
+
+`name` : String, the name announced by the board (read only)
+
+`slot` : Int (3, 4, ...) assigned by the launcher, `null` before the first connection (read only)
+
+`isConnected` : Boolean (read only)
+
+`data` : Object, fields of the last message, values are strings (read only)
+
+#### Methods
+
+`controller.connectHandler(slot)`, `controller.disconnectHandler()`, `controller.messageHandler(data)` : undefined. Called by the API on the machine; call them yourself to emulate a controller.
+
+#### Events
+
+`connected` : `{ name, slot }`
+
+`disconnected` : `{ name, slot }`
+
+`message` : `{ name, slot, data }`
 
 ### Named exports
 

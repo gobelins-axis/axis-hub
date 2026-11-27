@@ -303,47 +303,19 @@ $sidebar-transition: 0.5s $quart-out;
     }
 }
 
-// Same size and corner shape as .button-primary, dark to stay secondary to it
 .button-github {
     display: inline-flex;
 
     align-items: center;
 
     margin-bottom: rem(40px, 'small');
-    padding: rem(5px, 'small') rem(16px, 'small');
-
-    font-weight: 700;
-    font-size: rem(16px, 'small');
-    line-height: rem(22px, 'small');
-    color: $white;
-
-    background-color: $color-text;
-    border-radius: rem(20px, 'small') rem(6px, 'small') rem(6px, 'small') rem(6px, 'small');
-
-    transition: background-color 0.2s $sine-out;
-
-    &:hover {
-        background-color: $purple;
-    }
 
     @include respond-to('medium') {
         margin-bottom: rem(53px, 'medium');
-        padding: rem(5px, 'medium') rem(15px, 'medium');
-
-        font-size: rem(16px, 'medium');
-        line-height: rem(22px, 'medium');
-
-        border-radius: rem(20px, 'medium') rem(6px, 'medium') rem(6px, 'medium') rem(6px, 'medium');
     }
 
     @include respond-to('large') {
         margin-bottom: rem(53px, 'large');
-        padding: rem(5px, 'large') rem(15px, 'large');
-
-        font-size: rem(16px, 'large');
-        line-height: rem(22px, 'large');
-
-        border-radius: rem(20px, 'large') rem(6px, 'large') rem(6px, 'large') rem(6px, 'large');
     }
 }
 
